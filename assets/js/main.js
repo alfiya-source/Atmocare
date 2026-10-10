@@ -100,6 +100,12 @@
     e.preventDefault();
     toast('This page is not available on atmocare.com yet');
   }));
+  /* ---------- footer newsletter (no mailing service yet: confirm on screen only) ---------- */
+  $$('[data-newsletter]').forEach(f => f.addEventListener('submit', e => {
+    e.preventDefault();
+    f.reset();
+    toast('Thanks, you are on the list');
+  }));
 
   /* ---------- generic autoplay helper ---------- */
   function autoplay(root, step, delay) {
@@ -251,39 +257,6 @@
     $('[data-snap-next]', root).addEventListener('click', () => by(1));
   });
 
-  /* ---------- divisions pager: marks the hovered card; on the swipe track it scrolls and follows ---------- */
-  const divs = $('[data-divisions]');
-  if (divs) {
-    const track = $('[data-divisions-track]', divs);
-    const cards = [...track.children];
-    const pages = $$('.divisions__pager button', divs);
-    const setActive = i => pages.forEach((b, j) => {
-      b.classList.toggle('is-active', j === i);
-      if (j === i) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
-    });
-    const isTrack = () => track.scrollWidth > track.clientWidth + 1;
-    pages.forEach((b, i) => b.addEventListener('click', () => {
-      setActive(i);
-      if (isTrack()) track.scrollTo({ left: cards[i].offsetLeft - cards[0].offsetLeft, behavior: reduceMotion ? 'auto' : 'smooth' });
-      else cards[i].querySelector('a').focus({ preventScroll: true });
-    }));
-    cards.forEach((c, i) => {
-      c.addEventListener('mouseenter', () => setActive(i));
-      c.addEventListener('focusin', () => setActive(i));
-    });
-    let raf;
-    track.addEventListener('scroll', () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        const x = track.scrollLeft;
-        let best = 0;
-        cards.forEach((c, i) => { if (Math.abs(c.offsetLeft - cards[0].offsetLeft - x) < Math.abs(cards[best].offsetLeft - cards[0].offsetLeft - x)) best = i; });
-        if (x + track.clientWidth >= track.scrollWidth - 2) best = cards.length - 1;
-        setActive(best);
-      });
-    }, { passive: true });
-  }
-
   /* ---------- testimonials reel: endless slow drift, pauses on hover/focus/off-screen; arrows step one tile ---------- */
   const reel = $('[data-testi]');
   if (reel) {
@@ -298,7 +271,7 @@
     });
     const loopW = () => track.children[originals.length].offsetLeft - track.children[0].offsetLeft;
     const step = () => originals[1].offsetLeft - originals[0].offsetLeft;
-    const SPEED = 0.45; // px per frame at 60fps
+    const SPEED = 1; // px per frame at 60fps
     let pos = 0, hover = false, inView = false, held = 0, last = 0;
     const wrap = () => { const w = loopW(); if (pos >= w) pos -= w; else if (pos < 0) pos += w; };
     const tick = t => {
