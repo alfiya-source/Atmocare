@@ -55,6 +55,7 @@
 }
 /* short laptop screens: squarer product photos so a full row of cards plus its heading still fits */
 @media (min-width: 48rem) and (max-height: 56rem) { :root { --media-ratio: 1.08; } }
+@media (min-width: 48rem) and (max-height: 42rem) { :root { --media-ratio: .86; } } /* short laptop windows: keep each band within one screen */
 
 /* ---------- base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
@@ -206,7 +207,7 @@ address { font-style: normal; }
 @keyframes hero-settle { from { transform: scale(1.08); } }
 /* neutral ink shade from the left for the copy, plus a soft floor so the pager reads */
 .hero__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgb(22 20 26 / .72) 0%, rgb(22 20 26 / .5) 36%, rgb(22 20 26 / 0) 62%), linear-gradient(0deg, rgb(22 20 26 / .35) 0%, rgb(22 20 26 / 0) 30%); }
-.hero__inner { position: relative; display: flex; flex-direction: column; justify-content: center; min-height: clamp(34rem, calc(100svh - var(--header-offset, 8.5rem)), 54rem); padding-block: clamp(3.5rem, 6vw, 6rem); }
+.hero__inner { position: relative; display: flex; flex-direction: column; justify-content: center; min-height: clamp(22rem, calc(100svh - var(--header-offset, 8.5rem)), 54rem); padding-block: clamp(2rem, 8svh, 6rem); }
 .hero__content { max-width: 38rem; display: grid; gap: clamp(1.1rem, 1.6vw, 1.75rem); }
 .hero__eyebrow { display: flex; align-items: center; gap: .9rem; font-size: var(--fs-xs); font-weight: 500; letter-spacing: .28em; text-transform: uppercase; color: rgb(255 255 255 / .85); }
 .hero__eyebrow::before { content: ""; width: 2.5rem; height: 1px; background: currentColor; }
@@ -224,7 +225,7 @@ address { font-style: normal; }
 .hero.is-carousel .hero__banner { position: absolute; inset: 0; opacity: 0; animation: none; transition: opacity 1.4s var(--ease), translate .9s var(--ease); }
 .hero.is-carousel .hero__banner.is-active { opacity: 1; animation: hero-zoom calc(var(--hero-dur, 6s) + 1.4s) linear both; }
 @keyframes hero-zoom { from { transform: scale(1.12); } to { transform: scale(1.03); } }
-.hero.is-carousel .hero__inner { padding-bottom: calc(clamp(3.5rem, 6vw, 6rem) + 3.5rem); }
+.hero.is-carousel .hero__inner { padding-bottom: calc(clamp(2rem, 8svh, 6rem) + 3.5rem); }
 
 /* pagination: pill dots (active one stretches and fills over the slide) · "up next" glass card with a countdown ring */
 .hero-pager { position: absolute; z-index: 2; left: 0; right: 0; bottom: clamp(1.25rem, 3vw, 2.5rem); display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
@@ -284,7 +285,7 @@ address { font-style: normal; }
   --stick: calc(var(--header-offset, 6rem) + 1.5rem); --panel-radius: 0px; --card-r: clamp(1rem, .6rem + 1vw, 1.5rem);
   position: sticky; top: calc(var(--stick) + var(--i, 0) * .75rem);
   display: grid; grid-template-columns: minmax(18rem, 42%) minmax(0, 58%);
-  height: clamp(26rem, calc(var(--view) - 3.5rem), 36rem); margin-bottom: clamp(3rem, 8vh, 7rem); overflow: hidden;
+  height: clamp(19rem, calc(var(--view) - 3.5rem), 36rem); margin-bottom: clamp(3rem, 8vh, 7rem); overflow: hidden;
   border-radius: var(--card-r);
   background: #f7f4fc;
   box-shadow: 0 1.75rem 3.5rem -2rem rgb(44 27 69 / .22);
@@ -481,7 +482,7 @@ address { font-style: normal; }
 .section--featured .shop-slider { margin-top: 0; }
 /* heading left, View All right (one row), then the cards; padding and gap scale with screen height so the section fits one viewport. Cards untouched */
 /* the band is most of a screen tall and centres its content, so the leftover height becomes even breathing room above and below */
-.section--featured { --fpad: clamp(1rem, 6svh - 1.75rem, 4.5rem); --fgap: clamp(1.25rem, 3.5svh - .5rem, 3rem); display: grid; align-content: center; min-height: 88svh; padding-block: var(--fpad); }
+.section--featured { --fpad: clamp(1rem, 6svh - 1.75rem, 4.5rem); --fgap: clamp(1.25rem, 3.5svh - .5rem, 3rem); display: grid; align-content: center; min-height: min(88svh, var(--view)); padding-block: var(--fpad); }
 .featured-head { margin-bottom: calc(var(--fgap) + 10px); }
 .featured-head .section-heading { gap: clamp(.5rem, 1.5svh - .25rem, 1rem); }
 
@@ -495,10 +496,10 @@ address { font-style: normal; }
 .shop-card--lifestyle:hover .shop-card__media::after, .shop-card--lifestyle:focus-within .shop-card__media::after { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .shop-card--lifestyle .shop-card__media img { transition: none; } .shop-card--lifestyle:hover .shop-card__media img { transform: none; } }
 
-/* ---------- about: editorial story beside one tall photo; the three divisions as a quiet row below ---------- */
-.about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(2.5rem, 1rem + 6vw, 7rem); align-items: center; }
-/* story column: left-aligned text, vertically centred against the photo (grid align-items: center) */
-.about__intro { display: grid; justify-items: start; gap: 1.5rem; max-width: 34rem; }
+/* ---------- about: editorial story (with the three divisions under it) beside one tall photo ---------- */
+/* the photo stretches to the full height of the story column */
+.about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(2.5rem, 1rem + 6vw, 7rem); align-items: stretch; }
+.about__intro { display: grid; justify-items: start; align-content: center; gap: 1.5rem; max-width: 36rem; }
 .about__intro .section-heading { gap: 1rem; }
 .about__text { color: var(--ink-2); font-size: var(--fs-lead); line-height: 1.7; text-wrap: pretty; }
 .about__intro .btn { margin-top: .25rem; }
@@ -517,37 +518,27 @@ address { font-style: normal; }
 
 .about__media { position: relative; }
 /* one tall photo; a slow, gentle zoom on hover */
-.about__photo { position: relative; overflow: hidden; aspect-ratio: 4 / 5; max-height: calc(var(--view) - 2 * var(--section-pad)); width: 100%; border-radius: var(--radius); background: var(--line); }
+.about__media { min-height: 24rem; }
+/* fills the media column, which takes its height from the story column (the photo itself adds no height) */
+.about__photo { position: absolute; inset: 0; overflow: hidden; border-radius: var(--radius); background: var(--line); }
 .about__photo img, .about__photo video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 72%; transition: transform 1.6s var(--ease); }
 .about__photo video { object-position: 50% 50%; }
 .about__media:hover .about__photo img, .about__media:hover .about__photo video { transform: scale(1.03); }
 @media (prefers-reduced-motion: reduce) { .about__photo img, .about__photo video { transition: none; } .about__media:hover .about__photo img, .about__media:hover .about__photo video { transform: none; } }
 
-/* divisions: label + hairline + 01/02/03 pager, then three horizontal cards (photo left, stone text panel right) */
-.divisions { margin-top: clamp(4rem, 2rem + 6svh, 7rem); }
-.divisions__head { display: flex; align-items: center; gap: 1.25rem; margin-bottom: calc(clamp(1.5rem, 1rem + 2svh, 2.5rem) - 5px); }
-.divisions__label { display: flex; flex: 1; align-items: center; gap: 1.25rem; font-size: var(--fs-sm); font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: #16141A; }
-
-
-/* three open columns (no card fill), after the reference: rounded photo on top, then title, text and View More on the page background */
-.divisions__list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.25rem, .5rem + 2vw, 2.5rem); }
-.division { display: flex; flex-direction: column; }
-.division__media { height: clamp(11rem, 36svh, 20rem); overflow: hidden; border-radius: var(--radius); background: var(--line); }
-.division__img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease), filter .6s var(--ease); }
-.division:hover .division__img { transform: scale(1.04); filter: brightness(.96); }
-.division__body { flex: 1; display: flex; flex-direction: column; align-items: flex-start; padding-top: clamp(1.25rem, .6rem + 2svh, 2rem); }
-.division__title { margin-bottom: .625rem; font-size: clamp(1.375rem, 1.1rem + .6vw, 1.75rem); font-weight: 400; letter-spacing: -.02em; line-height: 1.2; }
-.division__text { max-width: 40ch; font-size: .9375rem; line-height: 1.65; color: var(--muted); text-wrap: pretty; }
-.division__btn { margin-top: auto; }
-.division__body > .division__text { margin-bottom: clamp(1rem, .4rem + 1.6svh, 1.5rem); }
-@media (max-width: 64rem) { .about { grid-template-columns: 1fr; } .about__intro { max-width: 40rem; } .about__photo { aspect-ratio: 16 / 11; max-height: none; } }
-/* below ~1100px three side-by-side cards get too narrow: switch to a swipe track */
-@media (max-width: 70rem) {
-  .divisions__list { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-inline: calc(var(--pad-inline) * -1); padding-inline: var(--pad-inline); scroll-padding-inline: var(--pad-inline); }
-  .divisions__list::-webkit-scrollbar { display: none; }
-  .division { flex: 0 0 min(24rem, 84%); scroll-snap-align: start; }
-}
-@media (prefers-reduced-motion: reduce) { .division__img { transition: none; } .division:hover .division__img { transform: none; } }
+/* divisions inside the story column: purple label, then three small photo tiles with the name underneath */
+.about-divisions { display: grid; gap: 1rem; width: 100%; margin-top: clamp(1rem, .25rem + 2.5svh, 2.25rem); }
+.about-divisions__label { font-size: 1.0625rem; font-weight: 500; letter-spacing: .01em; text-transform: uppercase; color: var(--brand-purple); }
+.about-divisions__list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .875rem; }
+.about-division { display: grid; gap: .75rem; color: var(--ink); }
+.about-division__media { display: block; aspect-ratio: 16 / 9; overflow: hidden; border-radius: .375rem; background: var(--line); }
+.about-division__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+.about-division:hover .about-division__media img { transform: scale(1.05); }
+.about-division__title { font-size: .9375rem; line-height: 1.35; transition: color .25s; }
+.about-division:hover .about-division__title { color: var(--brand-purple); }
+@media (prefers-reduced-motion: reduce) { .about-division__media img { transition: none; } .about-division:hover .about-division__media img { transform: none; } }
+@media (max-width: 64rem) { .about { grid-template-columns: minmax(0, 1fr); } .about__intro { max-width: 40rem; min-width: 0; } .about__media { min-height: 0; } .about__photo { position: relative; inset: auto; aspect-ratio: 16 / 11; } }
+@media (max-width: 30rem) { .about-divisions__list { gap: .625rem; } .about-division__title { font-size: .8125rem; } }
 
 /* ---------- why: bento grid, intro in the first cell, five photo cards ---------- */
 /* two rows that together fill one screen below the header */
@@ -574,8 +565,9 @@ address { font-style: normal; }
 #clients { padding-block: calc(var(--section-pad) * .6); }
 /* eyebrow + title left, note right (bottom-aligned), a measured gap above the panel row */
 .why-head { align-items: end; margin-bottom: clamp(1.75rem, 1rem + 2.5svh, 2.75rem); }
-.why-head .split-heading__text { max-width: 34rem; font-size: var(--fs-sm); line-height: 1.65; text-align: left; text-wrap: pretty; }
-.why-panels { display: flex; gap: 0; height: clamp(26rem, calc(var(--view) - 14rem), 38rem); }
+/* section sublines match the About text size; side sublines are left-aligned blocks of one width, bottom-aligned with the title */
+.why-head .split-heading__text, .testi-head__text { max-width: 36rem; color: var(--muted); font-size: var(--fs-lead); line-height: 1.7; text-align: left; text-wrap: pretty; }
+.why-panels { display: flex; gap: 0; height: clamp(13rem, calc(var(--view) - 16rem), 38rem); }
 /* smooth hover: a soft, slightly longer ease on the panel width */
 .why-panel { --lux: cubic-bezier(.25, .8, .25, 1); position: relative; isolation: isolate; flex: 1 1 0; min-width: 0; overflow: hidden; color: #fff; transition: flex-grow .9s var(--lux); will-change: flex-grow; }
 /* the photo is cropped to the widest the panel ever gets and centred, so it slides instead of rescaling every frame */
@@ -616,7 +608,7 @@ address { font-style: normal; }
 /* centred title (contact link beneath), then a stone strip of square white sector tiles drifting sideways */
 .recipients__head { display: grid; justify-items: center; gap: 1rem; margin-bottom: clamp(1rem, .75rem + .75vw, 1.5rem); text-align: center; }
 .recipients__title span { color: var(--brand-purple); }
-.recipients__text { max-width: 34rem; color: var(--muted); font-size: var(--fs-sm); line-height: 1.65; text-wrap: balance; }
+.recipients__text { max-width: 40rem; color: var(--muted); font-size: var(--fs-lead); line-height: 1.7; text-wrap: balance; }
 /* row of white square tiles straight on the page (no band): thin line icon, small label underneath */
 .marquee--sectors { max-width: calc(var(--container) + var(--pad-inline) * 2); margin-inline: auto; padding-block: 1rem; background: transparent; color: var(--ink); }
 .sector { flex-direction: column; justify-content: center; gap: .875rem; width: clamp(8rem, 7rem + 2.5vw, 10rem); aspect-ratio: 1; margin-inline: .5rem; padding: 1rem !important; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; font-size: clamp(.875rem, .85rem + .1vw, .9375rem) !important; font-weight: 400 !important; letter-spacing: 0; text-align: center; transition: color .3s; }
@@ -633,12 +625,10 @@ address { font-style: normal; }
 #testimonials { --tpad: clamp(2rem, .5rem + 5svh, 5rem); --tgap: clamp(1.25rem, .5rem + 2.5svh, 2.5rem); padding-block: 0 calc(var(--tpad) + 20px); }
 /* heading left, short note right (bottom-aligned); the reel runs edge to edge below */
 .testi-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1.25rem 3rem; margin-bottom: var(--tgap); }
-.testi-head__text { max-width: 26rem; color: var(--muted); font-size: var(--fs-sm); line-height: 1.65; text-align: right; text-wrap: pretty; }
-@media (max-width: 48rem) { .testi-head__text { text-align: left; } }
 
 /* reel: staggered tiles (short low · tall · quote · short high) that drift left on their own; pauses on hover/focus */
 /* --h: whatever height is left once the section padding and heading are taken out of the viewport, so the whole section fits one screen */
-.testi-reel { --h: clamp(18rem, calc(var(--view) - 2 * var(--tpad) - var(--tgap) - 6rem), 28rem); --w: clamp(13rem, 10rem + 6vw, 17.5rem); --qw: clamp(19rem, 12rem + 14vw, 27rem); --edge: max(var(--pad-inline), calc((100vw - var(--container)) / 2 + var(--pad-inline))); position: relative; }
+.testi-reel { --h: clamp(13rem, calc(var(--view) - 2 * var(--tpad) - var(--tgap) - 6rem), 28rem); --w: clamp(13rem, 10rem + 6vw, 17.5rem); --qw: clamp(19rem, 12rem + 14vw, 27rem); --edge: max(var(--pad-inline), calc((100vw - var(--container)) / 2 + var(--pad-inline))); position: relative; }
 /* track grows with the tallest quote instead of clipping it, and never scrolls vertically */
 .testi-reel__track { display: flex; gap: clamp(.875rem, .5rem + 1vw, 1.5rem); min-height: var(--h); padding-inline: var(--edge); overflow-x: auto; overflow-y: hidden; scrollbar-width: none; overscroll-behavior-x: contain; }
 .testi-reel__track::-webkit-scrollbar { display: none; }
@@ -716,11 +706,10 @@ html:not(.js) .coverflow__item { position: static; transform: none; }
 html:not(.js) .coverflow__nav { display: none; }
 
 /* ---------- blog ---------- */
-/* row of photo cards (3 visible, the next one peeking) with tag pill, title and Read More laid over a dark fade */
+/* three photo cards in the container width (the side button lines up with the last card); tag pill, title and Read More over a dark fade.
+   Below 64rem they become a swipe track that bleeds to the screen edges */
 .split-heading--plain { align-items: center; padding-bottom: 0; border-bottom: 0; }
-.stories { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - var(--gutter) * 2) / 2.85); gap: var(--gutter); overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain;
-  /* bleed to the screen edges so the next card peeks in from the side; cards still line up with the container */
-  --bleed: max(var(--pad-inline), calc((100vw - var(--container)) / 2)); margin-inline: calc(50% - 50vw); padding-inline: var(--bleed); scroll-padding-inline: var(--bleed); }
+.stories { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gutter); }
 .stories::-webkit-scrollbar { display: none; }
 .story { position: relative; isolation: isolate; display: flex; align-items: end; aspect-ratio: 3 / 2; overflow: hidden; scroll-snap-align: start; border-radius: var(--radius-lg); background: var(--ink); color: #fff; }
 .story img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
@@ -735,7 +724,10 @@ html:not(.js) .coverflow__nav { display: none; }
 .story:has(a:focus-visible) { outline: 2px solid var(--brand-purple); outline-offset: 3px; }
 .story__more { padding-bottom: .2rem; border-bottom: 1px solid currentColor; font-size: var(--fs-xs); font-weight: 500; letter-spacing: .12em; text-transform: uppercase; transition: border-color .3s; }
 .story:hover .story__more { border-bottom-color: transparent; }
-@media (max-width: 64rem) { .stories { grid-auto-columns: calc((100% - var(--gutter)) / 1.85); } }
+@media (max-width: 64rem) {
+  .stories { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: calc((100% - var(--gutter)) / 1.85); overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain;
+    --bleed: var(--pad-inline); margin-inline: calc(var(--pad-inline) * -1); padding-inline: var(--bleed); scroll-padding-inline: var(--bleed); }
+}
 @media (max-width: 36rem) { .stories { grid-auto-columns: 86%; } .story { aspect-ratio: 4 / 5; } }
 /* ---------- final CTA ---------- */
 /* shorter full-bleed photo band; copy left-aligned over a subtle neutral shade on the text side only, outline button (after the reference) */
@@ -800,6 +792,31 @@ html:not(.js) .coverflow__nav { display: none; }
 /* ---------- scroll reveal (only when JS runs) ---------- */
 .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
 .js .reveal.is-visible { opacity: 1; transform: none; }
+
+/* ---------- short desktop windows (laptops, browser chrome): keep each band within one screen ---------- */
+@media (min-width: 64rem) and (max-height: 46rem) {
+  /* product photos: never taller than the space left after the heading and card text */
+  .shop-card__media { max-height: calc(var(--view) - 17.5rem); }
+  .shop-slider__btn { top: calc(min(var(--card-w) * var(--media-ratio), var(--view) - 17.5rem) / 2); }
+  /* testimonial quotes: wider and tighter so the text fits the shorter reel */
+  .testi-reel { --qw: clamp(24rem, 16rem + 16vw, 32rem); }
+  .testi-quote { padding: 1.25rem 1.5rem; }
+  .testi-quote__mark { width: 1.875rem; height: calc(1.875rem * 323 / 483); margin-bottom: .75rem; }
+  .testi-quote__text { font-size: .8125rem; line-height: 1.5; }
+  .testi-quote__by { padding-top: .75rem; }
+  .testi-quote__avatar { width: 2.75rem; height: 2.75rem; }
+  /* about: tighter story column so text, button and division tiles sit beside the photo within one screen */
+  .about__intro { gap: .875rem; }
+  .about__intro .section-heading { gap: .625rem; }
+  .about__text { font-size: .9375rem; line-height: 1.55; }
+  .about-divisions { gap: .625rem; margin-top: .25rem; }
+  .about-division__media { aspect-ratio: 2 / 1; }
+  .about-divisions__label { font-size: .9375rem; }
+  .about-division { gap: .5rem; }
+  .about-division__title { font-size: .875rem; }
+  /* blog cards */
+  .story { max-height: calc(var(--view) - 16rem); }
+}
 
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {

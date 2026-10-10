@@ -534,7 +534,7 @@
     </div>
   </section>
   <!-- ============ 6. ABOUT ============ -->
-  <!-- Editorial layout: story beside one tall photo (with the experience badge); the three divisions as a row below.
+  <!-- Editorial layout: story (with the three divisions as small tiles under it) beside one tall photo with the experience badge.
        No division pages exist on atmocare.com: Aroma links to Scent Solutions, Hygiene and Industrial link to About Us. Update when pages exist. -->
   <section class="section" id="about" aria-labelledby="about-title">
     <div class="container">
@@ -546,6 +546,15 @@
           </div>
           <p class="about__text">Atmocare specializes in Scent, Hygiene, and Industrial Product Solutions, offering tailored products and services for businesses and commercial spaces. With over a decade of industry experience, Atmocare focuses on delivering reliable solutions that enhance spaces and customer experiences.</p>
           <a class="btn btn--primary" href="https://atmocare.com/about-us">View More <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <!-- the three divisions: small photo tiles with the name underneath, after the reference -->
+          <div class="about-divisions">
+            <h3 class="about-divisions__label">We have three divisions</h3>
+            <ul class="about-divisions__list">
+              <li><a class="about-division" href="https://atmocare.com/products/scent-solutions"><span class="about-division__media"><img src="assets/img/stock/div2-aroma.jpg" alt="" width="1200" height="777" loading="lazy"></span><span class="about-division__title">Aroma Solutions</span></a></li>
+              <li><a class="about-division" href="https://atmocare.com/about-us"><span class="about-division__media"><img src="assets/img/stock/div2-hygiene.jpg" alt="" width="1200" height="776" loading="lazy"></span><span class="about-division__title">Hygiene Solutions</span></a></li>
+              <li><a class="about-division" href="https://atmocare.com/about-us"><span class="about-division__media"><img src="assets/img/stock/div2-industrial.jpg" alt="" width="1200" height="777" loading="lazy"></span><span class="about-division__title">Industrial Products Supply</span></a></li>
+            </ul>
+          </div>
         </div>
 
         <div class="about__media reveal">
@@ -565,36 +574,6 @@
             <span class="visually-hidden">10+ years of industry expertise across the Middle East, India and UK</span>
           </div>
         </div>
-      </div>
-
-      <!-- divisions: label + hairline, then three open columns (no card fill): rounded photo on top, then title, text and View More. Swipe track on small screens. -->
-      <div class="divisions" data-divisions>
-        <div class="divisions__head reveal">
-          <h3 class="divisions__label">We have three divisions</h3>
-        </div>
-        <ol class="divisions__list" data-divisions-track>
-          <li class="division reveal">
-            <div class="division__media"><img class="division__img" src="assets/img/stock/div2-aroma.jpg" alt="" width="1200" height="777" loading="lazy"></div>
-            <div class="division__body">
-              <h4 class="division__title">Aroma Solutions</h4>
-              <p class="division__text">Curated scent experiences that keep clients and colleagues engaged and connected.</p>
-              <a class="btn btn--brand btn--sm division__btn" href="https://atmocare.com/products/scent-solutions">View More<span class="visually-hidden"> about Aroma Solutions</span> <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            </div>
-          </li>          <li class="division reveal">
-            <div class="division__media"><img class="division__img" src="assets/img/stock/div2-hygiene.jpg" alt="" width="1200" height="776" loading="lazy"></div>
-            <div class="division__body">
-              <h4 class="division__title">Hygiene Solutions</h4>
-              <p class="division__text">Cleaning materials, equipment, machinery, personal care, health care and industrial care chemicals.</p>
-              <a class="btn btn--brand btn--sm division__btn" href="https://atmocare.com/about-us">View More<span class="visually-hidden"> about Hygiene Solutions</span> <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            </div>
-          </li>          <li class="division reveal">
-            <div class="division__media"><img class="division__img" src="assets/img/stock/div2-industrial.jpg" alt="" width="1200" height="777" loading="lazy"></div>
-            <div class="division__body">
-              <h4 class="division__title">Industrial Products Supply</h4>
-              <p class="division__text">Sourcing industrial quality products from reputed manufacturers, distributors and suppliers worldwide.</p>
-              <a class="btn btn--brand btn--sm division__btn" href="https://atmocare.com/about-us">View More<span class="visually-hidden"> about Industrial Products Supply</span> <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            </div>
-          </li>        </ol>
       </div>
     </div>
   </section>
@@ -900,30 +879,6 @@
           <div class="story__body">
             <span class="story__tag">Aromatic Oils</span>
             <h3 class="story__title"><a href="https://atmocare.com/blog-details/which-oil-lasts-longer-in-diffuser-machines-aroma-oil-vs-essential-oil">Which Oil Lasts Longer in Diffuser Machines? Aroma Oil vs Essential Oil</a></h3>
-            <span class="story__more" aria-hidden="true">Read More</span>
-          </div>
-        </article>
-        <article class="story reveal">
-          <img src="assets/img/blog/blog-fragrance.jpg" alt="" width="1200" height="673" loading="lazy">
-          <div class="story__body">
-            <span class="story__tag">Fragrance</span>
-            <h3 class="story__title"><a href="https://atmocare.com/blog-details/how-to-choose-the-right-fragrance-type-for-home">How To Choose The Right Fragrance Type For Home</a></h3>
-            <span class="story__more" aria-hidden="true">Read More</span>
-          </div>
-        </article>
-        <article class="story reveal">
-          <img src="assets/img/blog/blog-home.jpg" alt="" width="1200" height="800" loading="lazy">
-          <div class="story__body">
-            <span class="story__tag">Home Scenting</span>
-            <h3 class="story__title"><a href="https://atmocare.com/blog-details/how-to-make-your-home-smell-good">How to Make Your Home Smell Good</a></h3>
-            <span class="story__more" aria-hidden="true">Read More</span>
-          </div>
-        </article>
-        <article class="story reveal">
-          <img src="assets/img/blog/blog-business.jpg" alt="" width="1200" height="633" loading="lazy">
-          <div class="story__body">
-            <span class="story__tag">Commercial Scenting</span>
-            <h3 class="story__title"><a href="https://atmocare.com/blog-details/how-to-make-your-business-smell-good">How to Make Your Business Smell Good</a></h3>
             <span class="story__more" aria-hidden="true">Read More</span>
           </div>
         </article>
