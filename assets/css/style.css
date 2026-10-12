@@ -463,7 +463,7 @@ address { font-style: normal; }
 .promo__dot { position: relative; width: .4375rem; height: .4375rem; border-radius: 50%; background: #cdb8ea; }
 .promo__dot::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: inherit; animation: promo-ping 2.4s var(--ease) infinite; }
 @keyframes promo-ping { 0% { opacity: .5; transform: scale(1); } 70%, 100% { opacity: 0; transform: scale(3); } }
-.promo__title { max-width: 15ch; margin: 1.25rem 0 .9rem; color: #fff; font-size: min(clamp(1.875rem, 1.2rem + 2vw, 2.875rem), 6svh); font-weight: 400; letter-spacing: -.025em; line-height: 1.08; }
+.promo__title { max-width: 15ch; margin: 0 0 .9rem; color: #fff; font-size: min(clamp(1.875rem, 1.2rem + 2vw, 2.875rem), 6svh); font-weight: 400; letter-spacing: -.025em; line-height: 1.08; }
 .promo__text { max-width: 30rem; color: rgb(255 255 255 / .8); line-height: 1.65; text-wrap: pretty; }
 .promo__content .btn-group { margin-top: 1.75rem; }
 
