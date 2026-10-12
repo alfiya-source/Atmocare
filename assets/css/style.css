@@ -40,11 +40,11 @@
   --gutter: clamp(1rem, 0.6rem + 1.6vw, 2rem);
   --container: 85rem;
   --pad-inline: clamp(1rem, 4vw, 3rem);
-  /* vertical rhythm follows the viewport height below the sticky header, with a floor so short desktop windows keep full-size sections */
-  --view: max(calc(100svh - var(--header-offset, 8.5rem)), 40rem);
+  /* vertical rhythm follows the viewport height below the sticky header so each section fits one screen (floor keeps very short windows usable) */
+  --view: max(calc(100svh - var(--header-offset, 8.5rem)), 30rem);
   --section-pad: clamp(3rem, 1.5rem + 6svh, 6.5rem);
   --stack: clamp(1.75rem, 1rem + 3.2svh, 3.25rem);
-  --media-ratio: 1.32; /* product photo height / width; squarer on short screens */
+  --media-ratio: 1.32; /* product photo height / width; fixed at every screen size and zoom level */
 
   /* one quiet corner radius everywhere (premium, editorial) */
   --radius: 10px;
@@ -53,8 +53,6 @@
   --shadow: 0 1px 2px rgb(22 20 26 / .04), 0 10px 28px -16px rgb(22 20 26 / .16);
   --header-h: 8.5rem;
 }
-/* short laptop screens: squarer product photos so a full row of cards plus its heading still fits */
-@media (min-width: 48rem) and (max-height: 56rem) { :root { --media-ratio: 1.08; } }
 
 /* ---------- base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
@@ -339,6 +337,8 @@ address { font-style: normal; }
 .shop-slider { --per: 4; margin-top: calc(-1.25rem + 10px); /* sit 10px closer to the heading */ }
 @media (max-width: 64rem) { .shop-slider { --per: 3; } }
 @media (max-width: 48rem) { .shop-slider { --per: 2; } }
+/* short desktop windows (small laptops, browser zoom): more, smaller cards per row so the photos keep their shape and the row still fits one screen */
+@media (min-width: 75rem) and (max-height: 56rem) { .shop-slider { --per: 5; } }
 .shop-track { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - var(--gutter) * (var(--per) - 1)) / var(--per)); gap: var(--gutter); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
 .shop-track::-webkit-scrollbar { display: none; }
 @media (max-width: 30rem) { .shop-track { grid-auto-columns: 78%; } }
