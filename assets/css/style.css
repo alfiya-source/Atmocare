@@ -637,7 +637,7 @@ address { font-style: normal; }
 
 /* reel: staggered tiles (short low · tall · quote · short high) that drift left on their own; pauses on hover/focus */
 /* --h: whatever height is left once the section padding and heading are taken out of the viewport, so the whole section fits one screen */
-.testi-reel { --h: clamp(13rem, calc(var(--view) - 2 * var(--tpad) - var(--tgap) - 6rem), 28rem); --w: clamp(13rem, 10rem + 6vw, 17.5rem); --qw: clamp(19rem, 12rem + 14vw, 27rem); --edge: max(var(--pad-inline), calc((100vw - var(--container)) / 2 + var(--pad-inline))); position: relative; }
+.testi-reel { --h: clamp(24rem, calc(var(--view) - 2 * var(--tpad) - var(--tgap) - 6rem), 28rem); --w: clamp(13rem, 10rem + 6vw, 17.5rem); --qw: clamp(19rem, 12rem + 14vw, 27rem); --edge: max(var(--pad-inline), calc((100vw - var(--container)) / 2 + var(--pad-inline))); position: relative; }
 /* track grows with the tallest quote instead of clipping it, and never scrolls vertically */
 .testi-reel__track { display: flex; gap: clamp(.875rem, .5rem + 1vw, 1.5rem); min-height: var(--h); padding-inline: var(--edge); overflow-x: auto; overflow-y: hidden; scrollbar-width: none; overscroll-behavior-x: contain; }
 .testi-reel__track::-webkit-scrollbar { display: none; }
@@ -756,15 +756,9 @@ html:not(.js) .coverflow__nav { display: none; }
 /* newsletter takes the free width; the five link columns sit at their content width with one equal gap between them */
 .site-footer__top { display: grid; grid-template-columns: minmax(0, 1fr) repeat(5, max-content); gap: 2.5rem clamp(2rem, .5rem + 3vw, 5rem); padding-bottom: clamp(3rem, 2rem + 4vw, 6rem); }
 
-.footer-news { display: grid; gap: 1.5rem; align-content: start; max-width: 26rem; }
-.footer-news__title { font-size: clamp(1.625rem, 1.3rem + 1vw, 2.125rem); font-weight: 300; line-height: 1.15; letter-spacing: -.02em; color: #fff; text-wrap: balance; }
-/* pill field with the button tucked inside its right end */
-.footer-news__form { display: flex; align-items: center; gap: .5rem; padding: .3rem .3rem .3rem 1.25rem; border: 1px solid rgb(255 255 255 / .35); border-radius: 999px; transition: border-color .25s; }
-.footer-news__form:focus-within { border-color: #fff; }
-.footer-news__form input { flex: 1; min-width: 0; padding-block: .5rem; border: 0; background: none; color: #fff; font: inherit; outline: none; }
-.footer-news__form input::placeholder { color: rgb(255 255 255 / .55); }
-.footer-news__form .btn { flex: none; }
-.footer-news__note { max-width: 22rem; line-height: 1.6; }
+/* brand column: footer logo with the social icons under it */
+.footer-brand { display: grid; gap: 2rem; align-content: start; justify-items: start; max-width: 26rem; }
+.footer-brand__logo img { width: clamp(11rem, 9rem + 6vw, 16rem); height: auto; }
 
 .footer-col { display: grid; gap: 1.5rem; align-content: start; }
 .footer-col__title { font-size: 1.0625rem; font-weight: 400; letter-spacing: -.005em; color: #fff; }
@@ -774,7 +768,7 @@ html:not(.js) .coverflow__nav { display: none; }
 .footer-col__group { display: grid; gap: .5rem; }
 .footer-col__group ul { gap: .4rem; }
 .footer-col__sub { font-size: var(--fs-xs); font-weight: 400; letter-spacing: .06em; text-transform: uppercase; color: rgb(255 255 255 / .8); }
-/* Follow Us: outlined circles under the newsletter note (after the reference) */
+/* Follow Us: outlined circles under the footer logo (after the reference) */
 .footer-follow { display: grid; gap: 1rem; margin-top: .5rem; }
 .footer-follow__title { font-size: 1.0625rem; font-weight: 400; letter-spacing: -.005em; color: #fff; }
 .footer-follow__list { display: flex; flex-wrap: wrap; gap: .75rem; }
@@ -784,10 +778,9 @@ html:not(.js) .coverflow__nav { display: none; }
 
 .site-footer__bottom { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1.25rem 2rem; padding-block: 1.75rem 2rem; padding-right: 4.5rem; /* clear the floating contact buttons */ border-top: 1px solid rgb(255 255 255 / .1); font-size: var(--fs-xs); }
 .site-footer__sign { display: flex; flex-wrap: wrap; align-items: end; gap: .75rem 1.75rem; }
-.site-footer__sign img { width: clamp(11rem, 9rem + 6vw, 16rem); height: auto; }
 .legal-links { display: flex; flex-wrap: wrap; gap: .5rem 1.75rem; }
 
-@media (max-width: 80rem) { .site-footer__top { grid-template-columns: repeat(5, max-content); column-gap: clamp(2rem, 1rem + 3vw, 4rem); } .footer-news { grid-column: 1 / -1; max-width: 30rem; } }
+@media (max-width: 80rem) { .site-footer__top { grid-template-columns: repeat(5, max-content); column-gap: clamp(2rem, 1rem + 3vw, 4rem); } .footer-brand { grid-column: 1 / -1; max-width: 30rem; } }
 @media (max-width: 60rem) { .site-footer__top { grid-template-columns: repeat(3, max-content); } }
 @media (max-width: 40rem) { .site-footer__top { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 1.5rem; } }
 /* ---------- floating actions ---------- */

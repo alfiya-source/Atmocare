@@ -115,12 +115,6 @@
     e.preventDefault();
     toast('This page is not available on atmocare.com yet');
   }));
-  /* ---------- footer newsletter (no mailing service yet: confirm on screen only) ---------- */
-  $$('[data-newsletter]').forEach(f => f.addEventListener('submit', e => {
-    e.preventDefault();
-    f.reset();
-    toast('Thanks, you are on the list');
-  }));
 
   /* ---------- generic autoplay helper ---------- */
   function autoplay(root, step, delay) {
