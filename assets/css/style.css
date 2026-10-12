@@ -501,7 +501,7 @@ address { font-style: normal; }
 .about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(2.5rem, 1rem + 6vw, 7rem); align-items: stretch; }
 .about__intro { display: grid; justify-items: start; align-content: center; gap: 1.5rem; max-width: 36rem; }
 .about__intro .section-heading { gap: 1rem; }
-.about__text { color: var(--ink-2); font-size: var(--fs-lead); line-height: 1.7; text-wrap: pretty; }
+.about__text { color: var(--muted); font-size: var(--fs-lead); line-height: 1.7; text-wrap: pretty; }
 .about__intro .btn { margin-top: .25rem; }
 /* experience badge: deep-violet seal overlapping the photo's bottom-left edge; big white "10+" in the centre,
    the label on a slowly rotating ring, a thin lilac inner circle for finish */
@@ -622,7 +622,7 @@ address { font-style: normal; }
 .split-heading--controls { align-items: center; }
 .split-heading--controls { border-bottom-color: rgb(94 33 135 / .14); }
 /* tighter padding than other sections on short screens so heading + reel fit one viewport */
-#testimonials { --tpad: clamp(2rem, .5rem + 5svh, 5rem); --tgap: clamp(1.25rem, .5rem + 2.5svh, 2.5rem); padding-block: 0 calc(var(--tpad) + 20px); }
+#testimonials { --tpad: clamp(2rem, .5rem + 5svh, 5rem); --tgap: clamp(2.25rem, 1rem + 4svh, 4rem); padding-block: 0 calc(var(--tpad) + 20px); }
 /* heading left, short note right (bottom-aligned); the reel runs edge to edge below */
 .testi-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1.25rem 3rem; margin-bottom: var(--tgap); }
 
@@ -744,8 +744,8 @@ html:not(.js) .coverflow__nav { display: none; }
 .site-footer { background: #16141a; color: rgb(255 255 255 / .62); padding-top: var(--section-pad); font-size: var(--fs-sm); }
 .site-footer a { transition: color .25s; }
 .site-footer a:hover { color: #fff; }
-/* newsletter takes the free width; the four link columns sit at their content width with one equal gap between them */
-.site-footer__top { display: grid; grid-template-columns: minmax(0, 1fr) repeat(4, max-content); gap: 2.5rem clamp(3rem, 1.5rem + 4.5vw, 7.5rem); padding-bottom: clamp(3rem, 2rem + 4vw, 6rem); }
+/* newsletter takes the free width; the five link columns sit at their content width with one equal gap between them */
+.site-footer__top { display: grid; grid-template-columns: minmax(0, 1fr) repeat(5, max-content); gap: 2.5rem clamp(2rem, .5rem + 3vw, 5rem); padding-bottom: clamp(3rem, 2rem + 4vw, 6rem); }
 
 .footer-news { display: grid; gap: 1.5rem; align-content: start; max-width: 26rem; }
 .footer-news__title { font-size: clamp(1.625rem, 1.3rem + 1vw, 2.125rem); font-weight: 300; line-height: 1.15; letter-spacing: -.02em; color: #fff; text-wrap: balance; }
@@ -761,7 +761,10 @@ html:not(.js) .coverflow__nav { display: none; }
 .footer-col__title { font-size: 1.0625rem; font-weight: 400; letter-spacing: -.005em; color: #fff; }
 .footer-col ul { display: grid; gap: .85rem; }
 .footer-col address { font-style: normal; line-height: 1.6; }
-.footer-col--stack { gap: 2.25rem; } /* Address with Email under it */
+/* Contact: small labelled groups (Phone / Landline / Email) */
+.footer-col__group { display: grid; gap: .5rem; }
+.footer-col__group ul { gap: .4rem; }
+.footer-col__sub { font-size: var(--fs-xs); font-weight: 400; letter-spacing: .06em; text-transform: uppercase; color: rgb(255 255 255 / .8); }
 /* Follow Us: outlined circles under the newsletter note (after the reference) */
 .footer-follow { display: grid; gap: 1rem; margin-top: .5rem; }
 .footer-follow__title { font-size: 1.0625rem; font-weight: 400; letter-spacing: -.005em; color: #fff; }
@@ -775,7 +778,8 @@ html:not(.js) .coverflow__nav { display: none; }
 .site-footer__sign img { width: clamp(11rem, 9rem + 6vw, 16rem); height: auto; }
 .legal-links { display: flex; flex-wrap: wrap; gap: .5rem 1.75rem; }
 
-@media (max-width: 72rem) { .site-footer__top { grid-template-columns: repeat(4, max-content); column-gap: clamp(2rem, 1rem + 3vw, 4rem); } .footer-news { grid-column: 1 / -1; max-width: 30rem; } }
+@media (max-width: 80rem) { .site-footer__top { grid-template-columns: repeat(5, max-content); column-gap: clamp(2rem, 1rem + 3vw, 4rem); } .footer-news { grid-column: 1 / -1; max-width: 30rem; } }
+@media (max-width: 60rem) { .site-footer__top { grid-template-columns: repeat(3, max-content); } }
 @media (max-width: 40rem) { .site-footer__top { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 1.5rem; } }
 /* ---------- floating actions ---------- */
 .float-actions { position: fixed; right: clamp(.75rem, 1.5vw, 1.5rem); bottom: clamp(.75rem, 2vw, 1.5rem); z-index: 40; display: grid; gap: .6rem; }
@@ -808,7 +812,7 @@ html:not(.js) .coverflow__nav { display: none; }
   /* about: tighter story column so text, button and division tiles sit beside the photo within one screen */
   .about__intro { gap: .875rem; }
   .about__intro .section-heading { gap: .625rem; }
-  .about__text { font-size: .9375rem; line-height: 1.55; }
+  .about__text { line-height: 1.55; }
   .about-divisions { gap: .625rem; margin-top: .25rem; }
   .about-division__media { aspect-ratio: 2 / 1; }
   .about-divisions__label { font-size: .9375rem; }
