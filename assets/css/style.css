@@ -280,60 +280,52 @@ address { font-style: normal; }
 
 /* ---------- categories ---------- */
 #products { background: var(--paper); }
-/* stacked sticky cards (Neriva routine layout, refined): one large rounded card, a softly tinted copy side (42%)
-   beside an edge-to-edge photo (58%), no border + a very soft lift; each card pins slightly lower than the one before */
-.category-card {
-  --stick: calc(var(--header-offset, 6rem) * var(--header-shown, 1) + 1.5rem); --panel-radius: 0px; --card-r: clamp(1rem, .6rem + 1vw, 1.5rem);
-  position: sticky; top: calc(var(--stick) + var(--i, 0) * .75rem); transition: top .4s var(--ease); /* follows the header as it hides / returns */
-  display: grid; grid-template-columns: minmax(18rem, 42%) minmax(0, 58%);
-  height: clamp(19rem, calc(var(--view) - 3.5rem), 36rem); margin-bottom: clamp(3rem, 8vh, 7rem); overflow: hidden;
-  border-radius: var(--card-r);
-  background: #f7f4fc;
-  box-shadow: 0 1.75rem 3.5rem -2rem rgb(44 27 69 / .22);
+/* intro column on the left, three tall photo tiles on the right (reference: "Simplicity in every detail") */
+.prod-cats { display: grid; grid-template-columns: minmax(16rem, 1fr) minmax(0, 2.6fr); gap: clamp(2rem, 1rem + 3vw, 5rem); align-items: center; }
+.prod-cats__intro { display: grid; gap: 1.25rem; align-content: center; justify-items: start; }
+.prod-cats__intro .split-heading__text { max-width: 24rem; }
+.prod-cats__btn { margin-top: .75rem; }
+.prod-cats__btn .icon { transition: transform .3s var(--ease); }
+.prod-cats__btn:hover .icon { transform: translateX(4px); }
+.prod-cats__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(.75rem, .5rem + .8vw, 1.5rem); }
+
+/* tile: full-bleed photo, name + arrow on a soft bottom shade; the description rises under the name on hover / focus */
+.cat-tile { --lux: cubic-bezier(.22, 1, .36, 1); position: relative; isolation: isolate; display: block; aspect-ratio: 4 / 5; width: 100%; overflow: hidden; border-radius: var(--radius); background: var(--ink); color: #fff; }
+.cat-tile__img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; transition: transform 1.1s var(--lux); }
+.cat-tile::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgb(22 20 26 / .78) 0%, rgb(22 20 26 / .25) 38%, rgb(22 20 26 / 0) 60%); transition: opacity .5s var(--lux); }
+.cat-tile__foot { position: absolute; left: 0; right: 0; bottom: 0; padding: clamp(1rem, .75rem + .8vw, 1.5rem); }
+.cat-tile__row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.cat-tile__title { font-size: clamp(1.125rem, .95rem + .5vw, 1.5rem); font-weight: 400; letter-spacing: -.015em; line-height: 1.15; }
+.cat-tile__arrow { flex: none; width: 1.375rem; height: 1.375rem; transition: transform .4s var(--lux); }
+.cat-tile__more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .55s var(--lux); }
+.cat-tile__text { min-height: 0; overflow: hidden; max-width: 22rem; color: rgb(255 255 255 / .82); font-size: var(--fs-sm); line-height: 1.55; opacity: 0; transform: translateY(.5rem); transition: opacity .45s var(--lux), transform .55s var(--lux); }
+.cat-tile:hover .cat-tile__img, .cat-tile:focus-visible .cat-tile__img { transform: scale(1.05); }
+.cat-tile:hover .cat-tile__more, .cat-tile:focus-visible .cat-tile__more { grid-template-rows: 1fr; }
+.cat-tile:hover .cat-tile__text, .cat-tile:focus-visible .cat-tile__text { opacity: 1; transform: none; padding-top: .6rem; }
+.cat-tile:hover .cat-tile__arrow, .cat-tile:focus-visible .cat-tile__arrow { transform: translateX(4px); }
+.cat-tile:focus-visible { outline: 2px solid var(--violet); outline-offset: 3px; }
+/* touch screens have no hover: keep descriptions visible */
+@media (hover: none) {
+  .cat-tile__more { grid-template-rows: 1fr; }
+  .cat-tile__text { opacity: 1; transform: none; padding-top: .6rem; }
 }
-.category-card:nth-child(3n+2) { background: #f7f5f1; }
-.category-card:last-child { margin-bottom: 0; }
-/* depth: main.js sets --p (0→1) as the next card slides over, so buried cards shrink and dim */
-.category-card { transform-origin: 50% 0; transform: scale(calc(1 - var(--p, 0) * .06)); will-change: transform; }
-.category-card::after { content: ""; position: absolute; inset: 0; z-index: 3; background: var(--violet-deep); opacity: calc(var(--p, 0) * .35); pointer-events: none; }
-.category-card__copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(1.75rem, 1rem + 5svh, 4.5rem) clamp(1.75rem, 4vw, 5rem); }
-.category-card__num { display: inline-flex; align-items: center; gap: .75rem; color: var(--brand-purple); font-size: var(--fs-xs); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; }
-/* text rhythm: label → (1.25rem) title → (1rem) description → (2.25rem) button */
-.category-card__title { max-width: 10ch; margin: clamp(1rem, 2.5svh, 1.5rem) 0 clamp(.75rem, 2svh, 1.125rem); font-size: min(clamp(2.5rem, 1.5rem + 2.8vw, 4.5rem), 8svh); font-weight: 400; letter-spacing: -.035em; line-height: 1.02; text-wrap: balance; }
-.category-card__text { max-width: 26rem; color: var(--muted); font-size: var(--fs-lead); line-height: 1.6; text-wrap: pretty; }
-.category-card__btn { align-self: flex-start; margin-top: clamp(1.5rem, 4svh, 2.25rem); }
-.category-card__btn .icon { transition: transform .3s var(--ease); }
-.category-card__btn:hover .icon { transform: translateX(4px); }
-.category-card__media { position: relative; align-self: stretch; min-height: 0; overflow: hidden; background: var(--tint); }
-/* photo is 12% taller than its panel so main.js can drift it (--py) for a soft parallax */
-.category-card__media img { position: absolute; left: 0; top: -6%; width: 100%; height: 112%; object-fit: cover; translate: 0 var(--py, 0); transition: transform .7s cubic-bezier(.2, .7, .2, 1); }
-.category-card:hover .category-card__media img { transform: scale(1.025); }
-/* entrance: photo opens like a curtain from the bottom while the image settles down from a zoom;
-   title words rise out of a mask; label, copy and button fade up in sequence (siblings stagger via .reveal) */
-.category-card { --appear: cubic-bezier(.37, .08, .02, .93); }
-.js .category-card__media { clip-path: inset(100% 0 0 0 round var(--panel-radius)); transition: clip-path 1.3s var(--appear) .1s; }
-.js .category-card__media img { transform: scale(1.2) translateY(-5%); transition: transform 1.6s var(--appear) .1s; }
-.js .category-card.is-in .category-card__media { clip-path: inset(0 round var(--panel-radius)); }
-.js .category-card.is-in .category-card__media img { transform: scale(1.001); }
-.js .category-card.is-in:hover .category-card__media img { transform: scale(1.025); transition-delay: 0s; transition-duration: .7s; }
-.category-card__title .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; margin-bottom: -.08em; }
-.category-card__title .w > span { display: inline-block; }
-.js .category-card__title .w > span { transform: translateY(110%); transition: transform 1.1s var(--appear) calc(var(--wi, 0) * 90ms + .2s); }
-.js .category-card.is-in .category-card__title .w > span { transform: none; }
-@media (max-width: 63.9375em) {
-  .category-card { grid-template-columns: 1fr 1.15fr; }
+/* object positions keep each product in frame in the portrait crop */
+.prod-cats__grid li:nth-child(1) .cat-tile__img { object-position: 50% 50%; }
+.prod-cats__grid li:nth-child(2) .cat-tile__img { object-position: 45% 50%; }
+.prod-cats__grid li:nth-child(3) .cat-tile__img { object-position: 40% 50%; }
+@media (max-width: 64rem) {
+  .prod-cats { grid-template-columns: 1fr; }
+  .prod-cats__intro .split-heading__text { max-width: 36rem; }
 }
-@media (max-width: 47.9375em) {
-  .category-card { position: relative; top: auto; grid-template-columns: 1fr; height: auto; margin-bottom: 1rem; }
-  .category-card__copy { padding: 2rem 1.5rem 2.25rem; }
-  .category-card__media { order: -1; min-height: 22rem; }
+/* phones: tiles become a swipeable row */
+@media (max-width: 40rem) {
+  .prod-cats__grid { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 78%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-inline: calc(var(--pad-inline) * -1); padding-inline: var(--pad-inline); scroll-padding-inline: var(--pad-inline); }
+  .prod-cats__grid::-webkit-scrollbar { display: none; }
+  .prod-cats__grid li { scroll-snap-align: start; }
+
 }
 @media (prefers-reduced-motion: reduce) {
-  .category-card { transform: none; }
-  .category-card::after { display: none; }
-  .js .category-card__media { clip-path: none; transition: none; }
-  .js .category-card__media img, .category-card__media img { transform: none; transition: none; translate: none; }
-  .js .category-card__title .w > span { transform: none; transition: none; }
+  .cat-tile__img, .cat-tile__more, .cat-tile__text, .cat-tile__arrow { transition: none; }
 }
 
 /* ---------- product card ---------- */

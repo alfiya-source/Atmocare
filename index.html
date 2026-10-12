@@ -174,46 +174,48 @@
   </section>
 
   <!-- ============ 2. OUR PRODUCTS ============ -->
+  <!-- Intro column (eyebrow, title, note, button) beside three tall photo tiles; each tile shows its name + arrow,
+       and its description rises on hover / keyboard focus (always shown on touch screens). -->
   <section class="section" id="products" aria-labelledby="products-title">
-    <div class="container">
-      <div class="split-heading reveal">
+    <div class="container prod-cats">
+      <div class="prod-cats__intro reveal">
         <div class="section-heading">
           <span class="section-heading__eyebrow">Our Products</span>
           <h2 class="section-heading__title" id="products-title">Crafted for Distinction</h2>
         </div>
         <p class="split-heading__text">Elevate your experience with our products — from diffusers and aromatic oils to professional scenting for businesses and commercial spaces.</p>
+        <a class="btn btn--brand prod-cats__btn" href="https://atmocare.com/products/scent-solutions">View All Products <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
 
-      <!-- stacked cards: each one sticks a little lower than the last, so they pile up as you scroll -->
-      <div class="category-stack">
-        <article class="category-card" style="--i: 0;">
-          <div class="category-card__copy">
-            <span class="category-card__num reveal">01 · Diffusers</span>
-            <h3 class="category-card__title" data-split>Scent Solutions</h3>
-            <p class="category-card__text reveal">Diffusers and related scenting products.</p>
-            <a class="btn btn--brand category-card__btn reveal" href="https://atmocare.com/products/scent-solutions">Explore Scent Solutions <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          </div>
-          <div class="category-card__media"><img src="assets/img/stock/cat-scent-solutions-aura.jpg" alt="Atmocare Aura diffuser misting on a wooden side table" width="1600" height="1207" loading="lazy"></div>
-        </article>
-        <article class="category-card" style="--i: 1;">
-          <div class="category-card__copy">
-            <span class="category-card__num reveal">02 · Fragrances</span>
-            <h3 class="category-card__title" data-split>Aromatic Oils</h3>
-            <p class="category-card__text reveal">Fragrances and aromatic oils available for different scenting requirements.</p>
-            <a class="btn btn--brand category-card__btn reveal" href="https://atmocare.com/products/aromatic-oils">Explore Aromatic Oils <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          </div>
-          <div class="category-card__media"><img src="assets/img/stock/cat-aromatic-oils.jpg" alt="Atmocare candles and reed diffuser bottle among flowers and stones" width="1600" height="1158" loading="lazy"></div>
-        </article>
-        <article class="category-card" style="--i: 2;">
-          <div class="category-card__copy">
-            <span class="category-card__num reveal">03 · Businesses</span>
-            <h3 class="category-card__title" data-split>Scent Contracting</h3>
-            <p class="category-card__text reveal">Professional scenting solutions for businesses and commercial spaces.</p>
-            <a class="btn btn--brand category-card__btn reveal" href="https://atmocare.com/products/scent-contracting">Explore Scent Contracting <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          </div>
-          <div class="category-card__media"><img src="assets/img/stock/cat-scent-contracting-2.jpg" alt="White scent diffuser misting beside a monstera plant" width="1600" height="1158" loading="lazy"></div>
-        </article>
-      </div>
+      <ul class="prod-cats__grid reveal">
+        <li>
+          <a class="cat-tile" href="https://atmocare.com/products/scent-solutions">
+            <img class="cat-tile__img" src="assets/img/stock/cat-scent-solutions-aura.jpg" alt="" width="1600" height="1207" loading="lazy">
+            <div class="cat-tile__foot">
+              <div class="cat-tile__row"><h3 class="cat-tile__title">Scent Solutions</h3><svg class="cat-tile__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></div>
+              <div class="cat-tile__more"><p class="cat-tile__text">Diffusers and related scenting products.</p></div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a class="cat-tile" href="https://atmocare.com/products/aromatic-oils">
+            <img class="cat-tile__img" src="assets/img/stock/cat-aromatic-oils.jpg" alt="" width="1600" height="1158" loading="lazy">
+            <div class="cat-tile__foot">
+              <div class="cat-tile__row"><h3 class="cat-tile__title">Aromatic Oils</h3><svg class="cat-tile__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></div>
+              <div class="cat-tile__more"><p class="cat-tile__text">Fragrances and aromatic oils available for different scenting requirements.</p></div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a class="cat-tile" href="https://atmocare.com/products/scent-contracting">
+            <img class="cat-tile__img" src="assets/img/stock/cat-scent-contracting-2.jpg" alt="" width="1600" height="1158" loading="lazy">
+            <div class="cat-tile__foot">
+              <div class="cat-tile__row"><h3 class="cat-tile__title">Scent Contracting</h3><svg class="cat-tile__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></div>
+              <div class="cat-tile__more"><p class="cat-tile__text">Professional scenting solutions for businesses and commercial spaces.</p></div>
+            </div>
+          </a>
+        </li>
+      </ul>
     </div>
   </section>
 

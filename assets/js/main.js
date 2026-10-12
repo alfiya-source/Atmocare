@@ -6,14 +6,9 @@
 
   /* ---------- sticky header state ---------- */
   const header = $('[data-header]');
-  const root = document.documentElement;
   let lastY = window.scrollY;
-  // hide on scroll down, reveal on scroll up; always shown near the top. --header-shown lets sticky content follow it.
-  const setHidden = hide => {
-    if (header.classList.contains('is-hidden') === hide) return;
-    header.classList.toggle('is-hidden', hide);
-    root.style.setProperty('--header-shown', hide ? 0 : 1);
-  };
+  // hide on scroll down, reveal on scroll up; always shown near the top
+  const setHidden = hide => header.classList.toggle('is-hidden', hide);
   const onScroll = () => {
     const y = window.scrollY;
     header.classList.toggle('is-scrolled', y > 40);
@@ -397,54 +392,5 @@
       });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
     reveals.forEach(el => io.observe(el));
-  }
-
-  /* ---------- product stack: photo entrance + depth as cards pile up ---------- */
-  const stackCards = $$('.category-card');
-  // wrap each title word in a mask so it can rise into view
-  $$('.category-card__title[data-split]').forEach(title => {
-    const words = title.textContent.trim().split(/\s+/);
-    title.setAttribute('aria-label', words.join(' '));
-    title.innerHTML = words.map((w, i) => `<span class="w" aria-hidden="true" style="--wi:${i}"><span>${w}</span></span>`).join(' ');
-  });
-  if (stackCards.length) {
-    if (reduceMotion || !('IntersectionObserver' in window)) {
-      stackCards.forEach(c => c.classList.add('is-in'));
-    } else {
-      const cardIo = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add('is-in');
-          cardIo.unobserve(entry.target);
-        });
-      }, { threshold: 0.25 });
-      stackCards.forEach(c => cardIo.observe(c));
-
-      // --p: how far the next card has slid over this one (0 = clear, 1 = fully covered)
-      let ticking = false;
-      const vh = () => window.innerHeight || 1;
-      const depth = () => {
-        ticking = false;
-        stackCards.forEach((card, i) => {
-          // parallax: photo drifts up to ±5% of its panel as the card crosses the viewport
-          const img = card.querySelector('.category-card__media img');
-          if (img) {
-            const r = card.getBoundingClientRect();
-            const t = Math.min(Math.max((r.top + r.height / 2 - vh() / 2) / vh(), -1), 1);
-            img.style.setProperty('--py', (t * 5).toFixed(2) + '%');
-          }
-          const next = stackCards[i + 1];
-          if (!next || getComputedStyle(card).position !== 'sticky') { card.style.removeProperty('--p'); return; }
-          const nextStick = parseFloat(getComputedStyle(next).top) || 0;
-          const gap = next.getBoundingClientRect().top - nextStick;
-          const p = Math.min(Math.max(1 - gap / card.offsetHeight, 0), 1);
-          card.style.setProperty('--p', p.toFixed(3));
-        });
-      };
-      const onStackScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(depth); } };
-      window.addEventListener('scroll', onStackScroll, { passive: true });
-      window.addEventListener('resize', onStackScroll);
-      depth();
-    }
   }
 })();
