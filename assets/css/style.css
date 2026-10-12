@@ -40,8 +40,8 @@
   --gutter: clamp(1rem, 0.6rem + 1.6vw, 2rem);
   --container: 85rem;
   --pad-inline: clamp(1rem, 4vw, 3rem);
-  /* vertical rhythm follows the viewport height so every section fits one screen below the sticky header */
-  --view: calc(100svh - var(--header-offset, 8.5rem));
+  /* vertical rhythm follows the viewport height below the sticky header, with a floor so short desktop windows keep full-size sections */
+  --view: max(calc(100svh - var(--header-offset, 8.5rem)), 40rem);
   --section-pad: clamp(3rem, 1.5rem + 6svh, 6.5rem);
   --stack: clamp(1.75rem, 1rem + 3.2svh, 3.25rem);
   --media-ratio: 1.32; /* product photo height / width; squarer on short screens */
@@ -55,7 +55,6 @@
 }
 /* short laptop screens: squarer product photos so a full row of cards plus its heading still fits */
 @media (min-width: 48rem) and (max-height: 56rem) { :root { --media-ratio: 1.08; } }
-@media (min-width: 48rem) and (max-height: 42rem) { :root { --media-ratio: .86; } } /* short laptop windows: keep each band within one screen */
 
 /* ---------- base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
@@ -797,30 +796,6 @@ html:not(.js) .coverflow__nav { display: none; }
 .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
 .js .reveal.is-visible { opacity: 1; transform: none; }
 
-/* ---------- short desktop windows (laptops, browser chrome): keep each band within one screen ---------- */
-@media (min-width: 64rem) and (max-height: 46rem) {
-  /* product photos: never taller than the space left after the heading and card text */
-  .shop-card__media { max-height: calc(var(--view) - 17.5rem); }
-  .shop-slider__btn { top: calc(min(var(--card-w) * var(--media-ratio), var(--view) - 17.5rem) / 2); }
-  /* testimonial quotes: wider and tighter so the text fits the shorter reel */
-  .testi-reel { --qw: clamp(24rem, 16rem + 16vw, 32rem); }
-  .testi-quote { padding: 1.25rem 1.5rem; }
-  .testi-quote__mark { width: 1.875rem; height: calc(1.875rem * 323 / 483); margin-bottom: .75rem; }
-  .testi-quote__text { font-size: .8125rem; line-height: 1.5; }
-  .testi-quote__by { padding-top: .75rem; }
-  .testi-quote__avatar { width: 2.75rem; height: 2.75rem; }
-  /* about: tighter story column so text, button and division tiles sit beside the photo within one screen */
-  .about__intro { gap: .875rem; }
-  .about__intro .section-heading { gap: .625rem; }
-  .about__text { line-height: 1.55; }
-  .about-divisions { gap: .625rem; margin-top: .25rem; }
-  .about-division__media { aspect-ratio: 2 / 1; }
-  .about-divisions__label { font-size: .9375rem; }
-  .about-division { gap: .5rem; }
-  .about-division__title { font-size: .875rem; }
-  /* blog cards */
-  .story { max-height: calc(var(--view) - 16rem); }
-}
 
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
