@@ -6,7 +6,22 @@
 
   /* ---------- sticky header state ---------- */
   const header = $('[data-header]');
-  const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 40);
+  const root = document.documentElement;
+  let lastY = window.scrollY;
+  // hide on scroll down, reveal on scroll up; always shown near the top. --header-shown lets sticky content follow it.
+  const setHidden = hide => {
+    if (header.classList.contains('is-hidden') === hide) return;
+    header.classList.toggle('is-hidden', hide);
+    root.style.setProperty('--header-shown', hide ? 0 : 1);
+  };
+  const onScroll = () => {
+    const y = window.scrollY;
+    header.classList.toggle('is-scrolled', y > 40);
+    if (y <= header.offsetHeight) { setHidden(false); lastY = y; return; }
+    if (Math.abs(y - lastY) < 8) return; // ignore tiny jitters (trackpads, momentum)
+    setHidden(y > lastY);
+    lastY = y;
+  };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 

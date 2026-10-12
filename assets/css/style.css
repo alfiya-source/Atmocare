@@ -93,6 +93,7 @@ address { font-style: normal; }
 .section-heading__eyebrow {
   display: inline-flex; align-items: center; gap: .75rem;
   font-size: var(--fs-xs); font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--violet);
+  line-height: 1; text-box: trim-both cap alphabetic; /* caps centred on the rule beside them */
 }
 .section-heading__eyebrow::before { content: ""; width: 2rem; height: 1px; background: currentColor; }
 .section-heading--center .section-heading__eyebrow::after { content: ""; width: 2rem; height: 1px; background: currentColor; }
@@ -149,8 +150,11 @@ address { font-style: normal; }
 .slider-controls { display: flex; gap: .5rem; }
 
 /* ---------- header ---------- */
-.site-header { position: sticky; top: 0; z-index: 50; background: rgb(250 250 250 / .92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); transition: box-shadow .3s; }
+.site-header { position: sticky; top: 0; z-index: 50; background: rgb(250 250 250 / .92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); transition: box-shadow .3s, transform .4s var(--ease); }
 .site-header.is-scrolled { box-shadow: 0 8px 24px -16px rgb(22 20 26 / .25); }
+/* hidden while scrolling down, back on scroll up (main.js); stays visible while a header control has keyboard focus */
+.site-header.is-hidden { transform: translateY(-100%); box-shadow: none; }
+.site-header.is-hidden:focus-within { transform: none; }
 .site-header__top { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; padding-block: clamp(.6rem, .4rem + .6vw, 1rem); transition: padding .3s var(--ease); }
 .site-header.is-scrolled .site-header__top { padding-block: .5rem; }
 .utility-nav { display: flex; gap: clamp(1rem, 2vw, 2rem); font-size: .9375rem; }
@@ -279,8 +283,8 @@ address { font-style: normal; }
 /* stacked sticky cards (Neriva routine layout, refined): one large rounded card, a softly tinted copy side (42%)
    beside an edge-to-edge photo (58%), no border + a very soft lift; each card pins slightly lower than the one before */
 .category-card {
-  --stick: calc(var(--header-offset, 6rem) + 1.5rem); --panel-radius: 0px; --card-r: clamp(1rem, .6rem + 1vw, 1.5rem);
-  position: sticky; top: calc(var(--stick) + var(--i, 0) * .75rem);
+  --stick: calc(var(--header-offset, 6rem) * var(--header-shown, 1) + 1.5rem); --panel-radius: 0px; --card-r: clamp(1rem, .6rem + 1vw, 1.5rem);
+  position: sticky; top: calc(var(--stick) + var(--i, 0) * .75rem); transition: top .4s var(--ease); /* follows the header as it hides / returns */
   display: grid; grid-template-columns: minmax(18rem, 42%) minmax(0, 58%);
   height: clamp(19rem, calc(var(--view) - 3.5rem), 36rem); margin-bottom: clamp(3rem, 8vh, 7rem); overflow: hidden;
   border-radius: var(--card-r);
@@ -354,7 +358,7 @@ address { font-style: normal; }
 /* product card (gallery style): stone panel (10px corners) with a status tag top-left and the discount top-right;
    a full-width "Add to Cart | View" bar rises from the bottom of the panel on hover (always shown on touch screens);
    centred name, category, stars and price below. no shadows; the whole card opens the product via the title link */
-.shop-card { --lux: cubic-bezier(.22, 1, .36, 1); --panel: #F2F1EF; position: relative; scroll-snap-align: start; display: flex; flex-direction: column; }
+.shop-card { --lux: cubic-bezier(.22, 1, .36, 1); --panel: #F2F1EF; position: relative; container-type: inline-size; scroll-snap-align: start; display: flex; flex-direction: column; }
 .shop-card:has(.shop-card__title a:focus-visible) .shop-card__media { outline: 2px solid var(--violet); outline-offset: 3px; }
 /* above the card-wide title link (z 1) so the hover bar is clickable; the photo itself lets clicks through to that link */
 .shop-card__media { position: relative; z-index: 2; isolation: isolate; aspect-ratio: 1 / var(--media-ratio); overflow: hidden; border-radius: 10px; background: var(--panel); transition: background .6s var(--lux); pointer-events: none; }
@@ -380,7 +384,7 @@ address { font-style: normal; }
   border-radius: 999px; font-size: .625rem; font-weight: 600; line-height: 1; letter-spacing: var(--track); text-transform: uppercase; white-space: nowrap;
 }
 /* status: small ink pill (Best Seller and New alike) with a soft glint of light sweeping across it every few seconds */
-.shop-card__badge { position: relative; overflow: hidden; isolation: isolate; height: 1.5rem; font-size: .5625rem; font-weight: 500; background: #16141A; color: #fff; }
+.shop-card__badge { position: relative; overflow: hidden; isolation: isolate; height: 1.625rem; font-size: .6875rem; font-weight: 500; text-box: trim-both cap alphabetic; background: #16141A; color: #fff; }
 .shop-card__badge::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(105deg, transparent 35%, rgb(255 255 255 / .38) 50%, transparent 65%) no-repeat; background-size: 250% 100%; background-position: 150% 0; animation: badge-glint 4.5s var(--ease) infinite; }
 .shop-card__badge--new::after { animation-delay: 1.2s; }
 @keyframes badge-glint { 0%, 55% { background-position: 150% 0; } 85%, 100% { background-position: -50% 0; } }
@@ -390,7 +394,7 @@ address { font-style: normal; }
    "Add to Cart" filling it and "View" after a hairline divider; each half turns #5E2187 on hover */
 .shop-card__actions {
   position: absolute; left: .75rem; right: .75rem; bottom: .75rem; z-index: 3;
-  display: grid; grid-template-columns: 1fr auto; overflow: hidden;
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; overflow: hidden;
   border-radius: 999px; background: #16141A; color: #fff; pointer-events: auto;
   opacity: 0; transform: translateY(1.25rem); transition: transform .6s var(--lux), opacity .4s var(--lux);
 }
@@ -402,6 +406,12 @@ address { font-style: normal; }
   transition: background .3s;
 }
 .shop-card__view { border-left: 1px solid rgb(255 255 255 / .16); padding-inline: 1.4rem; }
+/* narrow cards (5 per row on short screens, tablets): drop the bag icon and tighten so "View" never clips */
+@container (max-width: 17rem) {
+  .shop-card__cart, .shop-card__view { gap: .35rem; padding: .8rem .6rem; letter-spacing: .08em; }
+  .shop-card__cart .icon { display: none; }
+  .shop-card__view { padding-inline: .9rem; }
+}
 .shop-card__cart:hover, .shop-card__cart.is-added, .shop-card__view:hover { background: #5E2187; color: #fff; }
 .shop-card__cart:focus-visible, .shop-card__view:focus-visible { outline: 2px solid #cdb8ea; outline-offset: -3px; }
 
@@ -566,7 +576,7 @@ address { font-style: normal; }
 .why-head { align-items: end; margin-bottom: clamp(1.75rem, 1rem + 2.5svh, 2.75rem); }
 /* section sublines match the About text size; side sublines are left-aligned blocks of one width, bottom-aligned with the title */
 .why-head .split-heading__text, .testi-head__text { max-width: 36rem; color: var(--muted); font-size: var(--fs-lead); line-height: 1.7; text-align: left; text-wrap: pretty; }
-.why-panels { display: flex; gap: 0; height: clamp(13rem, calc(var(--view) - 16rem), 38rem); }
+.why-panels { display: flex; gap: 0; height: clamp(26rem, calc(var(--view) - 10rem), 38rem); } /* tall portrait panels even on short laptop screens */
 /* smooth hover: a soft, slightly longer ease on the panel width */
 .why-panel { --lux: cubic-bezier(.25, .8, .25, 1); position: relative; isolation: isolate; flex: 1 1 0; min-width: 0; overflow: hidden; color: #fff; transition: flex-grow .9s var(--lux); will-change: flex-grow; }
 /* the photo is cropped to the widest the panel ever gets and centred, so it slides instead of rescaling every frame */
