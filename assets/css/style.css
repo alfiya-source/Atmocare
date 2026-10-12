@@ -279,42 +279,48 @@ address { font-style: normal; }
 .marquee--slow { --speed: 55s; }
 
 /* ---------- categories ---------- */
-#products { background: var(--paper); }
-#products .section-heading--center { max-width: 40rem; }
-/* three near-square photo cards; title, line and button sit on the lower left over a soft shade */
-.cat-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(.875rem, .5rem + 1vw, 1.5rem); }
-.cat-cards > li { container-type: inline-size; }
-.cat-card { --lux: cubic-bezier(.22, 1, .36, 1); position: relative; isolation: isolate; display: flex; align-items: end;
-  /* about 10:11 (slightly tall, like the reference); on short screens it gives up height first so the row still fits */
-  height: min(110cqw, max(21rem, calc(var(--view) - 17rem))); overflow: hidden; border-radius: var(--radius); background: var(--ink); color: #fff; }
-.cat-card__img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s var(--lux); }
-.cat-card::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgb(0 0 0 / .82) 0%, rgb(0 0 0 / .6) 30%, rgb(0 0 0 / .22) 55%, rgb(0 0 0 / 0) 75%); } /* subtle black shade under the text for legibility */
-.cat-card:hover .cat-card__img { transform: scale(1.04); }
-/* type and spacing scale with the card width (cqw = 1% of the card column) */
-.cat-card__body { display: grid; justify-items: start; gap: .5rem; padding: clamp(1rem, 7cqw, 2.25rem); }
-.cat-card__title { font-size: clamp(1.25rem, 7.2cqw, 2.125rem); font-weight: 400; letter-spacing: -.02em; line-height: 1.1; }
-.cat-card__text { max-width: 22rem; color: rgb(255 255 255 / .85); font-size: var(--fs-sm); line-height: 1.55; }
-/* button stays hidden until the card is hovered or a keyboard user tabs into it (always shown on touch screens) */
-.cat-card__btn { max-height: 0; min-height: 0; margin-top: 0; padding-block: 0; overflow: hidden; opacity: 0; transform: translateY(.5rem); transition: max-height .5s var(--lux), min-height .5s var(--lux), margin-top .5s var(--lux), padding .5s var(--lux), opacity .35s var(--lux), transform .5s var(--lux), background-color .3s, color .3s; }
-.cat-card:hover .cat-card__btn, .cat-card:focus-within .cat-card__btn { max-height: 4rem; min-height: 3.25rem; margin-top: .875rem; padding-block: .75rem; opacity: 1; transform: none; }
-@media (hover: none) { .cat-card__btn { max-height: 4rem; min-height: 3.25rem; margin-top: .875rem; padding-block: .75rem; opacity: 1; transform: none; } }
-@container (max-width: 20rem) { .cat-card__btn { padding-inline: 1.1rem; font-size: var(--fs-sm); } .cat-card:hover .cat-card__btn, .cat-card:focus-within .cat-card__btn { min-height: 2.5rem; margin-top: .5rem; padding-block: .5rem; } }
+/* the section is exactly one screen tall below the header: heading on top, the three cards stretch to fill the rest */
+#products { --cats-pad: clamp(1.5rem, .75rem + 3svh, 3rem); display: flex; min-height: var(--view); padding-block: var(--cats-pad); margin-block: clamp(2.5rem, 1.5rem + 4svh, 5rem); /* breathing room after the hero and before Best Sellers */ background: var(--paper); }
+#products .section-heading--center { max-width: 40rem; margin-bottom: clamp(1.25rem, .75rem + 2svh, 2.25rem); }
+.cat-wrap { display: flex; flex-direction: column; max-width: calc(100rem + var(--pad-inline) * 2); }
+.cat-cards { flex: 1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(.75rem, .5rem + .8vw, 1.5rem); }
+.cat-cards > li { display: flex; container-type: inline-size; }
+/* full photo, large radius; fills its column height (never shorter than 24rem) */
+.cat-card { --lux: cubic-bezier(.22, 1, .36, 1); position: relative; isolation: isolate; flex: 1; display: flex; align-items: end; min-height: 24rem; overflow: hidden; border-radius: clamp(1rem, .75rem + .8vw, 1.5rem); background: var(--ink); color: #fff; }
+.cat-card__img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; transition: transform 1.6s var(--lux); }
+/* soft black shade along the bottom, under the text */
+.cat-card::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgb(0 0 0 / .85) 0%, rgb(0 0 0 / .6) 22%, rgb(0 0 0 / .25) 42%, rgb(0 0 0 / 0) 60%); }
+/* extra shade that fades in on hover, when the subline and button push the text higher */
+.cat-card::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgb(0 0 0 / .45) 0%, rgb(0 0 0 / .35) 45%, rgb(0 0 0 / 0) 78%); opacity: 0; transition: opacity .5s var(--lux); }
+.cat-card:hover::before, .cat-card:focus-visible::before { opacity: 1; }
+@media (hover: none) { .cat-card::before { opacity: 1; } }
+.cat-card__body { display: grid; padding: clamp(1.25rem, 8cqw, 2.5rem); }
+.cat-card__title { font-size: clamp(1.125rem, 5.6cqw, 1.625rem); font-weight: 500; letter-spacing: -.01em; line-height: 1.15; }
+/* subline always shows; the button stays folded away until hover / keyboard focus (always shown on touch screens) */
+.cat-card__more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .55s var(--lux); }
+.cat-card__more-in { display: grid; justify-items: start; padding-top: 1rem; min-height: 0; overflow: hidden; opacity: 0; transform: translateY(.5rem); transition: opacity .4s var(--lux), transform .55s var(--lux); }
+.cat-card__label { padding-top: .5rem; max-width: 24rem; color: rgb(255 255 255 / .85); font-size: var(--fs-sm); line-height: 1.5; }
+.cat-card:hover .cat-card__more, .cat-card:focus-visible .cat-card__more { grid-template-rows: 1fr; }
+.cat-card:hover .cat-card__more-in, .cat-card:focus-visible .cat-card__more-in { opacity: 1; transform: none; }
+.cat-card:hover .cat-card__img, .cat-card:focus-visible .cat-card__img { transform: scale(1.05); }
+.cat-card:hover .cat-card__btn { background: #5E2187; color: #fff; }
+.cat-card:focus-visible { outline: 2px solid var(--violet); outline-offset: 3px; }
+@media (hover: none) { .cat-card__more { grid-template-rows: 1fr; } .cat-card__more-in { opacity: 1; transform: none; } }
 /* object positions keep each product in frame */
 .cat-cards > li:nth-child(1) .cat-card__img { object-position: 50% 45%; }
 .cat-cards > li:nth-child(2) .cat-card__img { object-position: 45% 50%; }
 .cat-cards > li:nth-child(3) .cat-card__img { object-position: 40% 50%; }
+/* tablet and phone: heading sits above, cards sized by width */
 @media (max-width: 64rem) {
-  .cat-card { height: auto; aspect-ratio: 10 / 11; }
-  .cat-card__text { display: none; }
+  #products { display: block; min-height: 0; padding-block: var(--section-pad); }
+  .cat-card { aspect-ratio: 4 / 5; min-height: 0; }
 }
-/* phones: cards become a swipeable row */
 @media (max-width: 40rem) {
-  .cat-cards { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 82%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-inline: calc(var(--pad-inline) * -1); padding-inline: var(--pad-inline); scroll-padding-inline: var(--pad-inline); }
+  .cat-cards { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 84%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-inline: calc(var(--pad-inline) * -1); padding-inline: var(--pad-inline); scroll-padding-inline: var(--pad-inline); }
   .cat-cards::-webkit-scrollbar { display: none; }
   .cat-cards > li { scroll-snap-align: start; }
-  .cat-card__text { display: block; }
 }
-@media (prefers-reduced-motion: reduce) { .cat-card__img { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .cat-card__img, .cat-card__more, .cat-card__more-in { transition: none; } }
 
 /* ---------- product card ---------- */
 /* best sellers: gallery-style tiles in a snap row (4 / 3 / 2 visible) */
