@@ -754,7 +754,7 @@ html:not(.js) .coverflow__nav { display: none; }
 .site-footer a { transition: color .25s; }
 .site-footer a:hover { color: #fff; }
 /* newsletter takes the free width; the five link columns sit at their content width with one equal gap between them */
-.site-footer__top { display: grid; grid-template-columns: minmax(0, 1fr) repeat(5, max-content); gap: 2.5rem clamp(2rem, .5rem + 3vw, 5rem); padding-bottom: clamp(3rem, 2rem + 4vw, 6rem); }
+.site-footer__top { display: grid; grid-template-columns: minmax(0, 1fr) repeat(5, max-content); gap: 2.5rem clamp(3rem, 1rem + 4vw, 7rem); padding-bottom: clamp(3rem, 2rem + 4vw, 6rem); }
 
 /* brand column: footer logo with the social icons under it */
 .footer-brand { display: grid; gap: 2rem; align-content: start; justify-items: start; max-width: 26rem; }
