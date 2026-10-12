@@ -782,7 +782,7 @@ html:not(.js) .coverflow__nav { display: none; }
 .site-footer__sign { display: flex; flex-wrap: wrap; align-items: end; gap: .75rem 1.75rem; }
 .legal-links { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem 1.75rem; }
 /* agency credit: right end of the bottom row (2x image with built-in padding, shown at 36px tall) */
-.site-footer__credit { justify-self: end; margin-right: 4.5rem; /* clear the floating contact buttons; legal links stay centred on the full row */ opacity: .9; transition: opacity .25s; }
+.site-footer__credit { justify-self: end; opacity: .9; transition: opacity .25s; }
 .site-footer__credit:hover { opacity: 1; }
 .site-footer__credit img { width: auto; height: 2.25rem; }
 @media (max-width: 60rem) { .site-footer__bottom { grid-template-columns: 1fr; justify-items: center; text-align: center; padding-bottom: 6rem; } .site-footer__credit { justify-self: center; margin-right: 0; } }
