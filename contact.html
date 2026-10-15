@@ -36,7 +36,6 @@
   <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3.5 20.5 8 12 12.5 3.5 8 12 3.5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m3.5 12 8.5 4.5 8.5-4.5M3.5 16l8.5 4.5 8.5-4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3.5 12h17M12 3.5c2.3 2.3 3.5 5.1 3.5 8.5s-1.2 6.2-3.5 8.5c-2.3-2.3-3.5-5.1-3.5-8.5S9.7 5.8 12 3.5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
   <symbol id="i-parcel" viewBox="0 0 24 24"><path d="M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5v-9Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M3.5 7.5 12 12l8.5-4.5M12 12v9M7.75 5.25l8.5 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
-  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.3" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
   <symbol id="i-quote" viewBox="0 0 483 323"><path fill-rule="evenodd" clip-rule="evenodd" d="M381.038 88.5954C398.513 65.6738 431.544 40.9982 476.511 20.456C488.197 15.1176 482.925 -1.42854 470.025 0.0991805C375.544 11.2884 314.306 50.0297 280.865 107.643C268.427 129.07 260.613 151.878 256.451 175.161C253.708 190.512 252.983 202.032 252.983 215.338C252.983 274.798 304.467 323 367.975 323C431.484 323 482.968 274.798 482.968 215.338C482.968 155.878 430.662 107.643 370.555 107.643C373.726 99.491 374.488 97.1873 381.038 88.5954ZM128.055 88.5954C145.53 65.6738 178.561 40.9982 223.528 20.456C235.214 15.1176 229.942 -1.42854 217.042 0.0991805C122.561 11.2884 61.323 50.0297 27.8818 107.643C15.4441 129.07 7.62985 151.878 3.4684 175.161C0.72461 190.512 -5.46567e-06 202.032 -5.46567e-06 215.338C-5.46567e-06 274.798 51.4838 323 114.992 323C178.501 323 229.985 274.798 229.985 215.338C229.985 155.878 177.679 107.643 117.572 107.643C120.743 99.491 121.505 97.1873 128.055 88.5954Z" fill="currentColor"/></symbol>
 </svg>
 
@@ -68,7 +67,7 @@
       <button class="icon-btn" type="button" aria-label="Search products" aria-controls="search-panel" aria-expanded="false" data-search-open>
         <svg class="icon"><use href="#i-search"/></svg>
       </button>
-      <a class="icon-btn icon-btn--count" href="#" aria-label="Cart, 0 items" data-cart-link>
+      <a class="icon-btn icon-btn--count" href="cart.html" aria-label="Cart, 0 items" data-cart-link>
         <svg class="icon"><use href="#i-bag"/></svg>
         <span class="count-badge" data-cart-count hidden>0</span>
       </a>
@@ -141,98 +140,93 @@
 <main id="main">
 
   <!-- ============ 1. CONTACT HERO ============ -->
-  <!-- Same full-bleed banner as the other inner pages: breadcrumb above the title along the bottom. Nothing decorative added. -->
-  <section class="page-hero" aria-labelledby="page-title">
-    <div class="page-hero__frame">
-      <img class="page-hero__img" src="assets/img/stock/why-reception.jpg" alt="" width="1400" height="933" fetchpriority="high">
-      <div class="container page-hero__inner">
-        <div class="page-hero__content">
-          <nav class="breadcrumb" aria-label="Breadcrumb">
-            <ol>
-              <li><a href="index.html">Home</a></li>
-              <li aria-current="page">Contact Us</li>
-            </ol>
-          </nav>
-          <h1 class="page-hero__title" id="page-title">Contact Us</h1>
-        </div>
-      </div>
+  <!-- Minimal: no photo. Breadcrumb and an oversized title on the page background, closed by a hairline. -->
+  <section class="ct-hero" aria-labelledby="page-title">
+    <div class="container">
+      <nav class="breadcrumb breadcrumb--dark" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li aria-current="page">Contact Us</li>
+        </ol>
+      </nav>
+      <h1 class="ct-hero__title" id="page-title">Contact Us</h1>
     </div>
   </section>
 
   <!-- ============ 2. CONTACT INFORMATION ============ -->
-  <!-- Details on the left as hairline-divided rows (icon, label, value); the office map on the right.
-       Address, phones and email exactly as in the site footer. Every number is a tel: link and the email a mailto: link.
+  <!-- Four details in one row split by hairlines: small grey label, larger value. No icons or boxes. Below, the office map at full
+       container width in soft greyscale (colour returns on hover).
+       Details exactly as supplied; every number is a tel: link and the email a mailto: link.
        Map: the verified "Atmocare" Google Maps listing, the same embed atmocare.com/contact uses. -->
-  <section class="section contact-info" aria-labelledby="info-title">
-    <div class="container contact-info__inner">
-      <div class="contact-info__details reveal">
-        <div class="section-heading">
-          <span class="section-heading__eyebrow">Contact Information</span>
-          <h2 class="section-heading__title" id="info-title">Visit, Call or Write to Us</h2>
+  <section class="ct-info" aria-labelledby="info-title">
+    <div class="container">
+      <h2 class="visually-hidden" id="info-title">Contact Information</h2>
+      <dl class="ct-details reveal">
+        <div class="ct-details__item">
+          <dt>Address</dt>
+          <dd><address>Office No 105,<br>Al Kazan Building,<br>Umm Ramool, Dubai,<br>United Arab Emirates</address></dd>
         </div>
-        <dl class="contact-list">
-          <div class="contact-list__row">
-            <dt><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>Address</dt>
-            <dd><address>Office No 105,<br>Al Kazan Building,<br>Umm Ramool, Dubai,<br>United Arab Emirates</address></dd>
-          </div>
-          <div class="contact-list__row">
-            <dt><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>Phone</dt>
-            <dd><a href="tel:+971502302023">+971 50 230 2023</a><a href="tel:+971523925321">+971 52 392 5321</a></dd>
-          </div>
-          <div class="contact-list__row">
-            <dt><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>Landline</dt>
-            <dd><a href="tel:+97142565244">+971 4 256 52 44</a></dd>
-          </div>
-          <div class="contact-list__row">
-            <dt><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>Email</dt>
-            <dd><a href="mailto:info@atmocare.com">info@atmocare.com</a></dd>
-          </div>
-        </dl>
-      </div>
-      <div class="contact-info__map reveal">
+        <div class="ct-details__item">
+          <dt>Phone</dt>
+          <dd><a href="tel:+971502302023">+971 50 230 2023</a><a href="tel:+971523925321">+971 52 392 5321</a></dd>
+        </div>
+        <div class="ct-details__item">
+          <dt>Landline</dt>
+          <dd><a href="tel:+97142565244">+971 4 256 52 44</a></dd>
+        </div>
+        <div class="ct-details__item">
+          <dt>Email</dt>
+          <dd><a href="mailto:info@atmocare.com">info@atmocare.com</a></dd>
+        </div>
+      </dl>
+      <div class="ct-map reveal">
         <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14437.629868870483!2d55.376046!3d25.2231974!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5d64db841f99%3A0x7e8f083812ae5ff9!2sAtmocare!5e0!3m2!1sen!2sin!4v1728980825281!5m2!1sen!2sin" title="Atmocare office location on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
       </div>
     </div>
   </section>
 
   <!-- ============ 3. GET IN TOUCH ============ -->
-  <!-- Warm band (#F7F5F1). Heading on the left; on the right the form on a white panel: underlined fields with visible labels,
-       then the requirement type as an underlined dropdown matching the fields, comments, the code check and Submit.
-       Fields in the brief's order: contact name, email ID, phone, location, requirement type, message / requirement, code, submit.
+  <!-- Reference layout: heading, short text and a tall photo on the left; on the right the form on a light panel with white boxed
+       fields (labels above, placeholder hints) and a full-width dark Submit. Fields in the brief's order: contact name, email ID, phone, location, requirement type, message / requirement, code, submit.
+       DESTINATION: set data-endpoint on the form to the URL that should receive the submission (all fields are posted as form
+       data). Until then the form validates and then says it isn't connected; it never fakes a success.
+       CAPTCHA: no provider is configured. "Enter the Code" is a marked integration point (data-captcha-slot) for the provider's
+       widget (e.g. reCAPTCHA / Turnstile); no decorative code is shown.
        MISSING: the brief lists only "Product Enquiries" as a requirement type; the other options are the site's own service
-       areas — confirm the list.
-       DESTINATION: set data-endpoint on the form to the URL that should receive the submission (all fields are posted as
-       form data). Until then the form validates and then says it isn't connected; it never fakes a success.
-       CAPTCHA: no provider is configured. The "Enter the Code" step is a marked integration point (data-captcha-slot) for the
-       provider's widget (e.g. reCAPTCHA / Turnstile); no decorative code is shown. -->
-  <section class="section contact-form-band" aria-labelledby="form-title">
-    <div class="container contact-form-band__inner">
-      <div class="section-heading contact-form-band__head reveal">
-        <span class="section-heading__eyebrow">Get in Touch</span>
-        <h2 class="section-heading__title" id="form-title">Send Us an Enquiry</h2>
-        <p class="section-heading__text">Fill in the form and our team will get back to you.</p>
+       areas — confirm the list. -->
+  <section class="section ct-form" aria-labelledby="form-title">
+    <div class="container ct-form__inner">
+      <div class="ct-form__aside reveal">
+        <div class="section-heading">
+          <span class="section-heading__eyebrow">Get in Touch</span>
+          <h2 class="section-heading__title" id="form-title">Send Us an Enquiry</h2>
+          <p class="section-heading__text">Fill in the form and our team will get back to you.</p>
+        </div>
+        <figure class="ct-form__shot">
+          <img src="assets/img/stock/testi-diffuser-wood.jpg" alt="An Atmocare diffuser scenting a calm interior" width="1100" height="1650" loading="lazy">
+        </figure>
       </div>
 
       <form class="contact-form reveal" action="#" method="post" novalidate data-contact-form data-endpoint="">
         <div class="contact-form__grid">
           <div class="field">
             <label class="contact-form__label" for="cf-name">Contact Name <span aria-hidden="true">*</span></label>
-            <input class="field__input" id="cf-name" name="name" type="text" autocomplete="name" required>
+            <input class="field__input" id="cf-name" placeholder="Enter your name" name="name" type="text" autocomplete="name" required>
             <p class="field__error" id="cf-name-err" hidden>Please enter your name.</p>
           </div>
           <div class="field">
             <label class="contact-form__label" for="cf-email">Email ID <span aria-hidden="true">*</span></label>
-            <input class="field__input" id="cf-email" name="email" type="email" autocomplete="email" required>
+            <input class="field__input" id="cf-email" placeholder="Enter your email" name="email" type="email" autocomplete="email" required>
             <p class="field__error" id="cf-email-err" hidden>Please enter a valid email address.</p>
           </div>
           <div class="field">
             <label class="contact-form__label" for="cf-phone">Phone <span aria-hidden="true">*</span></label>
-            <input class="field__input" id="cf-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="15" pattern="[0-9+ ]{4,15}" required>
+            <input class="field__input" id="cf-phone" placeholder="Enter your phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="15" pattern="[0-9+ ]{4,15}" required>
             <p class="field__error" id="cf-phone-err" hidden>Please enter a phone number (digits only).</p>
           </div>
           <div class="field">
             <label class="contact-form__label" for="cf-location">Location <span aria-hidden="true">*</span></label>
-            <input class="field__input" id="cf-location" name="location" type="text" autocomplete="address-level2" required>
+            <input class="field__input" id="cf-location" placeholder="Enter your location" name="location" type="text" autocomplete="address-level2" required>
             <p class="field__error" id="cf-location-err" hidden>Please enter your location.</p>
           </div>
           <div class="field field--full">
@@ -251,7 +245,7 @@
           </div>
           <div class="field field--full">
             <label class="contact-form__label" for="cf-comments">Message / Requirement</label>
-            <textarea class="field__input field__input--area" id="cf-comments" name="comments" rows="4"></textarea>
+            <textarea class="field__input field__input--area" id="cf-comments" name="comments" rows="5" placeholder="Tell us about your requirement"></textarea>
           </div>
         </div>
 
@@ -259,7 +253,7 @@
           <!-- CAPTCHA INTEGRATION POINT ("Enter the Code"): mount the provider widget here and send its token with the form. -->
           <div class="contact-form__captcha" data-captcha-slot hidden></div>
           <p class="contact-form__note"><span aria-hidden="true">*</span> Required fields</p>
-          <button class="btn btn--primary" type="submit">Submit<svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <button class="btn btn--primary contact-form__submit" type="submit">Submit<svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow"/></svg></button>
         </div>
         <p class="contact-form__status" role="status" aria-live="polite" data-form-status hidden></p>
       </form>
@@ -356,7 +350,7 @@
 <div class="float-actions" aria-label="Quick contact">
   <a class="float-actions__btn float-actions__btn--wa" href="https://api.whatsapp.com/send?phone=971502302023" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg class="icon"><use href="#i-whatsapp"/></svg></a>
   <a class="float-actions__btn" href="mailto:info@atmocare.com" aria-label="Email info@atmocare.com"><svg class="icon"><use href="#i-mail"/></svg></a>
-  <a class="float-actions__btn icon-btn--count" href="#" aria-label="Cart, 0 items" data-cart-link><svg class="icon"><use href="#i-bag"/></svg><span class="count-badge" data-cart-count hidden>0</span></a>
+  <a class="float-actions__btn icon-btn--count" href="cart.html" aria-label="Cart, 0 items" data-cart-link><svg class="icon"><use href="#i-bag"/></svg><span class="count-badge" data-cart-count hidden>0</span></a>
 </div>
 
 <div class="toast" role="status" aria-live="polite" data-toast></div>

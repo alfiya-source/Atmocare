@@ -95,12 +95,50 @@
     toastTimer = setTimeout(() => toastEl.classList.remove('is-visible'), 2600);
   };
 
-  /* ---------- cart (UI only; no backend on atmocare.com) ---------- */
-  let cart = 0;
+  /* ---------- cart: kept in this browser (localStorage) so cart.html can list it; no backend on atmocare.com ----------
+     Items are read from the product card the button sits in (name, type, MOCK prices, image, link). */
+  const CART_KEY = 'atmocare-cart';
+  let cartMemory = [];
+  const readCart = () => {
+    try { const v = JSON.parse(localStorage.getItem(CART_KEY)); return Array.isArray(v) ? v : []; } catch { return cartMemory; }
+  };
+  const paintCart = items => {
+    const n = items.reduce((sum, i) => sum + i.qty, 0);
+    $$('[data-cart-count]').forEach(c => { c.hidden = n === 0; c.textContent = n; });
+    $$('[data-cart-link]').forEach(l => l.setAttribute('aria-label', `Cart, ${n} item${n === 1 ? '' : 's'}`));
+  };
+  const writeCart = items => {
+    cartMemory = items;
+    try { localStorage.setItem(CART_KEY, JSON.stringify(items)); } catch { /* private mode: this page only */ }
+    paintCart(items);
+  };
+  window.AtmoCart = { read: readCart, write: writeCart };
+  paintCart(readCart());
+  window.addEventListener('storage', e => { if (e.key === CART_KEY) paintCart(readCart()); });
+
+  const aed = el => (el ? Number(el.textContent.replace(/[^0-9.]/g, '')) || 0 : 0);
   $$('[data-add-to-cart]').forEach(btn => btn.addEventListener('click', () => {
-    cart += 1;
-    $$('[data-cart-count]').forEach(c => { c.hidden = false; c.textContent = cart; });
-    $$('[data-cart-link]').forEach(l => l.setAttribute('aria-label', `Cart, ${cart} item${cart === 1 ? '' : 's'}`));
+    // a shop card, or the product detail page (which adds its chosen colour and quantity)
+    const card = btn.closest('.shop-card, [data-product-info]');
+    const detail = card && card.matches('[data-product-info]');
+    const img = card && $(detail ? '[data-gallery-img]' : '.shop-card__media img', card);
+    const link = card && $('.shop-card__title a', card);
+    const colour = detail && $('input[name="colour"]:checked', card);
+    const qtyInput = detail && $('[data-qty-input]', card);
+    const type = card ? ($('.shop-card__type', card)?.textContent.trim() || '') : '';
+    const item = {
+      name: btn.dataset.name,
+      type: colour ? `${type} · ${colour.value}` : type,
+      price: card ? aed($('.shop-card__now', card)) : 0,
+      was: card ? aed($('.shop-card__was', card)) : 0,
+      img: img ? img.getAttribute('src') : '',
+      href: detail ? location.pathname.split('/').pop() : (link ? link.getAttribute('href') : ''),
+      qty: qtyInput ? Math.min(99, Math.max(1, Math.round(Number(qtyInput.value)) || 1)) : 1,
+    };
+    const items = readCart();
+    const found = items.find(i => i.name === item.name && i.type === item.type);
+    if (found) found.qty = Math.min(99, found.qty + item.qty); else items.push(item);
+    writeCart(items);
     btn.classList.add('is-added');
     setTimeout(() => btn.classList.remove('is-added'), 1200);
     toast(`${btn.dataset.name} added to cart`);
