@@ -173,7 +173,7 @@
         <dl class="contact-list">
           <div class="contact-list__row">
             <dt><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>Address</dt>
-            <dd><address>Office 105,<br>Al Kazan Building,<br>Umm Ramool, Dubai,<br>United Arab Emirates</address></dd>
+            <dd><address>Office No 105,<br>Al Kazan Building,<br>Umm Ramool, Dubai,<br>United Arab Emirates</address></dd>
           </div>
           <div class="contact-list__row">
             <dt><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>Phone</dt>
@@ -198,7 +198,7 @@
   <!-- ============ 3. GET IN TOUCH ============ -->
   <!-- Warm band (#F7F5F1). Heading on the left; on the right the form on a white panel: underlined fields with visible labels,
        then the requirement type as an underlined dropdown matching the fields, comments, the code check and Submit.
-       Fields follow atmocare.com/contact (contact name, email, phone, location, comments, code) plus the requirement type.
+       Fields in the brief's order: contact name, email ID, phone, location, requirement type, message / requirement, code, submit.
        MISSING: the brief lists only "Product Enquiries" as a requirement type; the other options are the site's own service
        areas — confirm the list.
        DESTINATION: set data-endpoint on the form to the URL that should receive the submission (all fields are posted as
@@ -221,7 +221,7 @@
             <p class="field__error" id="cf-name-err" hidden>Please enter your name.</p>
           </div>
           <div class="field">
-            <label class="contact-form__label" for="cf-email">Email <span aria-hidden="true">*</span></label>
+            <label class="contact-form__label" for="cf-email">Email ID <span aria-hidden="true">*</span></label>
             <input class="field__input" id="cf-email" name="email" type="email" autocomplete="email" required>
             <p class="field__error" id="cf-email-err" hidden>Please enter a valid email address.</p>
           </div>
@@ -250,7 +250,7 @@
             <p class="field__error" id="cf-requirement-err" hidden>Please choose a requirement type.</p>
           </div>
           <div class="field field--full">
-            <label class="contact-form__label" for="cf-comments">Comments</label>
+            <label class="contact-form__label" for="cf-comments">Message / Requirement</label>
             <textarea class="field__input field__input--area" id="cf-comments" name="comments" rows="4"></textarea>
           </div>
         </div>
