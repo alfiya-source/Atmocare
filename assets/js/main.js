@@ -311,18 +311,20 @@
     } else inView = true;
     requestAnimationFrame(tick);
 
-    // expand: open the clip in a dialog with sound and controls
+    // expand: open the clip in a dialog with sound and controls (the clients page reel has quotes only, no player)
     const player = $('[data-testi-player]', reel.parentElement);
-    const pv = $('video', player);
-    track.addEventListener('click', e => {
-      const b = e.target.closest('[data-testi-video]');
-      if (!b || !player.showModal) return;
-      pv.src = b.dataset.testiVideo; pv.muted = false;
-      player.showModal(); pv.play().catch(() => {});
-    });
-    $('[data-testi-close]', player).addEventListener('click', () => player.close());
-    player.addEventListener('click', e => { if (e.target === player) player.close(); });
-    player.addEventListener('close', () => { pv.pause(); pv.removeAttribute('src'); pv.load(); });
+    if (player) {
+      const pv = $('video', player);
+      track.addEventListener('click', e => {
+        const b = e.target.closest('[data-testi-video]');
+        if (!b || !player.showModal) return;
+        pv.src = b.dataset.testiVideo; pv.muted = false;
+        player.showModal(); pv.play().catch(() => {});
+      });
+      $('[data-testi-close]', player).addEventListener('click', () => player.close());
+      player.addEventListener('click', e => { if (e.target === player) player.close(); });
+      player.addEventListener('close', () => { pv.pause(); pv.removeAttribute('src'); pv.load(); });
+    }
   }
 
   /* ---------- clients coverflow ---------- */
@@ -373,6 +375,52 @@
     window.addEventListener('resize', layout);
     layout();
     play.start();
+  }
+
+  /* ---------- in-place film: poster + play button; plays with sound and controls, back to the poster when it ends ---------- */
+  $$('[data-film]').forEach(film => {
+    const v = $('video', film), btn = $('[data-film-play]', film);
+    btn.addEventListener('click', () => {
+      film.classList.add('is-playing');
+      v.controls = true; v.muted = false;
+      v.play().catch(() => {});
+      v.focus();
+    });
+    v.addEventListener('ended', () => {
+      film.classList.remove('is-playing');
+      v.controls = false; v.load();
+      btn.focus();
+    });
+  });
+
+  /* ---------- count-up figures ---------- */
+  // [data-countup] holds the final number (also the element's text, so it reads right without JS); [data-pad] zero-pads it ("03").
+  // .is-pending until it starts, .is-counted when it lands (CSS hangs the pop on that); siblings in one list start 180ms apart.
+  const counters = $$('[data-countup]');
+  if (counters.length && !reduceMotion && 'IntersectionObserver' in window) {
+    const fmt = (el, n) => String(n).padStart(+el.dataset.pad || 0, '0');
+    counters.forEach(el => { el.textContent = fmt(el, 0); el.classList.add('is-pending'); });
+    const countIO = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target, end = +el.dataset.countup, dur = 1400;
+      const group = el.closest('dl, ul, ol');
+      const delay = group ? $$('[data-countup]', group).indexOf(el) * 180 : 0;
+      countIO.unobserve(el);
+      setTimeout(() => {
+        let start;
+        el.classList.remove('is-pending');
+        el.classList.add('is-counting');
+        const tick = now => {
+          start ??= now; // time from the first frame's own clock, so progress never goes negative
+          const t = Math.min((now - start) / dur, 1);
+          el.textContent = fmt(el, Math.round(end * (1 - Math.pow(1 - t, 3))));
+          if (t < 1) return requestAnimationFrame(tick);
+          el.classList.replace('is-counting', 'is-counted');
+        };
+        requestAnimationFrame(tick);
+      }, delay);
+    }), { threshold: 0.6 });
+    counters.forEach(el => countIO.observe(el));
   }
 
   /* ---------- scroll reveal ---------- */
