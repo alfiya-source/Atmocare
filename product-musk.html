@@ -165,7 +165,7 @@
         <div class="pd-gallery pd-gallery--bottle" data-gallery>
           <div class="pd-gallery__stage">
             
-            <img class="pd-gallery__img" src="assets/img/products/shop/musk-arabic.webp" alt="MUSK aromatic oil bottle" width="418" height="900" fetchpriority="high" data-gallery-img>
+            <img class="pd-gallery__img" src="assets/img/products/pd/musk-arabic.webp" alt="MUSK aromatic oil bottle" width="1000" height="1000" fetchpriority="high" data-gallery-img>
           </div>
         </div>
 
@@ -191,35 +191,34 @@
             <p>"Musk" Aromatic Oil is a distinctive and captivating fragrance that has been prized for centuries. Musk essential oil is renowned for its warm, sensual, and earthy aroma. It possesses a unique ability to enhance and deepen the olfactory profile of fragrances, adding a luxurious and long-lasting quality. Its complex and enduring scent makes it a classic choice for those seeking a timeless and alluring fragrance experience.</p>
           </div>
 
-          <!-- FRAGRANCE NOTES (atmocare.com): top, heart and base notes as small square photo tiles. The photos are the shop's
-               fragrance-family images matched to each note (citrus, floral, fruity, foody, woody, fresh & sweet); swap in
-               ingredient photos if the client supplies them. -->
+          <!-- FRAGRANCE NOTES (atmocare.com): Top / Heart / Base as an accordion (Top open); each note a small square tile with
+               the ingredient cut-out on the light panel and its name underneath. -->
           <div class="pd-notes" aria-labelledby="notes-title">
             <h2 class="pd-notes__title" id="notes-title">Fragrance Notes</h2>
-            <div class="pd-notes__row">
-              <h3 class="pd-notes__label">Top Notes</h3>
+            <details class="pd-notes__acc" name="pd-notes" open>
+              <summary class="pd-notes__head">Top Notes<span class="pd-notes__toggle" aria-hidden="true"></span></summary>
               <ul class="pd-notes__list">
-                <li class="pd-note"><img src="assets/img/filters/family-citrus.jpg" alt="" width="160" height="160" loading="lazy"><span>Citrus</span></li>
-                <li class="pd-note"><img src="assets/img/filters/family-citrus.jpg" alt="" width="160" height="160" loading="lazy"><span>Bergamot</span></li>
-                <li class="pd-note"><img src="assets/img/filters/family-citrus.jpg" alt="" width="160" height="160" loading="lazy"><span>Lemon</span></li>
+                <li class="pd-note pd-note--photo"><span class="pd-note__img"><img src="assets/img/filters/family-citrus.jpg" alt="" width="160" height="160" loading="lazy"></span><span class="pd-note__name">Citrus</span></li>
+                <li class="pd-note pd-note--photo"><span class="pd-note__img"><img src="assets/img/filters/family-citrus.jpg" alt="" width="160" height="160" loading="lazy"></span><span class="pd-note__name">Bergamot</span></li>
+                <li class="pd-note pd-note--photo"><span class="pd-note__img"><img src="assets/img/filters/family-citrus.jpg" alt="" width="160" height="160" loading="lazy"></span><span class="pd-note__name">Lemon</span></li>
               </ul>
-            </div>
-            <div class="pd-notes__row">
-              <h3 class="pd-notes__label">Heart Notes</h3>
+            </details>
+            <details class="pd-notes__acc" name="pd-notes">
+              <summary class="pd-notes__head">Heart Notes<span class="pd-notes__toggle" aria-hidden="true"></span></summary>
               <ul class="pd-notes__list">
-                <li class="pd-note"><img src="assets/img/filters/family-fresh-sweet.jpg" alt="" width="160" height="160" loading="lazy"><span>Jasmin</span></li>
-                <li class="pd-note"><img src="assets/img/filters/family-floral.jpg" alt="" width="160" height="160" loading="lazy"><span>Rose</span></li>
-                <li class="pd-note"><img src="assets/img/filters/family-fresh-sweet.jpg" alt="" width="160" height="160" loading="lazy"><span>Lilly of the Valley</span></li>
+                <li class="pd-note pd-note--photo"><span class="pd-note__img"><img src="assets/img/filters/family-fresh-sweet.jpg" alt="" width="160" height="160" loading="lazy"></span><span class="pd-note__name">Jasmin</span></li>
+                <li class="pd-note pd-note--photo"><span class="pd-note__img"><img src="assets/img/filters/family-floral.jpg" alt="" width="160" height="160" loading="lazy"></span><span class="pd-note__name">Rose</span></li>
+                <li class="pd-note pd-note--photo"><span class="pd-note__img"><img src="assets/img/filters/family-fresh-sweet.jpg" alt="" width="160" height="160" loading="lazy"></span><span class="pd-note__name">Lilly of the Valley</span></li>
               </ul>
-            </div>
-            <div class="pd-notes__row">
-              <h3 class="pd-notes__label">Base Notes</h3>
+            </details>
+            <details class="pd-notes__acc" name="pd-notes">
+              <summary class="pd-notes__head">Base Notes<span class="pd-notes__toggle" aria-hidden="true"></span></summary>
               <ul class="pd-notes__list">
-                <li class="pd-note"><img src="assets/img/filters/family-woody.jpg" alt="" width="160" height="160" loading="lazy"><span>Cedar Wood</span></li>
-                <li class="pd-note"><img src="assets/img/filters/family-woody.jpg" alt="" width="160" height="160" loading="lazy"><span>Amber</span></li>
-                <li class="pd-note"><img src="assets/img/filters/family-foody.jpg" alt="" width="160" height="160" loading="lazy"><span>Vanilla</span></li>
+                <li class="pd-note pd-note--photo"><span class="pd-note__img"><img src="assets/img/filters/family-woody.jpg" alt="" width="160" height="160" loading="lazy"></span><span class="pd-note__name">Cedar Wood</span></li>
+                <li class="pd-note pd-note--photo"><span class="pd-note__img"><img src="assets/img/filters/family-woody.jpg" alt="" width="160" height="160" loading="lazy"></span><span class="pd-note__name">Amber</span></li>
+                <li class="pd-note pd-note--photo"><span class="pd-note__img"><img src="assets/img/filters/family-foody.jpg" alt="" width="160" height="160" loading="lazy"></span><span class="pd-note__name">Vanilla</span></li>
               </ul>
-            </div>
+            </details>
           </div>
 
           <form class="pd-buy" data-buy-form>

@@ -161,7 +161,13 @@
 
   form.addEventListener('input', e => { if (e.target.type === 'range') syncRange(e.target); filter(); });
   form.addEventListener('change', filter);
-  const clear = () => { form.reset(); syncRange(); filter(); };
+  // clearing keeps the category being browsed (its group still open) so its heading and filters stay
+  const clear = () => {
+    form.reset();
+    $$('[data-branch]', form).forEach(g => { const b = form.querySelector(`input[name="category"][value="${g.dataset.branch}"]`); if (b) b.checked = g.open && !g.hidden; });
+    syncRange();
+    filter();
+  };
   $$('[data-filter-clear]').forEach(b => b.addEventListener('click', clear));
 
   /* ---------- sidebar: fold away on desktop, drawer below it ---------- */
@@ -195,7 +201,19 @@
   const tick = (name, value) => { const box = form.querySelector(`input[name="${name}"][value="${value}"]`); if (box) box.checked = true; };
   const cat = params.get('category');
   const showParam = params.get('show');
-  if (cat) tick('category', cat);
+  const groups = $$('[data-branch]', form);
+  // opening a category's filter group (Scent Solutions / Aromatic Oils) browses that category: its heading shows and the
+  // grid narrows to it; closing the group lets it go again (unless one of its options is still ticked)
+  groups.forEach(g => g.addEventListener('toggle', () => {
+    const box = form.querySelector(`input[name="category"][value="${g.dataset.branch}"]`);
+    if (box) box.checked = g.open;
+    filter();
+  }));
+  if (cat) {
+    tick('category', cat);
+    // arriving from a category tab: only that category's filters show (Shop All shows both)
+    groups.forEach(g => { g.hidden = g.dataset.branch !== cat; if (!g.hidden) g.open = true; });
+  }
   if (cat || showParam) {
     // the header tab that brought the visitor here is the current page, not Shop All
     const tabs = [...document.querySelectorAll('.category-nav a, .mobile-nav a')];

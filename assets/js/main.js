@@ -150,6 +150,92 @@
   paintCart(readCart());
   window.addEventListener('storage', e => { if (e.key === CART_KEY) paintCart(readCart()); });
 
+  /* ---------- cart drawer: the header / floating cart icon opens a preview of the cart from the right (items, quantity,
+     remove, subtotal); "View Cart" goes on to cart.html, "Checkout" to checkout.html. On the cart page itself the icon
+     simply stays a link. ---------- */
+  const onCartPage = /(^|\/)cart\.html$/.test(location.pathname);
+  const cartLinks = $$('[data-cart-link]');
+  if (!onCartPage && cartLinks.length) {
+    const svg = d => `<svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="${d}" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    const ICON = { close: 'm6 6 12 12M18 6 6 18', minus: 'M6 12h12', plus: 'M12 6v12M6 12h12', arrow: 'M4 12h15m-5-5 5 5-5 5', bag: 'M5 8h14l-1 12H6L5 8ZM9 8V6.5a3 3 0 0 1 6 0V8' };
+    const money = n => 'AED ' + n.toLocaleString('en-US', { maximumFractionDigits: 2 });
+    const esc = s => String(s).replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
+    const drawer = document.createElement('div');
+    drawer.className = 'cart-drawer';
+    drawer.hidden = true;
+    drawer.innerHTML = `
+      <div class="cart-drawer__backdrop" data-cart-close></div>
+      <aside class="cart-drawer__panel" role="dialog" aria-modal="true" aria-labelledby="cart-drawer-title">
+        <div class="cart-drawer__head">
+          <h2 class="cart-drawer__title" id="cart-drawer-title">Your Cart <span data-cd-count></span></h2>
+          <button class="icon-btn" type="button" aria-label="Close cart" data-cart-close>${svg(ICON.close)}</button>
+        </div>
+        <ul class="cart-drawer__list" data-cd-list></ul>
+        <div class="cart-drawer__empty" data-cd-empty hidden>
+          <span class="cart-drawer__empty-icon" aria-hidden="true">${svg(ICON.bag)}</span>
+          <p>Your cart is empty.</p>
+          <a class="btn btn--primary" href="shop.html">Continue Shopping${svg(ICON.arrow)}</a>
+        </div>
+        <div class="cart-drawer__foot" data-cd-foot>
+          <p class="cart-drawer__sub"><span>Subtotal</span><strong data-cd-subtotal></strong></p>
+          <p class="cart-drawer__note">Shipping and VAT are calculated at checkout.</p>
+          <div class="cart-drawer__actions">
+            <a class="btn btn--ghost" href="cart.html">View Cart</a>
+            <a class="btn btn--primary" href="checkout.html">Checkout${svg(ICON.arrow)}</a>
+          </div>
+        </div>
+      </aside>`;
+    document.body.appendChild(drawer);
+    const list = $('[data-cd-list]', drawer);
+
+    const renderDrawer = () => {
+      const items = readCart();
+      const count = items.reduce((s, i) => s + i.qty, 0);
+      $('[data-cd-count]', drawer).textContent = count ? `(${count})` : '';
+      $('[data-cd-empty]', drawer).hidden = items.length > 0;
+      $('[data-cd-foot]', drawer).hidden = items.length === 0;
+      list.hidden = items.length === 0;
+      $('[data-cd-subtotal]', drawer).textContent = money(items.reduce((s, i) => s + i.price * i.qty, 0));
+      list.innerHTML = items.map((i, n) => `
+        <li class="cart-drawer__item">
+          <a class="cart-drawer__media" href="${esc(i.href || 'shop.html')}" tabindex="-1" aria-hidden="true">${i.img ? `<img src="${esc(i.img)}" alt="">` : ''}</a>
+          <div class="cart-drawer__info">
+            <a class="cart-drawer__name" href="${esc(i.href || 'shop.html')}">${esc(i.name)}</a>
+            ${i.type ? `<span class="cart-drawer__type">${esc(i.type)}</span>` : ''}
+            <div class="cart-drawer__row">
+              <div class="qty qty--sm">
+                <button class="qty__btn" type="button" aria-label="Decrease quantity of ${esc(i.name)}" data-cd-dec="${n}"${i.qty <= 1 ? ' disabled' : ''}>${svg(ICON.minus)}</button>
+                <span class="qty__value" aria-live="polite">${i.qty}</span>
+                <button class="qty__btn" type="button" aria-label="Increase quantity of ${esc(i.name)}" data-cd-inc="${n}">${svg(ICON.plus)}</button>
+              </div>
+              <span class="cart-drawer__price">${money(i.price * i.qty)}</span>
+            </div>
+          </div>
+          <button class="cart-drawer__remove" type="button" aria-label="Remove ${esc(i.name)}" data-cd-remove="${n}">${svg(ICON.close)}</button>
+        </li>`).join('');
+    };
+    list.addEventListener('click', e => {
+      const b = e.target.closest('[data-cd-dec], [data-cd-inc], [data-cd-remove]');
+      if (!b) return;
+      const items = readCart();
+      const n = +(b.dataset.cdDec ?? b.dataset.cdInc ?? b.dataset.cdRemove);
+      if (!items[n]) return;
+      if ('cdRemove' in b.dataset) items.splice(n, 1);
+      else items[n].qty = Math.min(99, Math.max(1, items[n].qty + ('cdInc' in b.dataset ? 1 : -1)));
+      writeCart(items);
+      renderDrawer();
+      const again = list.querySelector(`[data-cd-${'cdRemove' in b.dataset ? 'remove' : 'cdInc' in b.dataset ? 'inc' : 'dec'}="${n}"]`);
+      (again && !again.disabled ? again : $('[data-cart-close]', drawer)).focus();
+    });
+
+    const cartDrawer = overlay(drawer, [], '[data-cart-close]', () => { renderDrawer(); $('[data-cart-close]', drawer).focus(); });
+    cartLinks.forEach(a => {
+      a.setAttribute('aria-haspopup', 'dialog');
+      a.addEventListener('click', e => { e.preventDefault(); cartDrawer.open(); });
+    });
+    window.addEventListener('storage', e => { if (e.key === CART_KEY && !drawer.hidden) renderDrawer(); });
+  }
+
   const aed = el => (el ? Number(el.textContent.replace(/[^0-9.]/g, '')) || 0 : 0);
   $$('[data-add-to-cart]').forEach(btn => btn.addEventListener('click', () => {
     // a shop card, or the product detail page (which adds its chosen colour and quantity)
@@ -177,6 +263,22 @@
     setTimeout(() => btn.classList.remove('is-added'), 1200);
     toast(`${btn.dataset.name} added to cart`);
   }));
+  /* ---------- product cards on phones: the Add to Cart | View bar sits under the card's details, always shown
+     (on larger screens it goes back inside the photo panel and rises on hover) ---------- */
+  const phone = window.matchMedia('(max-width: 48rem)');
+  const placeCardBars = () => {
+    $$('.shop-card').forEach(card => {
+      const bar = $('.shop-card__actions', card);
+      const media = $('.shop-card__media', card);
+      const body = $('.shop-card__body', card);
+      if (!bar || !media || !body) return;
+      if (phone.matches && bar.parentElement === media) body.after(bar);
+      else if (!phone.matches && bar.parentElement === card) media.appendChild(bar);
+    });
+  };
+  placeCardBars();
+  phone.addEventListener('change', placeCardBars);
+
   /* ---------- placeholder links (missing pages) ---------- */
   $$('[data-placeholder]').forEach(a => a.addEventListener('click', e => {
     e.preventDefault();
