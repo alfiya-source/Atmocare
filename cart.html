@@ -162,14 +162,13 @@
        (image on the #F2F1EF product panel, name, type, price, quantity stepper, line total, remove). Right: a sticky
        order summary on the same panel colour.
        MOCK PRICES: the figures come from the product cards, which use placeholder AED prices. Replace before launch.
-       CHECKOUT: no checkout / payment backend exists, so the order goes out as a prefilled WhatsApp enquiry.
-       Point [data-cart-checkout] at the real checkout once one is built. -->
+       CHECKOUT: "Proceed to Checkout" opens checkout.html. That page isn't built yet; no payment backend exists. -->
   <section class="cart" aria-label="Cart items" data-cart>
     <div class="container">
       <div class="cart__empty" data-cart-empty>
         <h2 class="cart__empty-title">Your cart is empty</h2>
         <p class="cart__empty-text">Browse our diffusers, aromatic oils and home scent to find the right fragrance for your space.</p>
-        <a class="btn btn--primary" href="shop.html">Shop Now<svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--primary" href="shop.html">Continue Shopping<svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
 
       <div class="cart__inner" data-cart-filled hidden>
@@ -182,7 +181,6 @@
             <span>Product</span><span>Quantity</span><span>Total</span>
           </div>
           <ul class="cart__list" data-cart-list></ul>
-          <a class="link-arrow cart__back" href="shop.html"><svg class="icon icon--sm flip" aria-hidden="true"><use href="#i-arrow"/></svg>Continue Shopping</a>
         </div>
 
         <aside class="cart-summary" aria-labelledby="summary-title">
@@ -193,8 +191,8 @@
             <div class="cart-summary__saved" data-sum-saved-row><dt>You Save</dt><dd data-sum-saved>AED 0</dd></div>
             <div class="cart-summary__total"><dt>Total</dt><dd data-sum-total>AED 0</dd></div>
           </dl>
-          <a class="btn btn--primary cart-summary__btn" href="https://api.whatsapp.com/send?phone=971502302023" target="_blank" rel="noopener" data-cart-checkout><svg class="icon icon--sm" aria-hidden="true"><use href="#i-whatsapp"/></svg>Order on WhatsApp</a>
-          <p class="cart-summary__note">Your order is sent to our team on WhatsApp, who will confirm availability and delivery with you.</p>
+          <a class="btn btn--primary cart-summary__btn" href="checkout.html" data-cart-checkout>Proceed to Checkout<svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn--ghost cart-summary__btn" href="shop.html">Continue Shopping</a>
         </aside>
       </div>
     </div>
@@ -292,12 +290,11 @@
       <div class="site-footer__sign">
         <p>© 2026 Atmocare International LLC. All Rights Reserved.</p>
       </div>
-      <!-- MISSING: no policy pages on atmocare.com. Placeholder links. -->
       <ul class="legal-links">
-        <li><a href="#" data-placeholder="privacy-policy">Privacy Policy</a></li>
-        <li><a href="#" data-placeholder="shipping-policy">Shipping and Delivery Policy</a></li>
-        <li><a href="#" data-placeholder="refund-policy">Refund and Returns Policy</a></li>
-        <li><a href="#" data-placeholder="terms">Terms and Conditions</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="shipping-and-delivery-policy.html">Shipping and Delivery Policy</a></li>
+        <li><a href="refund-and-returns-policy.html">Refund and Returns Policy</a></li>
+        <li><a href="terms-and-conditions.html">Terms and Conditions</a></li>
       </ul>
       <a class="site-footer__credit" href="https://www.intersmart.in" target="_blank" rel="noopener"><img src="assets/img/brand/credit-intersmart.png" alt="Designed and developed by Intersmart" width="349" height="44" loading="lazy"></a>
     </div>

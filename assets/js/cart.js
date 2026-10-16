@@ -1,6 +1,5 @@
 /* Cart page: lists what "Add to Cart" stored (main.js → window.AtmoCart), with quantity steppers, remove and a summary.
-   Prices are the site's MOCK figures. There is no checkout or payment backend, so the order is sent as a prefilled
-   WhatsApp enquiry; swap [data-cart-checkout] for a real checkout link once one exists. */
+   Prices are the site's MOCK figures. "Proceed to Checkout" links to checkout.html. */
 (() => {
   const root = document.querySelector('[data-cart]');
   if (!root || !window.AtmoCart) return;
@@ -9,7 +8,6 @@
   const list = $('[data-cart-list]');
   const tpl = document.getElementById('cart-row');
   const fmt = n => 'AED ' + n.toLocaleString('en-US', { maximumFractionDigits: 2 });
-  const WA = 'https://api.whatsapp.com/send?phone=971502302023&text=';
 
   const render = () => {
     const items = read();
@@ -49,10 +47,6 @@
     $('[data-sum-saved]').textContent = '− ' + fmt(saved);
     $('[data-sum-saved-row]').hidden = saved === 0;
     $('[data-sum-total]').textContent = fmt(subtotal);
-
-    const lines = items.map(i => `• ${i.name} × ${i.qty} — ${fmt(i.price * i.qty)}`);
-    const msg = `Hello Atmocare, I'd like to order:\n${lines.join('\n')}\nTotal: ${fmt(subtotal)}`;
-    $('[data-cart-checkout]').href = WA + encodeURIComponent(msg);
   };
 
   const update = (idx, fn) => {
