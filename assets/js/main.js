@@ -56,54 +56,54 @@
 
   /* ---------- search: every shop product, opening its own product page ---------- */
   const products = [
-    ['Dew – Medium Area', 'Scent Solutions', 'product-dew.html'],
-    ['Mellow – Medium Area', 'Scent Solutions', 'product-mellow.html'],
-    ['Aromax – Medium Area', 'Scent Solutions', 'product-aromax.html'],
-    ['Mistral – Lobby', 'Scent Solutions', 'product-mistral.html'],
-    ['Regal – Home & Office', 'Scent Solutions', 'product-regal.html'],
-    ['Breeze – Small Area', 'Scent Solutions', 'product-breeze.html'],
-    ['Glimmer – Small Area', 'Scent Solutions', 'product-glimmer.html'],
-    ['Grace – Small Area', 'Scent Solutions', 'product-grace.html'],
-    ['Aroma Pro – Large Area', 'Scent Solutions', 'product-aroma-pro.html'],
-    ['Aura – Car & Table Top', 'Scent Solutions', 'product-aura.html'],
-    ['Aromatic Candles – Eco Friendly', 'Scent Solutions', 'product-aromatic-candles.html'],
-    ['Reed Diffuser – Eco Friendly', 'Scent Solutions', 'product-reed-diffuser.html'],
-    ['Corporate or White Label Gifts – White Label', 'Scent Solutions', 'product-corporate-or-white-label-gifts.html'],
-    ['Mist – Small to Medium Area', 'Scent Solutions', 'product-mist.html'],
-    ['Armani Opulenza – Luxurious', 'Aromatic Oils', 'product-armani-opulenza.html'],
-    ['Exotica – Luxurious', 'Aromatic Oils', 'product-exotica.html'],
-    ['Luxury Air – Luxurious', 'Aromatic Oils', 'product-luxury-air.html'],
-    ['Sensense – Luxurious', 'Aromatic Oils', 'product-sensense.html'],
-    ['Toxic Killi – Luxurious', 'Aromatic Oils', 'product-toxic-killi.html'],
-    ['Diamond – Signature Collection', 'Aromatic Oils', 'product-diamond.html'],
-    ['Fresh Leaf – Signature Collection', 'Aromatic Oils', 'product-fresh-leaf.html'],
-    ['Harmony – Signature Collection', 'Aromatic Oils', 'product-harmony.html'],
-    ['Leather Touch – Signature Collection', 'Aromatic Oils', 'product-leather-touch.html'],
-    ['Taj Sunset – Signature Collection', 'Aromatic Oils', 'product-taj-sunset.html'],
-    ['Blue Host – Aquatic', 'Aromatic Oils', 'product-blue-host.html'],
-    ['Crystal – Aquatic', 'Aromatic Oils', 'product-crystal.html'],
-    ['Trendy Breeze – Aquatic', 'Aromatic Oils', 'product-trendy-breeze.html'],
-    ['Ambri Fierce – Arabic', 'Aromatic Oils', 'product-ambri-fierce.html'],
-    ['Kalemat Oudh – Arabic', 'Aromatic Oils', 'product-kalemat-oudh.html'],
-    ['Musk – Arabic', 'Aromatic Oils', 'product-musk.html'],
-    ['Stormy Desert – Arabic', 'Aromatic Oils', 'product-stormy-desert.html'],
-    ['Isseymiyake – Fresh and Sweet', 'Aromatic Oils', 'product-isseymiyake.html'],
-    ['Paradise – Fresh and Sweet', 'Aromatic Oils', 'product-paradise.html'],
-    ['Passion – Fresh and Sweet', 'Aromatic Oils', 'product-passion.html'],
-    ['Touch Me – Fresh and Sweet', 'Aromatic Oils', 'product-touch-me.html'],
-    ['Eucalyptus – Citrus', 'Aromatic Oils', 'product-eucalyptus.html'],
-    ['Green Tea – Citrus', 'Aromatic Oils', 'product-green-tea.html'],
-    ['Lemon Grass – Citrus', 'Aromatic Oils', 'product-lemon-grass.html'],
-    ['Jasmine – Floral', 'Aromatic Oils', 'product-jasmine.html'],
-    ['Lavender – Floral', 'Aromatic Oils', 'product-lavender.html'],
-    ['Mandarin – Fruity', 'Aromatic Oils', 'product-mandarin.html'],
-    ['East Wood – Woody', 'Aromatic Oils', 'product-east-wood.html'],
-    ['Sandal – Woody', 'Aromatic Oils', 'product-sandal.html'],
-    ['Coffee Bean – Foody', 'Aromatic Oils', 'product-coffee-bean.html'],
-    ['Coco Lush – Foody', 'Aromatic Oils', 'product-coco-lush.html'],
-    ['Vanilla – Foody', 'Aromatic Oils', 'product-vanilla.html'],
-    ['Fragrance Mist – Commercial', 'Aromatic Oils', 'product-fragrance-mist.html'],
-    ['Corporate Scent Contracting', 'Scent Contracting', 'project-detail.html']
+    ['Dew – Medium Area', 'Scent Solutions', 'product-dew.html', 'assets/img/products/pd/dew-black-front.webp'],
+    ['Mellow – Medium Area', 'Scent Solutions', 'product-mellow.html', 'assets/img/products/pd/mellow-medium-area-scent-diffuser-1.webp'],
+    ['Aromax – Medium Area', 'Scent Solutions', 'product-aromax.html', 'assets/img/products/pd/aromax-medium-area-scent-diffuser-1.webp'],
+    ['Mistral – Lobby', 'Scent Solutions', 'product-mistral.html', 'assets/img/products/pd/mistral-lobby-scent-diffuser-1.webp'],
+    ['Regal – Home & Office', 'Scent Solutions', 'product-regal.html', 'assets/img/products/pd/regal-luxury-home-and-office-scent-diffuser-1.webp'],
+    ['Breeze – Small Area', 'Scent Solutions', 'product-breeze.html', 'assets/img/products/pd/breeze-small-area-scent-diffuser-1.webp'],
+    ['Glimmer – Small Area', 'Scent Solutions', 'product-glimmer.html', 'assets/img/products/pd/glimmer-small-area-scent-diffuser-1.webp'],
+    ['Grace – Small Area', 'Scent Solutions', 'product-grace.html', 'assets/img/products/pd/grace-small-area-scent-diffuser-1.webp'],
+    ['Aroma Pro – Large Area', 'Scent Solutions', 'product-aroma-pro.html', 'assets/img/products/pd/aroma-pro-large-area-commercial-scent-diffuser-1.webp'],
+    ['Aura – Car & Table Top', 'Scent Solutions', 'product-aura.html', 'assets/img/products/pd/aura-car-and-table-top-scent-diffuser-1.webp'],
+    ['Aromatic Candles – Eco Friendly', 'Scent Solutions', 'product-aromatic-candles.html', 'assets/img/products/pd/aromatic-candles-1.webp'],
+    ['Reed Diffuser – Eco Friendly', 'Scent Solutions', 'product-reed-diffuser.html', 'assets/img/products/pd/reed-diffuser-1.webp'],
+    ['Corporate or White Label Gifts – White Label', 'Scent Solutions', 'product-corporate-or-white-label-gifts.html', 'assets/img/products/pd/corporate-or-white-label-gifts-1.webp'],
+    ['Mist – Small to Medium Area', 'Scent Solutions', 'product-mist.html', 'assets/img/products/pd/mist-small-to-medium-area-scent-diffuser-1.webp'],
+    ['Armani Opulenza – Luxurious', 'Aromatic Oils', 'product-armani-opulenza.html', 'assets/img/products/pd/armani-opulenza-luxurious.webp'],
+    ['Exotica – Luxurious', 'Aromatic Oils', 'product-exotica.html', 'assets/img/products/pd/exotica-luxurious.webp'],
+    ['Luxury Air – Luxurious', 'Aromatic Oils', 'product-luxury-air.html', 'assets/img/products/pd/luxury-air-luxurious.webp'],
+    ['Sensense – Luxurious', 'Aromatic Oils', 'product-sensense.html', 'assets/img/products/pd/sensense-luxurious.webp'],
+    ['Toxic Killi – Luxurious', 'Aromatic Oils', 'product-toxic-killi.html', 'assets/img/products/pd/toxic-killi-luxurious.webp'],
+    ['Diamond – Signature Collection', 'Aromatic Oils', 'product-diamond.html', 'assets/img/products/pd/diamond-signature-collection.webp'],
+    ['Fresh Leaf – Signature Collection', 'Aromatic Oils', 'product-fresh-leaf.html', 'assets/img/products/pd/fresh-leaf-signature-collection.webp'],
+    ['Harmony – Signature Collection', 'Aromatic Oils', 'product-harmony.html', 'assets/img/products/pd/harmony-signature-collection.webp'],
+    ['Leather Touch – Signature Collection', 'Aromatic Oils', 'product-leather-touch.html', 'assets/img/products/pd/leather-touch-signature-collection.webp'],
+    ['Taj Sunset – Signature Collection', 'Aromatic Oils', 'product-taj-sunset.html', 'assets/img/products/pd/taj-sunset-signature-collection.webp'],
+    ['Blue Host – Aquatic', 'Aromatic Oils', 'product-blue-host.html', 'assets/img/products/pd/blue-host-aquatic.webp'],
+    ['Crystal – Aquatic', 'Aromatic Oils', 'product-crystal.html', 'assets/img/products/pd/crystal-aquatic.webp'],
+    ['Trendy Breeze – Aquatic', 'Aromatic Oils', 'product-trendy-breeze.html', 'assets/img/products/pd/trendy-breeze-aquatic.webp'],
+    ['Ambri Fierce – Arabic', 'Aromatic Oils', 'product-ambri-fierce.html', 'assets/img/products/pd/ambri-fierce-arabic.webp'],
+    ['Kalemat Oudh – Arabic', 'Aromatic Oils', 'product-kalemat-oudh.html', 'assets/img/products/pd/kalemat-oudh-arabic.webp'],
+    ['Musk – Arabic', 'Aromatic Oils', 'product-musk.html', 'assets/img/products/pd/musk-arabic.webp'],
+    ['Stormy Desert – Arabic', 'Aromatic Oils', 'product-stormy-desert.html', 'assets/img/products/pd/stormy-desert-arabic.webp'],
+    ['Isseymiyake – Fresh and Sweet', 'Aromatic Oils', 'product-isseymiyake.html', 'assets/img/products/pd/isseymiyake-fresh-and-sweet.webp'],
+    ['Paradise – Fresh and Sweet', 'Aromatic Oils', 'product-paradise.html', 'assets/img/products/pd/paradise-fresh-and-sweet.webp'],
+    ['Passion – Fresh and Sweet', 'Aromatic Oils', 'product-passion.html', 'assets/img/products/pd/passion-fresh-and-sweet.webp'],
+    ['Touch Me – Fresh and Sweet', 'Aromatic Oils', 'product-touch-me.html', 'assets/img/products/pd/touch-me-fresh-and-sweet.webp'],
+    ['Eucalyptus – Citrus', 'Aromatic Oils', 'product-eucalyptus.html', 'assets/img/products/pd/eucalyptus-citrus.webp'],
+    ['Green Tea – Citrus', 'Aromatic Oils', 'product-green-tea.html', 'assets/img/products/pd/green-tea-citrus.webp'],
+    ['Lemon Grass – Citrus', 'Aromatic Oils', 'product-lemon-grass.html', 'assets/img/products/pd/lemon-grass-citrus.webp'],
+    ['Jasmine – Floral', 'Aromatic Oils', 'product-jasmine.html', 'assets/img/products/pd/jasmine-floral.webp'],
+    ['Lavender – Floral', 'Aromatic Oils', 'product-lavender.html', 'assets/img/products/pd/lavender-floral.webp'],
+    ['Mandarin – Fruity', 'Aromatic Oils', 'product-mandarin.html', 'assets/img/products/pd/mandarin-fruity.webp'],
+    ['East Wood – Woody', 'Aromatic Oils', 'product-east-wood.html', 'assets/img/products/pd/east-wood-woody.webp'],
+    ['Sandal – Woody', 'Aromatic Oils', 'product-sandal.html', 'assets/img/products/pd/sandal-woody.webp'],
+    ['Coffee Bean – Foody', 'Aromatic Oils', 'product-coffee-bean.html', 'assets/img/products/pd/coffee-bean-foody.webp'],
+    ['Coco Lush – Foody', 'Aromatic Oils', 'product-coco-lush.html', 'assets/img/products/pd/coco-lush-foody.webp'],
+    ['Vanilla – Foody', 'Aromatic Oils', 'product-vanilla.html', 'assets/img/products/pd/vanilla-foody.webp'],
+    ['Fragrance Mist – Commercial', 'Aromatic Oils', 'product-fragrance-mist.html', 'assets/img/products/pd/fragrance-mist-commercial-1.webp'],
+    ['Corporate Scent Contracting', 'Scent Contracting', 'project-detail.html', 'assets/img/pages/corporate-intro.webp']
   ];
   const results = $('[data-search-results]');
   const label = $('[data-search-label]');
@@ -112,7 +112,7 @@
     const term = q.trim().toLowerCase();
     const list = term ? products.filter(p => (p[0] + ' ' + p[1]).toLowerCase().includes(term)) : products.slice(0, 6);
     label.textContent = term ? `${list.length} result${list.length === 1 ? '' : 's'}` : 'Popular on Atmocare';
-    results.innerHTML = list.map(p => `<li><a href="${p[2]}"><span>${p[0]}</span><small>${p[1]}</small></a></li>`).join('')
+    results.innerHTML = list.map(p => `<li><a href="${p[2]}"><span class="search-panel__thumb"><img src="${p[3]}" alt="" width="56" height="56" loading="lazy"></span><span>${p[0]}</span></a></li>`).join('')
       || '<li class="search-panel__empty">No products found. Try “diffuser” or “oil”.</li>';
   };
   overlay($('[data-search-panel]'), $$('[data-search-open]'), '[data-search-close]', () => { render(input.value); input.focus(); });
@@ -278,6 +278,27 @@
   };
   placeCardBars();
   phone.addEventListener('change', placeCardBars);
+
+  /* ---------- footer on phones: Quick Links and Products fold into accordions (CSS hides the lists until opened) ---------- */
+  $$('.site-footer nav.footer-col').forEach(col => {
+    const title = $('.footer-col__title', col);
+    const list = $('ul', col);
+    if (!title || !list) return;
+    col.classList.add('footer-col--acc');
+    list.id = list.id || `${title.id || 'footer-col'}-list`;
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'footer-col__toggle';
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-controls', list.id);
+    btn.innerHTML = `<span>${title.textContent}</span><span class="footer-col__sign" aria-hidden="true"></span>`;
+    title.textContent = '';
+    title.appendChild(btn);
+    btn.addEventListener('click', () => {
+      const open = col.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', String(open));
+    });
+  });
 
   /* ---------- placeholder links (missing pages) ---------- */
   $$('[data-placeholder]').forEach(a => a.addEventListener('click', e => {

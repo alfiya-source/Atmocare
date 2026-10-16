@@ -33,6 +33,7 @@
   const desktop = window.matchMedia('(min-width: 64.01rem)');
   const heading = $('[data-shop-heading]');
   const CATEGORY_TITLES = { diffusers: 'Scent Solutions', oils: 'Aromatic Oils' };
+  const SHOW_TITLES = { best: 'Best Sellers', sale: 'Sale', new: 'New Arrivals' };
 
   const branches = {
     diffusers: ['coverage', 'usage'],
@@ -69,9 +70,8 @@
       return ok && (!show.length || show.some(s => card.dataset[s === 'new' ? 'new' : s] === 'true'));
     });
     const shown = matched.length;
-    // one category being browsed (header tab or its filters): its name above the cards
-    heading.hidden = on.length !== 1;
-    heading.textContent = on.length === 1 ? CATEGORY_TITLES[on[0]] : '';
+    // what is being browsed, above the cards: one category (header tab or its filters), else one Sort By tab, else Shop All
+    heading.textContent = on.length === 1 ? CATEGORY_TITLES[on[0]] : show.length === 1 ? SHOW_TITLES[show[0]] : 'Shop All';
     page = 1;
     paginate();
 
@@ -211,14 +211,12 @@
   }));
   if (cat) {
     tick('category', cat);
-    // the banner follows the category: its own photo and title (Shop All keeps the default)
+    // the banner photo follows the category (its title stays "Explore Our Products")
     const BANNERS = { oils: ['Aromatic Oils', 'assets/img/pages/banner-aromatic-oils.webp'], diffusers: ['Scent Solutions', 'assets/img/pages/banner-scent-solutions.webp'] };
     if (BANNERS[cat]) {
       const [title, src] = BANNERS[cat];
       const img = document.querySelector('[data-shop-banner]');
       if (img) img.src = src;
-      const h1 = document.querySelector('.page-hero__title');
-      if (h1) h1.textContent = title;
       const crumb = document.querySelector('.page-hero .breadcrumb [aria-current]');
       if (crumb) crumb.textContent = title;
       document.title = `${title} | Atmocare`;

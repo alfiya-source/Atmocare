@@ -166,7 +166,7 @@
               <li>Shop</li>
             </ol>
           </nav>
-          <h1 class="page-hero__title" id="page-title">Shop All</h1>
+          <h1 class="page-hero__title" id="page-title">Explore Our Products</h1>
         </div>
       </div>
     </div>
@@ -208,43 +208,51 @@
                 <details class="filter-acc" data-branch="diffusers">
                   <summary class="filter-acc__head">Scent Solutions<svg class="filter-acc__chev" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
                   <div class="filter-acc__body">
-                    <p class="filter-sub">Coverage Area</p>
-                    <ul class="filter-group__list">
-                      <li><label class="filter-check"><input type="checkbox" name="coverage" value="small"><span class="filter-check__box" aria-hidden="true"></span><span class="filter-check__label">Small Area</span></label></li>
-                      <li><label class="filter-check"><input type="checkbox" name="coverage" value="medium"><span class="filter-check__box" aria-hidden="true"></span><span class="filter-check__label">Medium Area</span></label></li>
-                      <li><label class="filter-check"><input type="checkbox" name="coverage" value="large"><span class="filter-check__box" aria-hidden="true"></span><span class="filter-check__label">Large Area</span></label></li>
-                      <li><label class="filter-check"><input type="checkbox" name="coverage" value="lobby"><span class="filter-check__box" aria-hidden="true"></span><span class="filter-check__label">Lobby / Commercial</span></label></li>
-                    </ul>
-                    <p class="filter-sub">Usage / Space</p>
-                    <ul class="filter-tiles">
-                      <li><label class="filter-tile"><input type="checkbox" name="usage" value="home"><svg class="filter-tile__icon" aria-hidden="true"><use href="#i-u-home"/></svg><span class="filter-tile__label">Home</span></label></li>
-                      <li><label class="filter-tile"><input type="checkbox" name="usage" value="office"><svg class="filter-tile__icon" aria-hidden="true"><use href="#i-u-office"/></svg><span class="filter-tile__label">Office</span></label></li>
-                      <li><label class="filter-tile"><input type="checkbox" name="usage" value="hotel"><svg class="filter-tile__icon" aria-hidden="true"><use href="#i-u-hotel"/></svg><span class="filter-tile__label">Hotel &amp; Lobby</span></label></li>
-                      <li><label class="filter-tile is-empty"><input type="checkbox" name="usage" value="retail" disabled><svg class="filter-tile__icon" aria-hidden="true"><use href="#i-u-retail"/></svg><span class="filter-tile__label">Retail</span></label></li>
-                      <li><label class="filter-tile"><input type="checkbox" name="usage" value="commercial"><svg class="filter-tile__icon" aria-hidden="true"><use href="#i-u-commercial"/></svg><span class="filter-tile__label">Commercial</span></label></li>
-                      <li><label class="filter-tile"><input type="checkbox" name="usage" value="car"><svg class="filter-tile__icon" aria-hidden="true"><use href="#i-u-car"/></svg><span class="filter-tile__label">Car</span></label></li>
-                    </ul>
+                    <details class="filter-subacc" open>
+                      <summary class="filter-sub filter-subacc__head">Coverage Area<svg class="filter-acc__chev" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+                      <ul class="filter-group__list">
+                        <li><label class="filter-check"><input type="checkbox" name="coverage" value="small"><span class="filter-check__box" aria-hidden="true"></span><span class="filter-check__label">Small Area</span></label></li>
+                        <li><label class="filter-check"><input type="checkbox" name="coverage" value="medium"><span class="filter-check__box" aria-hidden="true"></span><span class="filter-check__label">Medium Area</span></label></li>
+                        <li><label class="filter-check"><input type="checkbox" name="coverage" value="large"><span class="filter-check__box" aria-hidden="true"></span><span class="filter-check__label">Large Area</span></label></li>
+                        <li><label class="filter-check"><input type="checkbox" name="coverage" value="lobby"><span class="filter-check__box" aria-hidden="true"></span><span class="filter-check__label">Lobby / Commercial</span></label></li>
+                      </ul>
+                    </details>
+                    <details class="filter-subacc">
+                      <summary class="filter-sub filter-subacc__head">Usage / Space<svg class="filter-acc__chev" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+                      <ul class="filter-tiles">
+                        <li><label class="filter-tile"><input type="checkbox" name="usage" value="home"><svg class="filter-tile__icon" aria-hidden="true"><use href="#i-u-home"/></svg><span class="filter-tile__label">Home</span></label></li>
+                        <li><label class="filter-tile"><input type="checkbox" name="usage" value="office"><svg class="filter-tile__icon" aria-hidden="true"><use href="#i-u-office"/></svg><span class="filter-tile__label">Office</span></label></li>
+                        <li><label class="filter-tile"><input type="checkbox" name="usage" value="hotel"><svg class="filter-tile__icon" aria-hidden="true"><use href="#i-u-hotel"/></svg><span class="filter-tile__label">Hotel &amp; Lobby</span></label></li>
+                        <li><label class="filter-tile is-empty"><input type="checkbox" name="usage" value="retail" disabled><svg class="filter-tile__icon" aria-hidden="true"><use href="#i-u-retail"/></svg><span class="filter-tile__label">Retail</span></label></li>
+                        <li><label class="filter-tile"><input type="checkbox" name="usage" value="commercial"><svg class="filter-tile__icon" aria-hidden="true"><use href="#i-u-commercial"/></svg><span class="filter-tile__label">Commercial</span></label></li>
+                        <li><label class="filter-tile"><input type="checkbox" name="usage" value="car"><svg class="filter-tile__icon" aria-hidden="true"><use href="#i-u-car"/></svg><span class="filter-tile__label">Car</span></label></li>
+                      </ul>
+                    </details>
                   </div>
                 </details>
                 <details class="filter-acc" data-branch="oils">
                   <summary class="filter-acc__head">Aromatic Oils<svg class="filter-acc__chev" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
                   <div class="filter-acc__body">
-                    <p class="filter-sub">Collection</p>
-                    <ul class="filter-group__list">
-                      <li><label class="filter-check"><input type="checkbox" name="collection" value="luxurious"><span class="filter-check__box" aria-hidden="true"></span><span class="filter-check__label">Luxurious</span></label></li>
-                      <li><label class="filter-check"><input type="checkbox" name="collection" value="signature"><span class="filter-check__box" aria-hidden="true"></span><span class="filter-check__label">Signature Collection</span></label></li>
-                      <li><label class="filter-check"><input type="checkbox" name="collection" value="aquatic"><span class="filter-check__box" aria-hidden="true"></span><span class="filter-check__label">Aquatic</span></label></li>
-                      <li><label class="filter-check"><input type="checkbox" name="collection" value="arabic"><span class="filter-check__box" aria-hidden="true"></span><span class="filter-check__label">Arabic</span></label></li>
-                    </ul>
-                    <p class="filter-sub">Fragrance Family</p>
-                    <ul class="filter-tiles filter-tiles--photo">
-                      <li><label class="filter-tile"><input type="checkbox" name="family" value="fresh-sweet"><img class="filter-tile__img" src="assets/img/filters/family-fresh-sweet.jpg" alt="" loading="lazy" decoding="async" onerror="this.dataset.missing=''"><span class="filter-tile__label">Fresh &amp; Sweet</span></label></li>
-                      <li><label class="filter-tile"><input type="checkbox" name="family" value="citrus"><img class="filter-tile__img" src="assets/img/filters/family-citrus.jpg" alt="" loading="lazy" decoding="async" onerror="this.dataset.missing=''"><span class="filter-tile__label">Citrus</span></label></li>
-                      <li><label class="filter-tile"><input type="checkbox" name="family" value="floral"><img class="filter-tile__img" src="assets/img/filters/family-floral.jpg" alt="" loading="lazy" decoding="async" onerror="this.dataset.missing=''"><span class="filter-tile__label">Floral</span></label></li>
-                      <li><label class="filter-tile"><input type="checkbox" name="family" value="fruity"><img class="filter-tile__img" src="assets/img/filters/family-fruity.jpg" alt="" loading="lazy" decoding="async" onerror="this.dataset.missing=''"><span class="filter-tile__label">Fruity</span></label></li>
-                      <li><label class="filter-tile"><input type="checkbox" name="family" value="woody"><img class="filter-tile__img" src="assets/img/filters/family-woody.jpg" alt="" loading="lazy" decoding="async" onerror="this.dataset.missing=''"><span class="filter-tile__label">Woody</span></label></li>
-                      <li><label class="filter-tile"><input type="checkbox" name="family" value="foody"><img class="filter-tile__img" src="assets/img/filters/family-foody.jpg" alt="" loading="lazy" decoding="async" onerror="this.dataset.missing=''"><span class="filter-tile__label">Foody</span></label></li>
-                    </ul>
+                    <details class="filter-subacc" open>
+                      <summary class="filter-sub filter-subacc__head">Collection<svg class="filter-acc__chev" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+                      <ul class="filter-group__list">
+                        <li><label class="filter-check"><input type="checkbox" name="collection" value="luxurious"><span class="filter-check__box" aria-hidden="true"></span><span class="filter-check__label">Luxurious</span></label></li>
+                        <li><label class="filter-check"><input type="checkbox" name="collection" value="signature"><span class="filter-check__box" aria-hidden="true"></span><span class="filter-check__label">Signature Collection</span></label></li>
+                        <li><label class="filter-check"><input type="checkbox" name="collection" value="aquatic"><span class="filter-check__box" aria-hidden="true"></span><span class="filter-check__label">Aquatic</span></label></li>
+                        <li><label class="filter-check"><input type="checkbox" name="collection" value="arabic"><span class="filter-check__box" aria-hidden="true"></span><span class="filter-check__label">Arabic</span></label></li>
+                      </ul>
+                    </details>
+                    <details class="filter-subacc">
+                      <summary class="filter-sub filter-subacc__head">Fragrance Family<svg class="filter-acc__chev" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+                      <ul class="filter-tiles filter-tiles--photo">
+                        <li><label class="filter-tile"><input type="checkbox" name="family" value="fresh-sweet"><img class="filter-tile__img" src="assets/img/filters/family-fresh-sweet.jpg" alt="" loading="lazy" decoding="async" onerror="this.dataset.missing=''"><span class="filter-tile__label">Fresh &amp; Sweet</span></label></li>
+                        <li><label class="filter-tile"><input type="checkbox" name="family" value="citrus"><img class="filter-tile__img" src="assets/img/filters/family-citrus.jpg" alt="" loading="lazy" decoding="async" onerror="this.dataset.missing=''"><span class="filter-tile__label">Citrus</span></label></li>
+                        <li><label class="filter-tile"><input type="checkbox" name="family" value="floral"><img class="filter-tile__img" src="assets/img/filters/family-floral.jpg" alt="" loading="lazy" decoding="async" onerror="this.dataset.missing=''"><span class="filter-tile__label">Floral</span></label></li>
+                        <li><label class="filter-tile"><input type="checkbox" name="family" value="fruity"><img class="filter-tile__img" src="assets/img/filters/family-fruity.jpg" alt="" loading="lazy" decoding="async" onerror="this.dataset.missing=''"><span class="filter-tile__label">Fruity</span></label></li>
+                        <li><label class="filter-tile"><input type="checkbox" name="family" value="woody"><img class="filter-tile__img" src="assets/img/filters/family-woody.jpg" alt="" loading="lazy" decoding="async" onerror="this.dataset.missing=''"><span class="filter-tile__label">Woody</span></label></li>
+                        <li><label class="filter-tile"><input type="checkbox" name="family" value="foody"><img class="filter-tile__img" src="assets/img/filters/family-foody.jpg" alt="" loading="lazy" decoding="async" onerror="this.dataset.missing=''"><span class="filter-tile__label">Foody</span></label></li>
+                      </ul>
+                    </details>
                   </div>
                 </details>
               </div>
@@ -280,13 +288,13 @@
         </aside>
 
         <div class="shop-results">
-          <!-- category heading: shows when only one category is being browsed (Aromatic Oils / Scent Solutions) -->
-          <h2 class="shop-results__title" data-shop-heading hidden></h2>
+          <!-- what is being browsed: Shop All, Scent Solutions, Aromatic Oils, Best Sellers, Sale or New Arrivals (set by shop.js) -->
+          <h2 class="shop-results__title" data-shop-heading>Shop All</h2>
           <div class="shop-grid" data-shop-grid>
             <!-- MOCK PRICES: atmocare.com shows no prices. Homepage products keep the homepage's mock figures; the rest copy their closest homepage sibling. Replace all before launch. -->
             <article class="shop-card" data-product data-category="diffusers" data-price="890" data-new="true" data-name="Dew" data-order="0" data-coverage="medium" data-best="false" data-sale="true">
               <div class="shop-card__media">
-                <div class="shop-card__tags"><span class="shop-card__badge shop-card__badge--new">New</span></div>
+                <div class="shop-card__tags"><span class="shop-card__badge shop-card__badge--new">New</span><span class="shop-card__save">Save 15%</span></div>
                 <img src="assets/img/products/shop/dew-medium-area-scent-diffuser.webp" alt="Atmocare Dew medium-area scent diffuser" width="900" height="687" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Dew"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Dew</span></button>
@@ -297,7 +305,7 @@
                 <h3 class="shop-card__title"><a href="product-dew.html">Dew</a></h3>
                 <p class="shop-card__type">Scent Diffuser · Medium Area</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
-                <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 890</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 1,050</s> <span class="shop-card__save">Save 15%</span></p>
+                <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 890</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 1,050</s></p>
               </div>
             </article>
             <article class="shop-card" data-product data-category="diffusers" data-price="890" data-new="false" data-name="Mellow" data-order="1" data-coverage="medium" data-best="false" data-sale="false">
@@ -332,7 +340,7 @@
             </article>
             <article class="shop-card" data-product data-category="diffusers" data-price="2450" data-new="true" data-name="Mistral" data-order="3" data-coverage="lobby" data-usage="hotel" data-best="true" data-sale="true">
               <div class="shop-card__media">
-                <div class="shop-card__tags"><span class="shop-card__badge shop-card__badge--new">New</span></div>
+                <div class="shop-card__tags"><span class="shop-card__badge shop-card__badge--new">New</span><span class="shop-card__save">Save 16%</span></div>
                 <img src="assets/img/products/shop/mistral-lobby-scent-diffuser.webp" alt="Atmocare Mistral black tower scent diffuser" width="321" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Mistral"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Mistral</span></button>
@@ -343,12 +351,12 @@
                 <h3 class="shop-card__title"><a href="product-mistral.html">Mistral</a></h3>
                 <p class="shop-card__type">Scent Diffuser · Lobby</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
-                <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 2,450</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 2,900</s> <span class="shop-card__save">Save 16%</span></p>
+                <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 2,450</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 2,900</s></p>
               </div>
             </article>
             <article class="shop-card" data-product data-category="diffusers" data-price="1150" data-new="true" data-name="Regal" data-order="4" data-usage="home office" data-best="true" data-sale="true">
               <div class="shop-card__media">
-                <div class="shop-card__tags"><span class="shop-card__badge shop-card__badge--new">New</span></div>
+                <div class="shop-card__tags"><span class="shop-card__badge shop-card__badge--new">New</span><span class="shop-card__save">Save 15%</span></div>
                 <img src="assets/img/products/shop/regal-luxury-home-and-office-scent-diffuser.webp" alt="Atmocare Regal home and office scent diffuser" width="148" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Regal"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Regal</span></button>
@@ -359,7 +367,7 @@
                 <h3 class="shop-card__title"><a href="product-regal.html">Regal</a></h3>
                 <p class="shop-card__type">Scent Diffuser · Home &amp; Office</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
-                <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 1,150</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 1,350</s> <span class="shop-card__save">Save 15%</span></p>
+                <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 1,150</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 1,350</s></p>
               </div>
             </article>
             <article class="shop-card" data-product data-category="diffusers" data-price="650" data-new="false" data-name="Breeze" data-order="5" data-coverage="small" data-best="false" data-sale="false">
@@ -394,6 +402,7 @@
             </article>
             <article class="shop-card" data-product data-category="diffusers" data-price="650" data-new="false" data-name="Grace" data-order="7" data-coverage="small" data-best="false" data-sale="true">
               <div class="shop-card__media">
+                <div class="shop-card__tags"><span class="shop-card__save">Save 17%</span></div>
                 <img src="assets/img/products/shop/grace-small-area-scent-diffuser.webp" alt="Atmocare Grace compact scent diffuser" width="783" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Grace"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Grace</span></button>
@@ -404,12 +413,12 @@
                 <h3 class="shop-card__title"><a href="product-grace.html">Grace</a></h3>
                 <p class="shop-card__type">Scent Diffuser · Small Area</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
-                <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 650</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 780</s> <span class="shop-card__save">Save 17%</span></p>
+                <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 650</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 780</s></p>
               </div>
             </article>
             <article class="shop-card" data-product data-category="diffusers" data-price="4200" data-new="true" data-name="Aroma Pro" data-order="8" data-coverage="large lobby" data-usage="commercial" data-best="false" data-sale="true">
               <div class="shop-card__media">
-                <div class="shop-card__tags"><span class="shop-card__badge shop-card__badge--new">New</span></div>
+                <div class="shop-card__tags"><span class="shop-card__badge shop-card__badge--new">New</span><span class="shop-card__save">Save 15%</span></div>
                 <img src="assets/img/products/shop/aroma-pro-large-area-commercial-scent-diffuser.webp" alt="Atmocare Aroma Pro commercial scent diffuser" width="900" height="746" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Aroma Pro"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Aroma Pro</span></button>
@@ -420,7 +429,7 @@
                 <h3 class="shop-card__title"><a href="product-aroma-pro.html">Aroma Pro</a></h3>
                 <p class="shop-card__type">Commercial Diffuser · Large Area</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
-                <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 4,200</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 4,950</s> <span class="shop-card__save">Save 15%</span></p>
+                <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 4,200</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 4,950</s></p>
               </div>
             </article>
             <article class="shop-card" data-product data-category="diffusers" data-price="650" data-new="false" data-name="Aura" data-order="9" data-usage="car" data-best="false" data-sale="false">
@@ -440,6 +449,7 @@
             </article>
             <article class="shop-card" data-product data-category="diffusers" data-price="95" data-new="false" data-name="Aromatic Candles" data-order="10" data-usage="home" data-best="false" data-sale="true">
               <div class="shop-card__media">
+                <div class="shop-card__tags"><span class="shop-card__save">Save 24%</span></div>
                 <img src="assets/img/products/shop/aromatic-candles.webp" alt="Atmocare aromatic candle in a black vessel" width="687" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Aromatic Candles"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Aromatic Candles</span></button>
@@ -450,11 +460,12 @@
                 <h3 class="shop-card__title"><a href="product-aromatic-candles.html">Aromatic Candles</a></h3>
                 <p class="shop-card__type">Home Scent · Eco Friendly</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
-                <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 95</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 125</s> <span class="shop-card__save">Save 24%</span></p>
+                <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 95</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 125</s></p>
               </div>
             </article>
             <article class="shop-card" data-product data-category="diffusers" data-price="120" data-new="false" data-name="Reed Diffuser" data-order="11" data-usage="home" data-best="false" data-sale="true">
               <div class="shop-card__media">
+                <div class="shop-card__tags"><span class="shop-card__save">Save 20%</span></div>
                 <img src="assets/img/products/shop/reed-diffuser.webp" alt="Atmocare black reed diffuser" width="739" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Reed Diffuser"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Reed Diffuser</span></button>
@@ -465,7 +476,7 @@
                 <h3 class="shop-card__title"><a href="product-reed-diffuser.html">Reed Diffuser</a></h3>
                 <p class="shop-card__type">Home Scent · Eco Friendly</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
-                <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 120</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 150</s> <span class="shop-card__save">Save 20%</span></p>
+                <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 120</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 150</s></p>
               </div>
             </article>
             <article class="shop-card" data-product data-category="diffusers" data-price="650" data-new="false" data-name="Corporate or White Label Gifts" data-order="12" data-best="false" data-sale="false">
@@ -515,7 +526,7 @@
             </article>
             <article class="shop-card" data-product data-category="oils" data-price="185" data-new="true" data-name="Exotica" data-order="15" data-collection="luxurious" data-best="false" data-sale="true">
               <div class="shop-card__media">
-                <div class="shop-card__tags"><span class="shop-card__badge shop-card__badge--new">New</span></div>
+                <div class="shop-card__tags"><span class="shop-card__badge shop-card__badge--new">New</span><span class="shop-card__save">Save 16%</span></div>
                 <img src="assets/img/products/shop/exotica-luxurious.webp" alt="EXOTICA aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Exotica"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Exotica</span></button>
@@ -526,7 +537,7 @@
                 <h3 class="shop-card__title"><a href="product-exotica.html">Exotica</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Luxurious</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
-                <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 185</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 220</s> <span class="shop-card__save">Save 16%</span></p>
+                <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 185</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 220</s></p>
               </div>
             </article>
             <article class="shop-card" data-product data-category="oils" data-price="185" data-new="false" data-name="Luxury Air" data-order="16" data-collection="luxurious" data-best="false" data-sale="false">
@@ -606,7 +617,7 @@
             </article>
             <article class="shop-card" data-product data-category="oils" data-price="210" data-new="true" data-name="Harmony" data-order="21" data-collection="signature" data-best="false" data-sale="true">
               <div class="shop-card__media">
-                <div class="shop-card__tags"><span class="shop-card__badge shop-card__badge--new">New</span></div>
+                <div class="shop-card__tags"><span class="shop-card__badge shop-card__badge--new">New</span><span class="shop-card__save">Save 16%</span></div>
                 <img src="assets/img/products/shop/harmony-signature-collection.webp" alt="HARMONY aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Harmony"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Harmony</span></button>
@@ -617,7 +628,7 @@
                 <h3 class="shop-card__title"><a href="product-harmony.html">Harmony</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Signature Collection</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
-                <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 210</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 250</s> <span class="shop-card__save">Save 16%</span></p>
+                <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 210</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 250</s></p>
               </div>
             </article>
             <article class="shop-card" data-product data-category="oils" data-price="210" data-new="false" data-name="Leather Touch" data-order="22" data-collection="signature" data-best="false" data-sale="false">
@@ -742,6 +753,7 @@
             </article>
             <article class="shop-card" data-product data-category="oils" data-price="195" data-new="false" data-name="Stormy Desert" data-order="30" data-collection="arabic" data-best="false" data-sale="true">
               <div class="shop-card__media">
+                <div class="shop-card__tags"><span class="shop-card__save">Save 15%</span></div>
                 <img src="assets/img/products/shop/stormy-desert-arabic.webp" alt="STORMY DESERT aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Stormy Desert"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Stormy Desert</span></button>
@@ -752,7 +764,7 @@
                 <h3 class="shop-card__title"><a href="product-stormy-desert.html">Stormy Desert</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Arabic</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
-                <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 195</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 230</s> <span class="shop-card__save">Save 15%</span></p>
+                <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 195</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 230</s></p>
               </div>
             </article>
             <article class="shop-card" data-product data-category="oils" data-price="175" data-new="false" data-name="Isseymiyake" data-order="31" data-family="fresh-sweet" data-best="false" data-sale="false">
@@ -802,6 +814,7 @@
             </article>
             <article class="shop-card" data-product data-category="oils" data-price="175" data-new="false" data-name="Touch Me" data-order="34" data-family="fresh-sweet" data-best="false" data-sale="true">
               <div class="shop-card__media">
+                <div class="shop-card__tags"><span class="shop-card__save">Save 17%</span></div>
                 <img src="assets/img/products/shop/touch-me-fresh-and-sweet.webp" alt="TOUCH ME aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Touch Me"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Touch Me</span></button>
@@ -812,7 +825,7 @@
                 <h3 class="shop-card__title"><a href="product-touch-me.html">Touch Me</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Fresh and Sweet</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
-                <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 175</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 210</s> <span class="shop-card__save">Save 17%</span></p>
+                <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 175</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 210</s></p>
               </div>
             </article>
             <article class="shop-card" data-product data-category="oils" data-price="175" data-new="false" data-name="Eucalyptus" data-order="35" data-family="citrus" data-best="false" data-sale="false">
