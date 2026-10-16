@@ -211,6 +211,18 @@
   }));
   if (cat) {
     tick('category', cat);
+    // the banner follows the category: its own photo and title (Shop All keeps the default)
+    const BANNERS = { oils: ['Aromatic Oils', 'assets/img/pages/banner-aromatic-oils.webp'], diffusers: ['Scent Solutions', 'assets/img/pages/banner-scent-solutions.webp'] };
+    if (BANNERS[cat]) {
+      const [title, src] = BANNERS[cat];
+      const img = document.querySelector('[data-shop-banner]');
+      if (img) img.src = src;
+      const h1 = document.querySelector('.page-hero__title');
+      if (h1) h1.textContent = title;
+      const crumb = document.querySelector('.page-hero .breadcrumb [aria-current]');
+      if (crumb) crumb.textContent = title;
+      document.title = `${title} | Atmocare`;
+    }
     // arriving from a category tab: only that category's filters show (Shop All shows both)
     groups.forEach(g => { g.hidden = g.dataset.branch !== cat; if (!g.hidden) g.open = true; });
   }
