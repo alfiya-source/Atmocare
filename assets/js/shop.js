@@ -31,6 +31,8 @@
   const [minIn, maxIn] = $$('input[type="range"]', range);
   const minOut = $('[data-price-min]'), maxOut = $('[data-price-max]');
   const desktop = window.matchMedia('(min-width: 64.01rem)');
+  const heading = $('[data-shop-heading]');
+  const CATEGORY_TITLES = { diffusers: 'Scent Solutions', oils: 'Aromatic Oils' };
 
   const branches = {
     diffusers: ['coverage', 'usage'],
@@ -67,6 +69,9 @@
       return ok && (!show.length || show.some(s => card.dataset[s === 'new' ? 'new' : s] === 'true'));
     });
     const shown = matched.length;
+    // one category being browsed (header tab or its filters): its name above the cards
+    heading.hidden = on.length !== 1;
+    heading.textContent = on.length === 1 ? CATEGORY_TITLES[on[0]] : '';
     page = 1;
     paginate();
 
@@ -184,6 +189,23 @@
   backdrop.addEventListener('click', close);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
   desktop.addEventListener('change', () => { open = false; render(); });
+
+  // header tabs land here pre-filtered: ?category=diffusers | oils, ?show=sale | best | new
+  const params = new URLSearchParams(location.search);
+  const tick = (name, value) => { const box = form.querySelector(`input[name="${name}"][value="${value}"]`); if (box) box.checked = true; };
+  const cat = params.get('category');
+  const showParam = params.get('show');
+  if (cat) tick('category', cat);
+  if (cat || showParam) {
+    // the header tab that brought the visitor here is the current page, not Shop All
+    const tabs = [...document.querySelectorAll('.category-nav a, .mobile-nav a')];
+    const here = tabs.filter(a => a.getAttribute('href') === (cat ? `shop.html?category=${cat}` : `shop.html?show=${showParam}`));
+    if (here.length) {
+      tabs.forEach(a => { if (a.getAttribute('href') === 'shop.html') a.removeAttribute('aria-current'); });
+      here.forEach(a => a.setAttribute('aria-current', 'page'));
+    }
+  }
+  if (showParam) tick('show', showParam);
 
   syncRange();
   filter();

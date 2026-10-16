@@ -63,7 +63,7 @@
       <a href="about.html">About Us</a>
       <a href="clients.html">Clients</a>
       <a href="blog.html">Blog</a>
-      <a href="https://atmocare.com/contact">Contact</a>
+      <a href="contact.html">Contact</a>
     </nav>
 
     <button class="icon-btn site-header__menu-btn" type="button" aria-label="Open menu" aria-controls="mobile-nav" aria-expanded="false" data-menu-open>
@@ -92,12 +92,11 @@
   <nav class="category-nav" aria-label="Product categories">
     <ul class="container category-nav__list">
       <li><a href="index.html">Home</a></li>
-      <li><a href="https://atmocare.com/products/scent-solutions">Scent Solutions</a></li>
-      <li><a href="https://atmocare.com/products/aromatic-oils">Aromatic Oils</a></li>
+      <li><a href="shop.html?category=diffusers">Scent Solutions</a></li>
+      <li><a href="shop.html?category=oils">Aromatic Oils</a></li>
       <li><a href="scent-contracting.html">Scent Contracting</a></li>
-      <li><a href="index.html#best-sellers">Bestseller</a></li>
-      <!-- MISSING: no Sale page or sale products exist on atmocare.com. Placeholder link. -->
-      <li><a href="#" data-placeholder="sale-page">Sale</a></li>
+      <li><a href="shop.html?show=best">Bestseller</a></li>
+      <li><a href="shop.html?show=sale">Sale</a></li>
       <li><a href="shop.html" aria-current="page">Shop All</a></li>
     </ul>
   </nav>
@@ -115,18 +114,18 @@
     </div>
     <ul class="mobile-nav__list">
       <li><a href="index.html">Home</a></li>
-      <li><a href="https://atmocare.com/products/scent-solutions">Scent Solutions</a></li>
-      <li><a href="https://atmocare.com/products/aromatic-oils">Aromatic Oils</a></li>
+      <li><a href="shop.html?category=diffusers">Scent Solutions</a></li>
+      <li><a href="shop.html?category=oils">Aromatic Oils</a></li>
       <li><a href="scent-contracting.html">Scent Contracting</a></li>
-      <li><a href="index.html#best-sellers">Bestseller</a></li>
-      <li><a href="#" data-placeholder="sale-page">Sale</a></li>
+      <li><a href="shop.html?show=best">Bestseller</a></li>
+      <li><a href="shop.html?show=sale">Sale</a></li>
       <li><a href="shop.html" aria-current="page">Shop All</a></li>
     </ul>
     <ul class="mobile-nav__list mobile-nav__list--small">
       <li><a href="about.html">About Us</a></li>
       <li><a href="clients.html">Clients</a></li>
       <li><a href="blog.html">Blog</a></li>
-      <li><a href="https://atmocare.com/contact">Contact</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
     <div class="mobile-nav__contact">
       <a href="tel:+97142565244">+971 4 256 52 44</a>
@@ -200,6 +199,9 @@
           </div>
           <form class="shop-filters__form" data-filter-form>
             <button class="shop-filters__reset" type="button" data-filter-clear>Clear filters</button>
+            <!-- whole-category switches, set from the header tabs (shop.html?category=diffusers | oils); Clear filters resets them -->
+            <input class="visually-hidden" type="checkbox" name="category" value="diffusers" tabindex="-1" aria-hidden="true">
+            <input class="visually-hidden" type="checkbox" name="category" value="oils" tabindex="-1" aria-hidden="true">
             <details class="filter-section" open>
               <summary class="filter-section__head">Categories<svg class="filter-acc__chev" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
               <div class="filter-section__body">
@@ -278,6 +280,8 @@
         </aside>
 
         <div class="shop-results">
+          <!-- category heading: shows when only one category is being browsed (Aromatic Oils / Scent Solutions) -->
+          <h2 class="shop-results__title" data-shop-heading hidden></h2>
           <div class="shop-grid" data-shop-grid>
             <!-- MOCK PRICES: atmocare.com shows no prices. Homepage products keep the homepage's mock figures; the rest copy their closest homepage sibling. Replace all before launch. -->
             <article class="shop-card" data-product data-category="diffusers" data-price="890" data-new="true" data-name="Dew" data-order="0" data-coverage="medium" data-best="false" data-sale="true">
@@ -286,11 +290,11 @@
                 <img src="assets/img/products/shop/dew-medium-area-scent-diffuser.webp" alt="Atmocare Dew medium-area scent diffuser" width="900" height="687" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Dew"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Dew</span></button>
-                  <a class="shop-card__view" href="product-detail.html">View<span class="visually-hidden"> Dew</span></a>
+                  <a class="shop-card__view" href="product-dew.html">View<span class="visually-hidden"> Dew</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="product-detail.html">Dew</a></h3>
+                <h3 class="shop-card__title"><a href="product-dew.html">Dew</a></h3>
                 <p class="shop-card__type">Scent Diffuser · Medium Area</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 890</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 1,050</s> <span class="shop-card__save">Save 15%</span></p>
@@ -301,11 +305,11 @@
                 <img src="assets/img/products/shop/mellow-medium-area-scent-diffuser.webp" alt="Atmocare Mellow scent diffuser" width="689" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Mellow"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Mellow</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/mellow-medium-area-scent-diffuser">View<span class="visually-hidden"> Mellow</span></a>
+                  <a class="shop-card__view" href="product-mellow.html">View<span class="visually-hidden"> Mellow</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/mellow-medium-area-scent-diffuser">Mellow</a></h3>
+                <h3 class="shop-card__title"><a href="product-mellow.html">Mellow</a></h3>
                 <p class="shop-card__type">Scent Diffuser · Medium Area</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 890</span></p>
@@ -316,11 +320,11 @@
                 <img src="assets/img/products/shop/aromax-medium-area-scent-diffuser.webp" alt="Atmocare Aromax scent diffuser" width="900" height="651" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Aromax"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Aromax</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/aromax-medium-area-scent-diffuser">View<span class="visually-hidden"> Aromax</span></a>
+                  <a class="shop-card__view" href="product-aromax.html">View<span class="visually-hidden"> Aromax</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/aromax-medium-area-scent-diffuser">Aromax</a></h3>
+                <h3 class="shop-card__title"><a href="product-aromax.html">Aromax</a></h3>
                 <p class="shop-card__type">Scent Diffuser · Medium Area</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 890</span></p>
@@ -332,11 +336,11 @@
                 <img src="assets/img/products/shop/mistral-lobby-scent-diffuser.webp" alt="Atmocare Mistral black tower scent diffuser" width="321" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Mistral"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Mistral</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/mistral-lobby-scent-diffuser">View<span class="visually-hidden"> Mistral</span></a>
+                  <a class="shop-card__view" href="product-mistral.html">View<span class="visually-hidden"> Mistral</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/mistral-lobby-scent-diffuser">Mistral</a></h3>
+                <h3 class="shop-card__title"><a href="product-mistral.html">Mistral</a></h3>
                 <p class="shop-card__type">Scent Diffuser · Lobby</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 2,450</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 2,900</s> <span class="shop-card__save">Save 16%</span></p>
@@ -348,11 +352,11 @@
                 <img src="assets/img/products/shop/regal-luxury-home-and-office-scent-diffuser.webp" alt="Atmocare Regal home and office scent diffuser" width="148" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Regal"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Regal</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/regal-luxury-home-and-office-scent-diffuser">View<span class="visually-hidden"> Regal</span></a>
+                  <a class="shop-card__view" href="product-regal.html">View<span class="visually-hidden"> Regal</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/regal-luxury-home-and-office-scent-diffuser">Regal</a></h3>
+                <h3 class="shop-card__title"><a href="product-regal.html">Regal</a></h3>
                 <p class="shop-card__type">Scent Diffuser · Home &amp; Office</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 1,150</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 1,350</s> <span class="shop-card__save">Save 15%</span></p>
@@ -363,11 +367,11 @@
                 <img src="assets/img/products/shop/breeze-small-area-scent-diffuser.webp" alt="Atmocare Breeze scent diffuser" width="710" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Breeze"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Breeze</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/breeze-small-area-scent-diffuser">View<span class="visually-hidden"> Breeze</span></a>
+                  <a class="shop-card__view" href="product-breeze.html">View<span class="visually-hidden"> Breeze</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/breeze-small-area-scent-diffuser">Breeze</a></h3>
+                <h3 class="shop-card__title"><a href="product-breeze.html">Breeze</a></h3>
                 <p class="shop-card__type">Scent Diffuser · Small Area</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 650</span></p>
@@ -378,11 +382,11 @@
                 <img src="assets/img/products/shop/glimmer-small-area-scent-diffuser.webp" alt="Atmocare Glimmer scent diffuser" width="831" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Glimmer"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Glimmer</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/glimmer-small-area-scent-diffuser">View<span class="visually-hidden"> Glimmer</span></a>
+                  <a class="shop-card__view" href="product-glimmer.html">View<span class="visually-hidden"> Glimmer</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/glimmer-small-area-scent-diffuser">Glimmer</a></h3>
+                <h3 class="shop-card__title"><a href="product-glimmer.html">Glimmer</a></h3>
                 <p class="shop-card__type">Scent Diffuser · Small Area</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 650</span></p>
@@ -393,11 +397,11 @@
                 <img src="assets/img/products/shop/grace-small-area-scent-diffuser.webp" alt="Atmocare Grace compact scent diffuser" width="783" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Grace"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Grace</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/grace-small-area-scent-diffuser">View<span class="visually-hidden"> Grace</span></a>
+                  <a class="shop-card__view" href="product-grace.html">View<span class="visually-hidden"> Grace</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/grace-small-area-scent-diffuser">Grace</a></h3>
+                <h3 class="shop-card__title"><a href="product-grace.html">Grace</a></h3>
                 <p class="shop-card__type">Scent Diffuser · Small Area</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 650</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 780</s> <span class="shop-card__save">Save 17%</span></p>
@@ -409,11 +413,11 @@
                 <img src="assets/img/products/shop/aroma-pro-large-area-commercial-scent-diffuser.webp" alt="Atmocare Aroma Pro commercial scent diffuser" width="900" height="746" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Aroma Pro"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Aroma Pro</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/aroma-pro-large-area-commercial-scent-diffuser">View<span class="visually-hidden"> Aroma Pro</span></a>
+                  <a class="shop-card__view" href="product-aroma-pro.html">View<span class="visually-hidden"> Aroma Pro</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/aroma-pro-large-area-commercial-scent-diffuser">Aroma Pro</a></h3>
+                <h3 class="shop-card__title"><a href="product-aroma-pro.html">Aroma Pro</a></h3>
                 <p class="shop-card__type">Commercial Diffuser · Large Area</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 4,200</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 4,950</s> <span class="shop-card__save">Save 15%</span></p>
@@ -424,11 +428,11 @@
                 <img src="assets/img/products/shop/aura-car-and-table-top-scent-diffuser.webp" alt="Atmocare Aura scent diffuser" width="529" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Aura"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Aura</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/aura-car-and-table-top-scent-diffuser">View<span class="visually-hidden"> Aura</span></a>
+                  <a class="shop-card__view" href="product-aura.html">View<span class="visually-hidden"> Aura</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/aura-car-and-table-top-scent-diffuser">Aura</a></h3>
+                <h3 class="shop-card__title"><a href="product-aura.html">Aura</a></h3>
                 <p class="shop-card__type">Scent Diffuser · Car &amp; Table Top</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 650</span></p>
@@ -439,11 +443,11 @@
                 <img src="assets/img/products/shop/aromatic-candles.webp" alt="Atmocare aromatic candle in a black vessel" width="687" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Aromatic Candles"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Aromatic Candles</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/aromatic-candles">View<span class="visually-hidden"> Aromatic Candles</span></a>
+                  <a class="shop-card__view" href="product-aromatic-candles.html">View<span class="visually-hidden"> Aromatic Candles</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/aromatic-candles">Aromatic Candles</a></h3>
+                <h3 class="shop-card__title"><a href="product-aromatic-candles.html">Aromatic Candles</a></h3>
                 <p class="shop-card__type">Home Scent · Eco Friendly</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 95</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 125</s> <span class="shop-card__save">Save 24%</span></p>
@@ -454,11 +458,11 @@
                 <img src="assets/img/products/shop/reed-diffuser.webp" alt="Atmocare black reed diffuser" width="739" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Reed Diffuser"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Reed Diffuser</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/reed-diffuser">View<span class="visually-hidden"> Reed Diffuser</span></a>
+                  <a class="shop-card__view" href="product-reed-diffuser.html">View<span class="visually-hidden"> Reed Diffuser</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/reed-diffuser">Reed Diffuser</a></h3>
+                <h3 class="shop-card__title"><a href="product-reed-diffuser.html">Reed Diffuser</a></h3>
                 <p class="shop-card__type">Home Scent · Eco Friendly</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 120</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 150</s> <span class="shop-card__save">Save 20%</span></p>
@@ -469,11 +473,11 @@
                 <img src="assets/img/products/shop/corporate-or-white-label-gifts.webp" alt="Atmocare Corporate or White Label Gifts corporate gifts" width="457" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Corporate or White Label Gifts"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Corporate or White Label Gifts</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/corporate-or-white-label-gifts">View<span class="visually-hidden"> Corporate or White Label Gifts</span></a>
+                  <a class="shop-card__view" href="product-corporate-or-white-label-gifts.html">View<span class="visually-hidden"> Corporate or White Label Gifts</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/corporate-or-white-label-gifts">Corporate or White Label Gifts</a></h3>
+                <h3 class="shop-card__title"><a href="product-corporate-or-white-label-gifts.html">Corporate or White Label Gifts</a></h3>
                 <p class="shop-card__type">Corporate Gifts · White Label</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 650</span></p>
@@ -484,11 +488,11 @@
                 <img src="assets/img/products/shop/mist-small-to-medium-area-scent-diffuser.webp" alt="Atmocare Mist scent diffuser" width="745" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Mist"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Mist</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/mist-small-to-medium-area-scent-diffuser">View<span class="visually-hidden"> Mist</span></a>
+                  <a class="shop-card__view" href="product-mist.html">View<span class="visually-hidden"> Mist</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/mist-small-to-medium-area-scent-diffuser">Mist</a></h3>
+                <h3 class="shop-card__title"><a href="product-mist.html">Mist</a></h3>
                 <p class="shop-card__type">Scent Diffuser · Small to Medium Area</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 890</span></p>
@@ -499,11 +503,11 @@
                 <img src="assets/img/products/shop/armani-opulenza-luxurious.webp" alt="ARMANI OPULENZA aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Armani Opulenza"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Armani Opulenza</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/armani-opulenza-luxurious">View<span class="visually-hidden"> Armani Opulenza</span></a>
+                  <a class="shop-card__view" href="product-armani-opulenza.html">View<span class="visually-hidden"> Armani Opulenza</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/armani-opulenza-luxurious">Armani Opulenza</a></h3>
+                <h3 class="shop-card__title"><a href="product-armani-opulenza.html">Armani Opulenza</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Luxurious</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 185</span></p>
@@ -515,11 +519,11 @@
                 <img src="assets/img/products/shop/exotica-luxurious.webp" alt="EXOTICA aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Exotica"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Exotica</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/exotica-luxurious">View<span class="visually-hidden"> Exotica</span></a>
+                  <a class="shop-card__view" href="product-exotica.html">View<span class="visually-hidden"> Exotica</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/exotica-luxurious">Exotica</a></h3>
+                <h3 class="shop-card__title"><a href="product-exotica.html">Exotica</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Luxurious</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 185</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 220</s> <span class="shop-card__save">Save 16%</span></p>
@@ -530,11 +534,11 @@
                 <img src="assets/img/products/shop/luxury-air-luxurious.webp" alt="LUXURY AIR aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Luxury Air"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Luxury Air</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/luxury-air-luxurious">View<span class="visually-hidden"> Luxury Air</span></a>
+                  <a class="shop-card__view" href="product-luxury-air.html">View<span class="visually-hidden"> Luxury Air</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/luxury-air-luxurious">Luxury Air</a></h3>
+                <h3 class="shop-card__title"><a href="product-luxury-air.html">Luxury Air</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Luxurious</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 185</span></p>
@@ -545,11 +549,11 @@
                 <img src="assets/img/products/shop/sensense-luxurious.webp" alt="SENSENSE aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Sensense"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Sensense</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/sensense-luxurious">View<span class="visually-hidden"> Sensense</span></a>
+                  <a class="shop-card__view" href="product-sensense.html">View<span class="visually-hidden"> Sensense</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/sensense-luxurious">Sensense</a></h3>
+                <h3 class="shop-card__title"><a href="product-sensense.html">Sensense</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Luxurious</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 185</span></p>
@@ -560,11 +564,11 @@
                 <img src="assets/img/products/shop/toxic-killi-luxurious.webp" alt="TOXIC KILLI aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Toxic Killi"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Toxic Killi</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/toxic-killi-luxurious">View<span class="visually-hidden"> Toxic Killi</span></a>
+                  <a class="shop-card__view" href="product-toxic-killi.html">View<span class="visually-hidden"> Toxic Killi</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/toxic-killi-luxurious">Toxic Killi</a></h3>
+                <h3 class="shop-card__title"><a href="product-toxic-killi.html">Toxic Killi</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Luxurious</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 185</span></p>
@@ -575,11 +579,11 @@
                 <img src="assets/img/products/shop/diamond-signature-collection.webp" alt="DIAMOND aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Diamond"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Diamond</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/diamond-signature-collection">View<span class="visually-hidden"> Diamond</span></a>
+                  <a class="shop-card__view" href="product-diamond.html">View<span class="visually-hidden"> Diamond</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/diamond-signature-collection">Diamond</a></h3>
+                <h3 class="shop-card__title"><a href="product-diamond.html">Diamond</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Signature Collection</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 210</span></p>
@@ -590,11 +594,11 @@
                 <img src="assets/img/products/shop/fresh-leaf-signature-collection.webp" alt="FRESH LEAF aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Fresh Leaf"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Fresh Leaf</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/fresh-leaf-signature-collection">View<span class="visually-hidden"> Fresh Leaf</span></a>
+                  <a class="shop-card__view" href="product-fresh-leaf.html">View<span class="visually-hidden"> Fresh Leaf</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/fresh-leaf-signature-collection">Fresh Leaf</a></h3>
+                <h3 class="shop-card__title"><a href="product-fresh-leaf.html">Fresh Leaf</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Signature Collection</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 210</span></p>
@@ -606,11 +610,11 @@
                 <img src="assets/img/products/shop/harmony-signature-collection.webp" alt="HARMONY aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Harmony"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Harmony</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/harmony-signature-collection">View<span class="visually-hidden"> Harmony</span></a>
+                  <a class="shop-card__view" href="product-harmony.html">View<span class="visually-hidden"> Harmony</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/harmony-signature-collection">Harmony</a></h3>
+                <h3 class="shop-card__title"><a href="product-harmony.html">Harmony</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Signature Collection</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 210</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 250</s> <span class="shop-card__save">Save 16%</span></p>
@@ -621,11 +625,11 @@
                 <img src="assets/img/products/shop/leather-touch-signature-collection.webp" alt="LEATHER TOUCH aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Leather Touch"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Leather Touch</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/leather-touch-signature-collection">View<span class="visually-hidden"> Leather Touch</span></a>
+                  <a class="shop-card__view" href="product-leather-touch.html">View<span class="visually-hidden"> Leather Touch</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/leather-touch-signature-collection">Leather Touch</a></h3>
+                <h3 class="shop-card__title"><a href="product-leather-touch.html">Leather Touch</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Signature Collection</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 210</span></p>
@@ -636,11 +640,11 @@
                 <img src="assets/img/products/shop/taj-sunset-signature-collection.webp" alt="TAJ SUNSET aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Taj Sunset"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Taj Sunset</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/taj-sunset-signature-collection">View<span class="visually-hidden"> Taj Sunset</span></a>
+                  <a class="shop-card__view" href="product-taj-sunset.html">View<span class="visually-hidden"> Taj Sunset</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/taj-sunset-signature-collection">Taj Sunset</a></h3>
+                <h3 class="shop-card__title"><a href="product-taj-sunset.html">Taj Sunset</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Signature Collection</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 210</span></p>
@@ -651,11 +655,11 @@
                 <img src="assets/img/products/shop/blue-host-aquatic.webp" alt="BLUE HOST aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Blue Host"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Blue Host</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/blue-host-aquatic">View<span class="visually-hidden"> Blue Host</span></a>
+                  <a class="shop-card__view" href="product-blue-host.html">View<span class="visually-hidden"> Blue Host</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/blue-host-aquatic">Blue Host</a></h3>
+                <h3 class="shop-card__title"><a href="product-blue-host.html">Blue Host</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Aquatic</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 175</span></p>
@@ -666,11 +670,11 @@
                 <img src="assets/img/products/shop/crystal-aquatic.webp" alt="CRYSTAL aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Crystal"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Crystal</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/crystal-aquatic">View<span class="visually-hidden"> Crystal</span></a>
+                  <a class="shop-card__view" href="product-crystal.html">View<span class="visually-hidden"> Crystal</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/crystal-aquatic">Crystal</a></h3>
+                <h3 class="shop-card__title"><a href="product-crystal.html">Crystal</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Aquatic</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 175</span></p>
@@ -681,11 +685,11 @@
                 <img src="assets/img/products/shop/trendy-breeze-aquatic.webp" alt="TRENDY BREEZE aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Trendy Breeze"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Trendy Breeze</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/trendy-breeze-aquatic">View<span class="visually-hidden"> Trendy Breeze</span></a>
+                  <a class="shop-card__view" href="product-trendy-breeze.html">View<span class="visually-hidden"> Trendy Breeze</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/trendy-breeze-aquatic">Trendy Breeze</a></h3>
+                <h3 class="shop-card__title"><a href="product-trendy-breeze.html">Trendy Breeze</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Aquatic</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 175</span></p>
@@ -696,11 +700,11 @@
                 <img src="assets/img/products/shop/ambri-fierce-arabic.webp" alt="AMBRI FIERCE aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Ambri Fierce"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Ambri Fierce</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/ambri-fierce-arabic">View<span class="visually-hidden"> Ambri Fierce</span></a>
+                  <a class="shop-card__view" href="product-ambri-fierce.html">View<span class="visually-hidden"> Ambri Fierce</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/ambri-fierce-arabic">Ambri Fierce</a></h3>
+                <h3 class="shop-card__title"><a href="product-ambri-fierce.html">Ambri Fierce</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Arabic</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 195</span></p>
@@ -711,11 +715,11 @@
                 <img src="assets/img/products/shop/kalemat-oudh-arabic.webp" alt="KALEMAT OUDH aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Kalemat Oudh"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Kalemat Oudh</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/kalemat-oudh-arabic">View<span class="visually-hidden"> Kalemat Oudh</span></a>
+                  <a class="shop-card__view" href="product-kalemat-oudh.html">View<span class="visually-hidden"> Kalemat Oudh</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/kalemat-oudh-arabic">Kalemat Oudh</a></h3>
+                <h3 class="shop-card__title"><a href="product-kalemat-oudh.html">Kalemat Oudh</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Arabic</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 195</span></p>
@@ -726,11 +730,11 @@
                 <img src="assets/img/products/shop/musk-arabic.webp" alt="MUSK aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Musk"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Musk</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/musk-arabic">View<span class="visually-hidden"> Musk</span></a>
+                  <a class="shop-card__view" href="product-musk.html">View<span class="visually-hidden"> Musk</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/musk-arabic">Musk</a></h3>
+                <h3 class="shop-card__title"><a href="product-musk.html">Musk</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Arabic</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 195</span></p>
@@ -741,11 +745,11 @@
                 <img src="assets/img/products/shop/stormy-desert-arabic.webp" alt="STORMY DESERT aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Stormy Desert"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Stormy Desert</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/stormy-desert-arabic">View<span class="visually-hidden"> Stormy Desert</span></a>
+                  <a class="shop-card__view" href="product-stormy-desert.html">View<span class="visually-hidden"> Stormy Desert</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/stormy-desert-arabic">Stormy Desert</a></h3>
+                <h3 class="shop-card__title"><a href="product-stormy-desert.html">Stormy Desert</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Arabic</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 195</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 230</s> <span class="shop-card__save">Save 15%</span></p>
@@ -756,11 +760,11 @@
                 <img src="assets/img/products/shop/isseymiyake-fresh-and-sweet.webp" alt="ISSEYMIYAKE aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Isseymiyake"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Isseymiyake</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/isseymiyake-fresh-and-sweet">View<span class="visually-hidden"> Isseymiyake</span></a>
+                  <a class="shop-card__view" href="product-isseymiyake.html">View<span class="visually-hidden"> Isseymiyake</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/isseymiyake-fresh-and-sweet">Isseymiyake</a></h3>
+                <h3 class="shop-card__title"><a href="product-isseymiyake.html">Isseymiyake</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Fresh and Sweet</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 175</span></p>
@@ -771,11 +775,11 @@
                 <img src="assets/img/products/shop/paradise-fresh-and-sweet.webp" alt="PARADISE aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Paradise"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Paradise</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/paradise-fresh-and-sweet">View<span class="visually-hidden"> Paradise</span></a>
+                  <a class="shop-card__view" href="product-paradise.html">View<span class="visually-hidden"> Paradise</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/paradise-fresh-and-sweet">Paradise</a></h3>
+                <h3 class="shop-card__title"><a href="product-paradise.html">Paradise</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Fresh and Sweet</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 175</span></p>
@@ -786,11 +790,11 @@
                 <img src="assets/img/products/shop/passion-fresh-and-sweet.webp" alt="PASSION aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Passion"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Passion</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/passion-fresh-and-sweet">View<span class="visually-hidden"> Passion</span></a>
+                  <a class="shop-card__view" href="product-passion.html">View<span class="visually-hidden"> Passion</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/passion-fresh-and-sweet">Passion</a></h3>
+                <h3 class="shop-card__title"><a href="product-passion.html">Passion</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Fresh and Sweet</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 175</span></p>
@@ -801,11 +805,11 @@
                 <img src="assets/img/products/shop/touch-me-fresh-and-sweet.webp" alt="TOUCH ME aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Touch Me"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Touch Me</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/touch-me-fresh-and-sweet">View<span class="visually-hidden"> Touch Me</span></a>
+                  <a class="shop-card__view" href="product-touch-me.html">View<span class="visually-hidden"> Touch Me</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/touch-me-fresh-and-sweet">Touch Me</a></h3>
+                <h3 class="shop-card__title"><a href="product-touch-me.html">Touch Me</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Fresh and Sweet</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Now </span>AED 175</span> <s class="shop-card__was"><span class="visually-hidden">Was </span>AED 210</s> <span class="shop-card__save">Save 17%</span></p>
@@ -816,11 +820,11 @@
                 <img src="assets/img/products/shop/eucalyptus-citrus.webp" alt="EUCALYPTUS aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Eucalyptus"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Eucalyptus</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/eucalyptus-citrus">View<span class="visually-hidden"> Eucalyptus</span></a>
+                  <a class="shop-card__view" href="product-eucalyptus.html">View<span class="visually-hidden"> Eucalyptus</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/eucalyptus-citrus">Eucalyptus</a></h3>
+                <h3 class="shop-card__title"><a href="product-eucalyptus.html">Eucalyptus</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Citrus</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 175</span></p>
@@ -831,11 +835,11 @@
                 <img src="assets/img/products/shop/green-tea-citrus.webp" alt="GREEN TEA aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Green Tea"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Green Tea</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/green-tea-citrus">View<span class="visually-hidden"> Green Tea</span></a>
+                  <a class="shop-card__view" href="product-green-tea.html">View<span class="visually-hidden"> Green Tea</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/green-tea-citrus">Green Tea</a></h3>
+                <h3 class="shop-card__title"><a href="product-green-tea.html">Green Tea</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Citrus</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 175</span></p>
@@ -846,11 +850,11 @@
                 <img src="assets/img/products/shop/lemon-grass-citrus.webp" alt="LEMON GRASS aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Lemon Grass"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Lemon Grass</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/lemon-grass-citrus">View<span class="visually-hidden"> Lemon Grass</span></a>
+                  <a class="shop-card__view" href="product-lemon-grass.html">View<span class="visually-hidden"> Lemon Grass</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/lemon-grass-citrus">Lemon Grass</a></h3>
+                <h3 class="shop-card__title"><a href="product-lemon-grass.html">Lemon Grass</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Citrus</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 175</span></p>
@@ -861,11 +865,11 @@
                 <img src="assets/img/products/shop/jasmine-floral.webp" alt="JASMINE aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Jasmine"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Jasmine</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/jasmine-floral">View<span class="visually-hidden"> Jasmine</span></a>
+                  <a class="shop-card__view" href="product-jasmine.html">View<span class="visually-hidden"> Jasmine</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/jasmine-floral">Jasmine</a></h3>
+                <h3 class="shop-card__title"><a href="product-jasmine.html">Jasmine</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Floral</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 175</span></p>
@@ -876,11 +880,11 @@
                 <img src="assets/img/products/shop/lavender-floral.webp" alt="LAVENDER aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Lavender"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Lavender</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/lavender-floral">View<span class="visually-hidden"> Lavender</span></a>
+                  <a class="shop-card__view" href="product-lavender.html">View<span class="visually-hidden"> Lavender</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/lavender-floral">Lavender</a></h3>
+                <h3 class="shop-card__title"><a href="product-lavender.html">Lavender</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Floral</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 175</span></p>
@@ -891,11 +895,11 @@
                 <img src="assets/img/products/shop/mandarin-fruity.webp" alt="MANDARIN aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Mandarin"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Mandarin</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/mandarin-fruity">View<span class="visually-hidden"> Mandarin</span></a>
+                  <a class="shop-card__view" href="product-mandarin.html">View<span class="visually-hidden"> Mandarin</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/mandarin-fruity">Mandarin</a></h3>
+                <h3 class="shop-card__title"><a href="product-mandarin.html">Mandarin</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Fruity</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 175</span></p>
@@ -906,11 +910,11 @@
                 <img src="assets/img/products/shop/east-wood-woody.webp" alt="EAST WOOD aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="East Wood"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: East Wood</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/east-wood-woody">View<span class="visually-hidden"> East Wood</span></a>
+                  <a class="shop-card__view" href="product-east-wood.html">View<span class="visually-hidden"> East Wood</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/east-wood-woody">East Wood</a></h3>
+                <h3 class="shop-card__title"><a href="product-east-wood.html">East Wood</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Woody</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 175</span></p>
@@ -921,11 +925,11 @@
                 <img src="assets/img/products/shop/sandal-woody.webp" alt="SANDAL aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Sandal"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Sandal</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/sandal-woody">View<span class="visually-hidden"> Sandal</span></a>
+                  <a class="shop-card__view" href="product-sandal.html">View<span class="visually-hidden"> Sandal</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/sandal-woody">Sandal</a></h3>
+                <h3 class="shop-card__title"><a href="product-sandal.html">Sandal</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Woody</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 175</span></p>
@@ -936,11 +940,11 @@
                 <img src="assets/img/products/shop/coffee-bean-foody.webp" alt="COFFEE BEAN aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Coffee Bean"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Coffee Bean</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/coffee-bean-foody">View<span class="visually-hidden"> Coffee Bean</span></a>
+                  <a class="shop-card__view" href="product-coffee-bean.html">View<span class="visually-hidden"> Coffee Bean</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/coffee-bean-foody">Coffee Bean</a></h3>
+                <h3 class="shop-card__title"><a href="product-coffee-bean.html">Coffee Bean</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Foody</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 175</span></p>
@@ -951,11 +955,11 @@
                 <img src="assets/img/products/shop/coco-lush-foody.webp" alt="COCO LUSH aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Coco Lush"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Coco Lush</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/coco-lush-foody">View<span class="visually-hidden"> Coco Lush</span></a>
+                  <a class="shop-card__view" href="product-coco-lush.html">View<span class="visually-hidden"> Coco Lush</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/coco-lush-foody">Coco Lush</a></h3>
+                <h3 class="shop-card__title"><a href="product-coco-lush.html">Coco Lush</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Foody</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 175</span></p>
@@ -966,11 +970,11 @@
                 <img src="assets/img/products/shop/vanilla-foody.webp" alt="VANILLA aromatic oil bottle" width="418" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Vanilla"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Vanilla</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/vanilla-foody">View<span class="visually-hidden"> Vanilla</span></a>
+                  <a class="shop-card__view" href="product-vanilla.html">View<span class="visually-hidden"> Vanilla</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/vanilla-foody">Vanilla</a></h3>
+                <h3 class="shop-card__title"><a href="product-vanilla.html">Vanilla</a></h3>
                 <p class="shop-card__type">Aromatic Oil · Foody</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 175</span></p>
@@ -981,11 +985,11 @@
                 <img src="assets/img/products/shop/fragrance-mist-commercial.webp" alt="Atmocare Fragrance Mist fragrance mist" width="565" height="900" loading="lazy">
                 <div class="shop-card__actions">
                   <button class="shop-card__cart" type="button" data-add-to-cart data-name="Fragrance Mist"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bag"/></svg>Add to Cart<span class="visually-hidden">: Fragrance Mist</span></button>
-                  <a class="shop-card__view" href="https://atmocare.com/product-details/fragrance-mist-commercial">View<span class="visually-hidden"> Fragrance Mist</span></a>
+                  <a class="shop-card__view" href="product-fragrance-mist.html">View<span class="visually-hidden"> Fragrance Mist</span></a>
                 </div>
               </div>
               <div class="shop-card__body">
-                <h3 class="shop-card__title"><a href="https://atmocare.com/product-details/fragrance-mist-commercial">Fragrance Mist</a></h3>
+                <h3 class="shop-card__title"><a href="product-fragrance-mist.html">Fragrance Mist</a></h3>
                 <p class="shop-card__type">Fragrance Mist · Commercial</p>
                 <p class="rating" data-rating="" data-count=""><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
                 <p class="shop-card__price"><span class="shop-card__now"><span class="visually-hidden">Price </span>AED 650</span></p>
@@ -1030,17 +1034,17 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About Us</a></li>
           <li><a href="clients.html">Clients</a></li>
-          <li><a href="index.html#products">Shop</a></li>
+          <li><a href="shop.html">Shop</a></li>
           <li><a href="blog.html">Blog</a></li>
-          <li><a href="https://atmocare.com/contact">Contact</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
 
       <nav class="footer-col" aria-labelledby="f-products">
         <h2 class="footer-col__title" id="f-products">Products</h2>
         <ul>
-          <li><a href="https://atmocare.com/products/scent-solutions">Scent Solutions</a></li>
-          <li><a href="https://atmocare.com/products/aromatic-oils">Aromatic Oils</a></li>
+          <li><a href="shop.html?category=diffusers">Scent Solutions</a></li>
+          <li><a href="shop.html?category=oils">Aromatic Oils</a></li>
           <li><a href="scent-contracting.html">Scent Contracting</a></li>
         </ul>
       </nav>

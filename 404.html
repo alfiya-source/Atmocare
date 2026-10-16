@@ -81,12 +81,11 @@
   <nav class="category-nav" aria-label="Product categories">
     <ul class="container category-nav__list">
       <li><a href="index.html">Home</a></li>
-      <li><a href="https://atmocare.com/products/scent-solutions">Scent Solutions</a></li>
-      <li><a href="https://atmocare.com/products/aromatic-oils">Aromatic Oils</a></li>
+      <li><a href="shop.html?category=diffusers">Scent Solutions</a></li>
+      <li><a href="shop.html?category=oils">Aromatic Oils</a></li>
       <li><a href="scent-contracting.html">Scent Contracting</a></li>
-      <li><a href="index.html#best-sellers">Bestseller</a></li>
-      <!-- MISSING: no Sale page or sale products exist on atmocare.com. Placeholder link. -->
-      <li><a href="#" data-placeholder="sale-page">Sale</a></li>
+      <li><a href="shop.html?show=best">Bestseller</a></li>
+      <li><a href="shop.html?show=sale">Sale</a></li>
       <li><a href="shop.html">Shop All</a></li>
     </ul>
   </nav>
@@ -104,11 +103,11 @@
     </div>
     <ul class="mobile-nav__list">
       <li><a href="index.html">Home</a></li>
-      <li><a href="https://atmocare.com/products/scent-solutions">Scent Solutions</a></li>
-      <li><a href="https://atmocare.com/products/aromatic-oils">Aromatic Oils</a></li>
+      <li><a href="shop.html?category=diffusers">Scent Solutions</a></li>
+      <li><a href="shop.html?category=oils">Aromatic Oils</a></li>
       <li><a href="scent-contracting.html">Scent Contracting</a></li>
-      <li><a href="index.html#best-sellers">Bestseller</a></li>
-      <li><a href="#" data-placeholder="sale-page">Sale</a></li>
+      <li><a href="shop.html?show=best">Bestseller</a></li>
+      <li><a href="shop.html?show=sale">Sale</a></li>
       <li><a href="shop.html">Shop All</a></li>
     </ul>
     <ul class="mobile-nav__list mobile-nav__list--small">
@@ -144,26 +143,82 @@
 <main id="main">
 
   <!-- ============ 404 / ERROR ============ -->
-  <!-- "Lost scent trail": a faint dot grid under a lilac glow; the "0" of 404 is the stone product panel holding the
-       Dew diffuser, with mist puffing out of it and drifting away; small glass tags float round the numbers. Then the
-       message and the site buttons, and three photo cards back into the store. Type is unchanged from the payment
-       status pages. Point the server's 404 handler at this file (e.g. Apache: ErrorDocument 404 /404.html). -->
+  <!-- "Lost scent trail": a faint dot grid under a lilac glow; the 404 drawn as fumes (see the stage below), then the
+       message and the site buttons, and three photo cards back into the store. Point the server's 404 handler at this
+       file (e.g. Apache: ErrorDocument 404 /404.html). -->
   <section class="err" aria-labelledby="page-title">
     <div class="container err__inner">
+      <!-- FUMES (after the reference): a heavy 404 (Neue Montreal Bold) turned to smoke by an SVG filter: turbulence ragged
+           edges, a mottled smoky fill in ink and violet, a soft haze spilling round it; wisps rise off the digits, specks
+           twinkle, and a lilac scent orb with an orbit ring sits over the 0 (where the reference has its moon). -->
       <div class="err__stage" aria-hidden="true">
-        <p class="err-page__code">
-          <span class="err__digit">4</span>
-          <span class="err-page__zero">
-            <span class="err__puff" style="--x:-30%; --d:0s"></span>
-            <span class="err__puff" style="--x:10%;  --d:1.2s"></span>
-            <span class="err__puff" style="--x:-5%;  --d:2.4s"></span>
-            <img src="assets/img/products/dew-cutout.png" alt="" width="500" height="500">
-          </span>
-          <span class="err__digit">4</span>
-        </p>
-        <span class="err__tag err__tag--a"><i></i>Scent trail lost</span>
-        <span class="err__tag err__tag--b"><i></i>Page moved?</span>
-        <span class="err__tag err__tag--c"><i></i>Error 404</span>
+        <svg class="err-fume" viewBox="0 0 1000 420" role="presentation">
+          <defs>
+            <linearGradient id="fume-ink" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#16141A"/>
+              <stop offset=".55" stop-color="#2C1B45"/>
+              <stop offset="1" stop-color="#16141A"/>
+            </linearGradient>
+            <filter id="fume" x="-15%" y="-25%" width="130%" height="150%" color-interpolation-filters="sRGB">
+              <!-- ragged, smoky edges -->
+              <feTurbulence type="fractalNoise" baseFrequency=".014 .034" numOctaves="4" seed="4" result="warp"/>
+              <feDisplacementMap in="SourceGraphic" in2="warp" scale="24" xChannelSelector="R" yChannelSelector="G" result="ragged"/>
+              <feGaussianBlur in="ragged" stdDeviation="1.4" result="soft"/>
+              <!-- mottled, cloudy fill: fine noise used as an opacity mask -->
+              <feTurbulence type="fractalNoise" baseFrequency=".03" numOctaves="5" seed="11" result="grain"/>
+              <feColorMatrix in="grain" type="luminanceToAlpha" result="grainA"/>
+              <feComponentTransfer in="grainA" result="mask"><feFuncA type="linear" slope="2.6" intercept="-.35"/></feComponentTransfer>
+              <feComposite in="soft" in2="mask" operator="in" result="cloud"/>
+              <!-- haze spilling round the digits -->
+              <feGaussianBlur in="ragged" stdDeviation="9" result="haze"/>
+              <feComponentTransfer in="haze" result="hazeSoft"><feFuncA type="linear" slope=".38"/></feComponentTransfer>
+              <feMerge><feMergeNode in="hazeSoft"/><feMergeNode in="cloud"/></feMerge>
+            </filter>
+            <filter id="wisp" x="-100%" y="-100%" width="300%" height="300%">
+              <feTurbulence type="fractalNoise" baseFrequency=".05" numOctaves="3" seed="7" result="n"/>
+              <feDisplacementMap in="SourceGraphic" in2="n" scale="26" xChannelSelector="R" yChannelSelector="G" result="d"/>
+              <feGaussianBlur in="d" stdDeviation="5"/>
+            </filter>
+            <radialGradient id="orb" cx=".36" cy=".32" r=".75">
+              <stop offset="0" stop-color="#FFFFFF"/>
+              <stop offset=".35" stop-color="#EDE9FB"/>
+              <stop offset=".75" stop-color="#B9A2DA"/>
+              <stop offset="1" stop-color="#5E2187"/>
+            </radialGradient>
+          </defs>
+
+          <!-- wisps rising off the tops of the digits -->
+          <g class="err-fume__wisps" filter="url(#wisp)" fill="#2C1B45">
+            <ellipse class="err-fume__wisp" cx="190" cy="90" rx="34" ry="16" style="--d:0s"/>
+            <ellipse class="err-fume__wisp" cx="470" cy="70" rx="40" ry="18" style="--d:2.2s"/>
+            <ellipse class="err-fume__wisp" cx="790" cy="85" rx="36" ry="16" style="--d:4.4s"/>
+            <ellipse class="err-fume__wisp" cx="300" cy="120" rx="26" ry="12" style="--d:3.3s"/>
+            <ellipse class="err-fume__wisp" cx="880" cy="140" rx="24" ry="11" style="--d:1.1s"/>
+          </g>
+
+          <!-- the smoky 404 -->
+          <text class="err-fume__digits" x="509" y="352" text-anchor="middle" fill="url(#fume-ink)" filter="url(#fume)">404</text>
+
+          <!-- specks drifting round it -->
+          <g class="err-fume__specks" fill="#16141A">
+            <circle cx="96" cy="150" r="3" style="--d:.2s"/><circle cx="140" cy="380" r="2" style="--d:1.4s"/>
+            <circle cx="330" cy="60" r="2.5" style="--d:2.1s"/><circle cx="385" cy="300" r="1.6" style="--d:.8s"/>
+            <circle cx="620" cy="395" r="3" style="--d:2.8s"/><circle cx="700" cy="40" r="2" style="--d:1.9s"/>
+            <circle cx="905" cy="260" r="2.4" style="--d:.5s"/><circle cx="955" cy="110" r="1.8" style="--d:3.2s"/>
+            <circle cx="560" cy="205" r="1.4" fill="#fff" style="--d:1.1s"/><circle cx="215" cy="250" r="1.4" fill="#fff" style="--d:2.4s"/>
+            <circle cx="820" cy="300" r="1.4" fill="#fff" style="--d:.3s"/>
+          </g>
+
+          <!-- scent orb over the 0, with an orbit ring passing behind and in front -->
+          <g class="err-fume__orb">
+            <ellipse cx="560" cy="128" rx="118" ry="26" fill="none" stroke="#5E2187" stroke-opacity=".35" stroke-width="2" transform="rotate(-14 560 128)" stroke-dasharray="0 186 600"/>
+            <circle cx="560" cy="128" r="72" fill="url(#orb)"/>
+            <circle cx="537" cy="104" r="9" fill="#fff" fill-opacity=".55"/>
+            <circle cx="586" cy="150" r="5" fill="#5E2187" fill-opacity=".18"/>
+            <circle cx="548" cy="160" r="3.5" fill="#5E2187" fill-opacity=".14"/>
+            <ellipse cx="560" cy="128" rx="118" ry="26" fill="none" stroke="#5E2187" stroke-opacity=".55" stroke-width="2" transform="rotate(-14 560 128)" stroke-dasharray="0 0 186 600"/>
+          </g>
+        </svg>
       </div>
 
       <h1 class="pay-status__title" id="page-title">This Page Has Drifted Away</h1>
@@ -181,9 +236,9 @@
         <a class="link-arrow" href="contact.html">Still lost? Contact Us<svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
       <ul class="err__cards">
-        <li><a class="err__card" href="https://atmocare.com/products/scent-solutions"><img src="assets/img/category/scent-solutions.jpg" alt="" loading="lazy"><span class="err__card-name">Scent Solutions</span><span class="err__card-go" aria-hidden="true"><svg class="icon icon--sm"><use href="#i-arrow"/></svg></span></a></li>
-        <li><a class="err__card" href="https://atmocare.com/products/aromatic-oils"><img src="assets/img/category/aromatic-oils.jpg" alt="" loading="lazy"><span class="err__card-name">Aromatic Oils</span><span class="err__card-go" aria-hidden="true"><svg class="icon icon--sm"><use href="#i-arrow"/></svg></span></a></li>
-        <li><a class="err__card" href="scent-contracting.html"><img src="assets/img/category/scent-contracting.jpg" alt="" loading="lazy"><span class="err__card-name">Scent Contracting</span><span class="err__card-go" aria-hidden="true"><svg class="icon icon--sm"><use href="#i-arrow"/></svg></span></a></li>
+        <li><a class="err__card" href="shop.html?category=diffusers"><img src="assets/img/stock/cat-scent-solutions-aura.jpg" alt="" loading="lazy"><span class="err__card-name">Scent Solutions</span><span class="err__card-go" aria-hidden="true"><svg class="icon icon--sm"><use href="#i-arrow"/></svg></span></a></li>
+        <li><a class="err__card" href="shop.html?category=oils"><img src="assets/img/stock/cat-aromatic-oils.jpg" alt="" loading="lazy"><span class="err__card-name">Aromatic Oils</span><span class="err__card-go" aria-hidden="true"><svg class="icon icon--sm"><use href="#i-arrow"/></svg></span></a></li>
+        <li><a class="err__card" href="scent-contracting.html"><img src="assets/img/stock/cat-scent-contracting-2.jpg" alt="" loading="lazy"><span class="err__card-name">Scent Contracting</span><span class="err__card-go" aria-hidden="true"><svg class="icon icon--sm"><use href="#i-arrow"/></svg></span></a></li>
       </ul>
     </div>
   </section>
@@ -215,7 +270,7 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About Us</a></li>
           <li><a href="clients.html">Clients</a></li>
-          <li><a href="index.html#products">Shop</a></li>
+          <li><a href="shop.html">Shop</a></li>
           <li><a href="blog.html">Blog</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
@@ -224,8 +279,8 @@
       <nav class="footer-col" aria-labelledby="f-products">
         <h2 class="footer-col__title" id="f-products">Products</h2>
         <ul>
-          <li><a href="https://atmocare.com/products/scent-solutions">Scent Solutions</a></li>
-          <li><a href="https://atmocare.com/products/aromatic-oils">Aromatic Oils</a></li>
+          <li><a href="shop.html?category=diffusers">Scent Solutions</a></li>
+          <li><a href="shop.html?category=oils">Aromatic Oils</a></li>
           <li><a href="scent-contracting.html">Scent Contracting</a></li>
         </ul>
       </nav>

@@ -754,6 +754,8 @@ html:has(.site-header.is-hidden:not(:focus-within)) .shop { --shop-top: 0px; }
 .shop-layout { display: grid; grid-template-columns: 16.5rem minmax(0, 1fr); gap: clamp(2rem, 1rem + 2.5vw, 3.5rem); align-items: start; }
 .shop-layout.is-filters-hidden { grid-template-columns: minmax(0, 1fr); }
 .shop-layout.is-filters-hidden .shop-filters { display: none; }
+/* category heading above the cards when one category is being browsed (header tab or its filters) */
+.shop-results__title { margin-bottom: clamp(1.25rem, 1rem + 1vw, 2rem); font-size: clamp(1.75rem, 1.3rem + 1.4vw, 2.5rem); font-weight: 400; line-height: 1.1; letter-spacing: -.025em; }
 .shop-grid { --cols: 3; display: grid; grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); gap: clamp(2rem, 1.5rem + 1.5vw, 3rem) var(--gutter); }
 .shop-layout.is-filters-hidden .shop-grid { --cols: 4; }
 .shop-grid .shop-card[hidden] { display: none; }
@@ -1090,6 +1092,17 @@ details[open] > summary > .filter-acc__chev { rotate: -90deg; }
 .profile__more { display: grid; align-content: space-between; gap: clamp(2.5rem, 1.5rem + 3vw, 4.5rem); padding-top: clamp(.5rem, .25rem + 1vw, 1.5rem); }
 
 /* figures: number, label, note; the number counts up and pops when it lands (main.js) */
+/* ISO certificate: a button-style link above the figures (purple shield disc, title + note, arrow); fills purple on hover */
+.cert-link { display: inline-flex; align-items: center; gap: 1rem; justify-self: start; padding: .7rem 1.4rem .7rem .7rem; border: 1px solid var(--line); border-radius: 999px; background: #fff; transition: background-color .3s var(--ease), border-color .3s var(--ease), color .3s var(--ease); }
+.cert-link__icon { display: grid; flex: none; place-items: center; width: 3rem; height: 3rem; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #7a3aa8, var(--brand-purple)); color: #fff; transition: background .3s var(--ease), color .3s var(--ease); }
+.cert-link__text { display: grid; gap: .15rem; }
+.cert-link__title { font-size: 1rem; font-weight: 500; }
+.cert-link__sub { color: var(--muted); font-size: var(--fs-xs); transition: color .3s var(--ease); }
+.cert-link__arrow { flex: none; transition: transform .3s var(--ease); }
+.cert-link:hover { background: #5E2187; border-color: #5E2187; color: #fff; }
+.cert-link:hover .cert-link__sub { color: rgb(255 255 255 / .75); }
+.cert-link:hover .cert-link__icon { background: #fff; color: var(--brand-purple); }
+.cert-link:hover .cert-link__arrow { transform: translateX(3px); }
 .profile__usps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .profile__usp { display: flex; flex-direction: column; align-items: flex-start; gap: .35rem; padding-inline: clamp(.5rem, .25rem + 1vw, 1.5rem); border-left: 1px solid var(--line); }
 .profile__usp:first-child { padding-left: 0; border-left: 0; }
@@ -1288,14 +1301,13 @@ details[open] > summary > .filter-acc__chev { rotate: -90deg; }
 }
 
 
-/* ---------- contact page (minimal) ---------- */
+/* ---------- shared: minimal hero (policy pages), detail columns (order confirmation), boxed form fields (checkout) ---------- */
 /* hero: no photo; breadcrumb and an oversized title, closed by a hairline */
 .ct-hero { padding-top: clamp(2.5rem, 1.5rem + 4vw, 5.5rem); }
 .ct-hero .container { display: grid; gap: clamp(1rem, .75rem + .8vw, 1.5rem); padding-bottom: clamp(2rem, 1.25rem + 2.5vw, 3.75rem); background: linear-gradient(var(--line), var(--line)) 50% 100% / calc(100% - 2 * var(--pad-inline)) 1px no-repeat; }
 .ct-hero__title { font-size: clamp(3rem, 1.5rem + 6.5vw, 7.5rem); font-weight: 400; line-height: .95; letter-spacing: -.045em; }
 
-/* details: four columns split by hairlines (small grey label, larger value); the map below at full width in soft greyscale */
-.ct-info { padding-block: clamp(2.5rem, 1.5rem + 3vw, 4.5rem) 0; }
+/* details: columns split by hairlines (small grey label, larger value) */
 .ct-details { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-bottom: clamp(2.5rem, 1.5rem + 3vw, 4.5rem); }
 .ct-details__item { display: grid; align-content: start; gap: .9rem; padding-inline: clamp(1.25rem, .5rem + 2vw, 2.5rem); border-left: 1px solid var(--line); }
 .ct-details__item:first-child { padding-left: 0; border-left: 0; }
@@ -1305,16 +1317,8 @@ details[open] > summary > .filter-acc__chev { rotate: -90deg; }
 .ct-details a { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .4s var(--ease), color .25s; }
 .ct-details a:hover { color: var(--brand-purple); background-size: 100% 1px; }
 .ct-details a:focus-visible { outline: 2px solid var(--brand-purple); outline-offset: 3px; border-radius: 2px; }
-.ct-map { overflow: hidden; height: clamp(18rem, 12rem + 18vw, 30rem); border-radius: calc(var(--radius) - 5px); background: var(--line); }
-.ct-map iframe { display: block; width: 100%; height: 100%; border: 0; filter: grayscale(1) contrast(1.05); opacity: .9; transition: filter .6s var(--ease), opacity .6s var(--ease); }
-.ct-map:hover iframe { filter: none; opacity: 1; }
 
-/* form (reference layout): heading, short text and a tall photo on the left; the form on a light panel on the right with
-   white boxed fields, labels above, placeholder hints and a full-width dark Submit. No borders or shadows. */
-.ct-form__inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); align-items: stretch; gap: clamp(2rem, 1rem + 3vw, 4.5rem); }
-.ct-form__aside { display: grid; grid-template-rows: auto 1fr; gap: clamp(1.75rem, 1.25rem + 1.5vw, 2.75rem); }
-.ct-form__shot { position: relative; overflow: hidden; min-height: 22rem; border-radius: calc(var(--radius) - 5px); background: var(--line); }
-.ct-form__shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; } /* pinned, so the photo fills exactly the height the form sets */
+/* boxed form fields: white fields, labels above, placeholder hints */
 .contact-form { display: grid; align-content: start; gap: clamp(1.25rem, 1rem + .8vw, 1.75rem); padding: clamp(1.5rem, 1rem + 2.5vw, 3.25rem); border-radius: calc(var(--radius) - 5px); background: #F2F1EF; }
 .contact-form__label { display: block; margin-bottom: .55rem; color: var(--ink); font-size: var(--fs-sm); font-weight: 500; }
 .contact-form__label span { color: var(--brand-purple); }
@@ -1346,8 +1350,6 @@ details[open] > summary > .filter-acc__chev { rotate: -90deg; }
 @media (max-width: 64rem) {
   .ct-details { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 2rem; }
   .ct-details__item:nth-child(odd) { padding-left: 0; border-left: 0; }
-  .ct-form__inner { grid-template-columns: minmax(0, 1fr); }
-  .ct-form__shot { min-height: 0; aspect-ratio: 16 / 10; }
 }
 @media (max-width: 40rem) {
   .ct-details { grid-template-columns: minmax(0, 1fr); row-gap: 0; }
@@ -1355,7 +1357,65 @@ details[open] > summary > .filter-acc__chev { rotate: -90deg; }
   .ct-details__item:first-child { padding-top: 0; border-top: 0; }
   .contact-form__grid { grid-template-columns: minmax(0, 1fr); }
 }
-@media (prefers-reduced-motion: reduce) { .ct-map iframe { transition: none; } }
+
+/* ---------- contact page ---------- */
+/* Reference layout (Frame 4) in the site's type and colours. Section 1: heading left, the four details as equal 2x2 cards right
+   (#F7F5F1, ink icon disc, title, text), the map filling the space under the heading. Section 2 (lilac #EDE9FA): photo left; heading, subline
+   and the white boxed form (the checkout field design) right, dark Submit pill. */
+
+/* contact information */
+.cu-info__inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: stretch; gap: clamp(2.5rem, 1rem + 5vw, 7rem); }
+.cu-info__side { display: flex; flex-direction: column; gap: clamp(1.5rem, 1rem + 1vw, 2rem); }
+.cu-info__head { max-width: 32rem; }
+.cu-info__head .section-heading__title { font-size: 33px; }
+.cu-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 1fr; gap: clamp(.75rem, .5rem + .6vw, 1.25rem); }
+.cu-item { display: grid; justify-items: start; align-content: start; gap: .5rem; padding: clamp(1.4rem, 1rem + 1vw, 2rem); border-radius: var(--radius-lg); background: #F7F5F1; transition: background-color .4s var(--ease); }
+.cu-item:hover { background: #EFECE6; }
+.cu-item__icon { display: grid; place-items: center; width: 3rem; height: 3rem; margin-bottom: .75rem; border-radius: 50%; background: var(--ink); color: #fff; transition: background-color .35s var(--ease), transform .35s var(--ease); }
+.cu-item__icon .icon { width: 1.25rem; height: 1.25rem; }
+.cu-item:hover .cu-item__icon { background: #5E2187; transform: translateY(-3px); }
+.cu-item__title { font-size: 1.125rem; font-weight: 500; }
+.cu-item__text { color: var(--muted); font-size: var(--fs-sm); font-style: normal; line-height: 1.7; }
+.cu-item__text a { transition: color .25s; }
+.cu-item__text a:hover { color: var(--brand-purple); }
+
+/* map: fills the left column under the heading, level with the cards; soft greyscale until hovered */
+.cu-map { flex: 1; overflow: hidden; min-height: 16rem; border-radius: var(--radius-lg); background: var(--line); }
+.cu-map iframe { display: block; width: 100%; height: 100%; min-height: 16rem; border: 0; filter: grayscale(1) contrast(1.05); transition: filter .6s var(--ease); }
+.cu-map:hover iframe { filter: none; }
+
+/* get in touch: lilac band (the homepage Clients colour); photo left, heading + form right */
+.cu-form { padding-block: 0; background: #ede9fa; }
+.cu-form__inner { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: stretch; gap: clamp(2rem, 1rem + 3.5vw, 5rem); }
+/* the photo fills the band top to bottom with no padding and bleeds to the left edge of the window */
+.cu-form__shot { position: relative; overflow: hidden; min-height: 26rem; margin: 0 0 0 calc(-1 * (max(0px, (100vw - var(--container) - var(--pad-inline) * 2) / 2) + var(--pad-inline))); background: var(--line); }
+.cu-form__shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.6s var(--ease); }
+.cu-form__shot:hover img { transform: scale(1.04); }
+.cu-form__body { display: grid; align-content: center; gap: clamp(1.5rem, 1rem + 1.25vw, 2.25rem); padding-block: var(--section-pad); }
+/* subline kept to one or two lines: full column width, body size */
+.cu-form__body .section-heading__text { max-width: none; font-size: var(--fs-body); }
+.cu-fields { display: grid; gap: 1.5rem; }
+.cu-fields .field__input:hover { border-color: #dcd9d4; }
+.cu-fields__foot { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; }
+.cu-fields__foot .btn:disabled { opacity: .6; pointer-events: none; }
+/* captcha: the code chip and a round refresh button, then the boxed input */
+.cu-captcha { display: flex; align-items: stretch; gap: .6rem; }
+.cu-captcha__code { display: grid; flex: none; place-items: center; min-width: 7.5rem; padding: 0 1rem; border-radius: calc(var(--radius) - 5px); background: repeating-linear-gradient(135deg, #EDE9FB 0 6px, #fff 6px 12px); color: var(--brand-purple); font-size: 1.125rem; font-weight: 700; font-style: italic; letter-spacing: .3em; user-select: none; }
+.cu-captcha__refresh { display: grid; flex: none; place-items: center; width: 3.25rem; border: 1px solid #DDDAD5; border-radius: 50%; background: #fff; color: var(--ink); transition: background-color .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease); }
+.cu-captcha__refresh:hover { background: #5E2187; border-color: #5E2187; color: #fff; }
+.cu-captcha .field__input { flex: 1; min-width: 0; }
+
+@media (max-width: 64rem) {
+  .cu-info__inner, .cu-form__inner { grid-template-columns: minmax(0, 1fr); }
+  .cu-form__shot { min-height: 0; aspect-ratio: 16 / 10; margin-inline: calc(-1 * var(--pad-inline)); }
+  .cu-form__body { padding-top: 0; }
+}
+@media (max-width: 40rem) {
+  .cu-grid { grid-template-columns: minmax(0, 1fr); }
+  .cu-captcha { flex-wrap: wrap; }
+  .cu-captcha .field__input { flex-basis: 100%; }
+  .cu-fields__foot .btn { width: 100%; }
+}
 
 /* ---------- cart page ---------- */
 /* Product rows split by hairlines on the left; a sticky order summary on the #F2F1EF product panel on the right. */
@@ -1467,12 +1527,24 @@ details[open] > summary > .filter-acc__chev { rotate: -90deg; }
 .pd-info__price .shop-card__was { font-size: var(--fs-sm); }
 .pd-info__price .shop-card__save { font-size: var(--fs-sm); }
 .pd-info__desc { display: grid; gap: 1rem; margin-top: 1.75rem; padding-top: 1.75rem; border-top: 1px solid var(--line); color: var(--muted); font-size: var(--fs-sm); line-height: 1.75; text-wrap: pretty; }
-.pd-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; margin: 1.75rem 0 0; padding: 0; list-style: none; border-block: 1px solid var(--line); }
-.pd-facts li { display: grid; gap: .2rem; padding: 1.1rem 1rem; border-left: 1px solid var(--line); }
-.pd-facts li:first-child { padding-left: 0; border-left: 0; }
-.pd-facts strong { font-size: clamp(1.125rem, 1rem + .4vw, 1.375rem); font-weight: 400; letter-spacing: -.01em; }
-.pd-facts span { color: var(--muted); font-size: var(--fs-xs); letter-spacing: .12em; text-transform: uppercase; }
 
+.pd-info__tagline { color: var(--ink); font-size: var(--fs-body); font-style: italic; font-weight: 300; }
+/* key features (diffusers): tick list in two columns */
+.pd-features { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem 1.5rem; width: 100%; margin: 1.5rem 0 0; padding: 0; list-style: none; font-size: var(--fs-sm); }
+.pd-features li { display: flex; align-items: flex-start; gap: .55rem; line-height: 1.5; }
+.pd-features .icon { flex: none; width: 1.25rem; height: 1.25rem; padding: .2rem; border-radius: 50%; background: var(--lilac); color: var(--brand-purple); }
+/* fragrance notes (aromatic oils): top / heart / base, each a row of small square photo tiles with the note on a dark shade */
+.pd-notes { display: grid; gap: 1.1rem; width: 100%; margin-top: 1.75rem; padding-top: 1.75rem; border-top: 1px solid var(--line); }
+.pd-notes__title { font-size: 1.125rem; font-weight: 500; }
+.pd-notes__row { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); align-items: center; gap: 1rem; }
+.pd-notes__label { color: var(--muted); font-size: var(--fs-xs); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; }
+.pd-notes__list { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0; padding: 0; list-style: none; }
+.pd-note { position: relative; isolation: isolate; display: grid; place-items: center; width: 5.25rem; aspect-ratio: 1; overflow: hidden; padding: .35rem; border-radius: calc(var(--radius) - 2px); background: #16141A; color: #fff; font-size: .75rem; font-weight: 500; line-height: 1.2; text-align: center; }
+.pd-note img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+.pd-note::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(rgb(22 20 26 / .2), rgb(22 20 26 / .55)); }
+.pd-note:hover img { transform: scale(1.08); }
+/* no specifications (aromatic oils and simple products): the related products follow straight on, one section gap */
+.pd-related--flush { padding-top: 0; }
 .pd-buy { display: grid; gap: 1.5rem; width: 100%; margin-top: 1.75rem; }
 .pd-option { display: grid; gap: .75rem; min-width: 0; margin: 0; padding: 0; border: 0; }
 .pd-option__label { padding: 0; color: var(--muted); font-size: var(--fs-xs); font-weight: 500; letter-spacing: .16em; text-transform: uppercase; }
@@ -1480,7 +1552,7 @@ details[open] > summary > .filter-acc__chev { rotate: -90deg; }
 .pd-swatches { display: flex; gap: .75rem; }
 .pd-swatch { position: relative; cursor: pointer; }
 .pd-swatch input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
-.pd-swatch__dot { display: block; width: 2.25rem; height: 2.25rem; border-radius: 50%; box-shadow: 0 0 0 1px var(--line); outline: 1px solid transparent; outline-offset: 3px; transition: outline-color .25s var(--ease); }
+.pd-swatch__dot { display: block; background: var(--swatch, #fff); width: 2.25rem; height: 2.25rem; border-radius: 50%; box-shadow: 0 0 0 1px var(--line); outline: 1px solid transparent; outline-offset: 3px; transition: outline-color .25s var(--ease); }
 .pd-swatch__dot--black { background: #16141A; }
 .pd-swatch__dot--white { background: #fff; }
 .pd-swatch:hover .pd-swatch__dot { outline-color: var(--line); }
@@ -1489,9 +1561,17 @@ details[open] > summary > .filter-acc__chev { rotate: -90deg; }
 .pd-buy__actions { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
 .pd-buy__actions .btn { width: 100%; }
 
-.pd-share { display: flex; align-items: center; gap: 1rem; margin-top: 1.75rem; }
-.pd-share__label { color: var(--muted); font-size: var(--fs-xs); font-weight: 500; letter-spacing: .16em; text-transform: uppercase; }
-.pd-share__list { display: flex; gap: .5rem; margin: 0; padding: 0; list-style: none; }
+/* category line with the share icon opposite it, above the product name */
+.pd-info__top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%; }
+/* share: one icon button; hover, keyboard focus or a tap opens the options in a small panel below it */
+.pd-share { position: relative; }
+.pd-share__toggle { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; padding: 0; border: 1px solid var(--line); border-radius: 50%; background: #fff; color: var(--ink); cursor: pointer; transition: background-color .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease); }
+.pd-share__toggle:hover, .pd-share[data-open] .pd-share__toggle, .pd-share:focus-within .pd-share__toggle { background: #5E2187; border-color: #5E2187; color: #fff; }
+.pd-share__toggle:focus-visible { outline: 2px solid var(--brand-purple); outline-offset: 2px; }
+.pd-share__list { position: absolute; top: calc(100% + .6rem); right: 0; z-index: 5; display: flex; gap: .4rem; margin: 0; padding: .5rem; list-style: none; border: 1px solid var(--line); border-radius: 999px; background: #fff; opacity: 0; visibility: hidden; transform: translateY(-6px); transition: opacity .25s var(--ease), transform .25s var(--ease), visibility 0s .25s; }
+/* an invisible bridge so the pointer can travel from the icon to the panel */
+.pd-share__list::before { content: ""; position: absolute; left: 0; right: 0; bottom: 100%; height: .7rem; }
+.pd-share:hover .pd-share__list, .pd-share:focus-within .pd-share__list, .pd-share[data-open] .pd-share__list { opacity: 1; visibility: visible; transform: none; transition: opacity .25s var(--ease), transform .25s var(--ease), visibility 0s; }
 .pd-share__btn { display: grid; place-items: center; width: 2.5rem; height: 2.5rem; padding: 0; border: 1px solid var(--line); border-radius: 50%; background: none; color: var(--ink); cursor: pointer; transition: background-color .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease); }
 .pd-share__btn:hover { background: #5E2187; border-color: #5E2187; color: #fff; }
 .pd-share__btn:focus-visible { outline: 2px solid var(--brand-purple); outline-offset: 2px; }
@@ -1511,8 +1591,10 @@ details[open] > summary > .filter-acc__chev { rotate: -90deg; }
 }
 @media (max-width: 40rem) {
   .pd-gallery__thumbs { gap: .5rem; }
+  .pd-features { grid-template-columns: minmax(0, 1fr); }
+  .pd-notes__row { grid-template-columns: minmax(0, 1fr); gap: .6rem; }
+  .pd-note { width: 4.75rem; }
   .pd-specs__list { grid-template-columns: minmax(0, 1fr); }
-  .pd-facts li { padding-inline: .75rem; }
 }
 @media (prefers-reduced-motion: reduce) { .pd-gallery__img.is-swapping { animation: none; } }
 
@@ -1815,35 +1897,23 @@ details[open] > summary > .filter-acc__chev { rotate: -90deg; }
 }
 
 /* ---------- 404 error page ---------- */
-/* "Lost scent trail": a faint dot grid fading out from the centre under a lilac glow; the 404 (type unchanged) with the
-   Dew diffuser in the "0" puffing mist that drifts away; three glass tags floating round it; the payment-status title,
-   text and buttons; then three photo cards back into the store. */
+/* "Lost scent trail": a faint dot grid fading out from the centre under a lilac glow; the 404 as fumes; the payment-status
+   title, text and buttons; then three photo cards back into the store. */
 .err { position: relative; isolation: isolate; overflow: hidden; padding-bottom: var(--section-pad); background: radial-gradient(ellipse 50% 45% at 50% 30%, rgb(237 233 251 / .95), rgb(237 233 251 / 0) 70%), var(--paper); }
 .err::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(rgb(94 33 135 / .16) 1px, transparent 1.2px) 0 0 / 22px 22px; -webkit-mask: radial-gradient(ellipse 60% 55% at 50% 32%, #000 20%, transparent 75%); mask: radial-gradient(ellipse 60% 55% at 50% 32%, #000 20%, transparent 75%); }
 .err__inner { display: grid; justify-items: center; min-height: calc(100svh - var(--header-offset, 8rem)); align-content: center; padding-block: clamp(3rem, 2rem + 3vw, 5rem); text-align: center; }
 
-/* numbers: same type as before; the digits bob gently out of step, the diffuser floats */
-.err__stage { position: relative; margin-bottom: clamp(1.5rem, 1rem + 1.5vw, 2.5rem); }
-.err-page__code { display: flex; align-items: center; gap: .04em; font-size: min(clamp(6.5rem, 3rem + 14vw, 14rem), 26svh); font-weight: 300; line-height: .85; letter-spacing: -.06em; }
-.err__digit { display: inline-block; animation: err-bob 6s ease-in-out infinite; }
-.err__digit:last-child { animation-delay: -3s; }
-.err-page__zero { position: relative; display: grid; place-items: center; width: .68em; height: .9em; margin-inline: .04em; border-radius: 999px; background: #F2F1EF; box-shadow: inset 0 0 0 1px rgb(94 33 135 / .08); }
-.err-page__zero img { position: relative; z-index: 1; width: 92%; height: auto; animation: err-float 5s ease-in-out infinite; }
-@keyframes err-float { 0%, 100% { transform: translateY(2%); } 50% { transform: translateY(-4%); } }
-@keyframes err-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-.04em); } }
-
-/* mist: soft lilac puffs leave the top of the diffuser, swell and drift off to the right */
-.err__puff { position: absolute; top: 30%; left: calc(50% + var(--x)); width: .14em; height: .14em; border-radius: 50%; background: radial-gradient(circle, rgb(94 33 135 / .28), rgb(94 33 135 / 0) 70%); opacity: 0; animation: err-puff 3.6s var(--d) ease-out infinite; }
-@keyframes err-puff { 0% { transform: translate(0, 0) scale(.4); opacity: 0; } 20% { opacity: 1; } 100% { transform: translate(.35em, -.75em) scale(2.4); opacity: 0; } }
-
-/* glass tags: frosted pills with a purple dot, floating round the numbers */
-.err__tag { position: absolute; z-index: 2; display: inline-flex; align-items: center; gap: .5rem; padding: .55rem .95rem; border: 1px solid rgb(255 255 255 / .9); border-radius: 999px; background: rgb(255 255 255 / .6); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); color: var(--ink-2); font-size: var(--fs-xs); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; animation: err-bob-tag 7s ease-in-out infinite; }
-.err__tag i { width: .45rem; height: .45rem; border-radius: 50%; background: var(--brand-purple); }
-.err__tag--a { top: 22%; right: calc(100% + .75rem); rotate: -6deg; }
-.err__tag--b { top: -6%; left: calc(100% - 1.5rem); rotate: 5deg; animation-delay: -2.5s; }
-.err__tag--c { bottom: 12%; left: calc(100% + 1rem); rotate: -3deg; animation-delay: -5s; }
-.err__tag--c i { background: var(--leaf); }
-@keyframes err-bob-tag { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+/* fumes stage (after the reference): one SVG. The 404 is Neue Montreal Bold run through a smoke filter; wisps drift up
+   off it, specks twinkle, and the lilac scent orb bobs over the 0. Only transforms / opacity animate (the filters stay static). */
+.err__stage { width: min(100%, 58rem); margin-bottom: clamp(1rem, .5rem + 1.5vw, 2rem); }
+.err-fume { display: block; width: 100%; height: auto; max-height: 36svh; overflow: visible; }
+.err-fume__digits { font-family: inherit; font-size: 360px; font-weight: 700; letter-spacing: 18px; }
+.err-fume__wisp { opacity: 0; transform-box: fill-box; transform-origin: center; animation: err-wisp 6.6s var(--d) ease-out infinite; }
+@keyframes err-wisp { 0% { transform: translateY(20px) scale(.6); opacity: 0; } 25% { opacity: .5; } 100% { transform: translate(18px, -70px) scale(1.8); opacity: 0; } }
+.err-fume__specks circle { animation: err-speck 3.4s var(--d) ease-in-out infinite; }
+@keyframes err-speck { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
+.err-fume__orb { animation: err-orb 6s ease-in-out infinite; }
+@keyframes err-orb { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
 /* store cards: photo with a dark floor, name bottom-left, round arrow that fills purple on hover */
 .err__more-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .75rem 2rem; margin-bottom: 1.5rem; }
@@ -1862,14 +1932,10 @@ details[open] > summary > .filter-acc__chev { rotate: -90deg; }
   .err__card { aspect-ratio: 16 / 7; }
 }
 @media (max-width: 40rem) {
-  .err__tag { padding: .45rem .75rem; font-size: .625rem; }
-  .err__tag--a { top: -18%; right: auto; left: -4%; }
-  .err__tag--b { top: auto; bottom: -16%; left: auto; right: -4%; }
-  .err__tag--c { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .err__digit, .err-page__zero img, .err__tag { animation: none; }
-  .err__puff { display: none; }
+  .err-fume__wisps { display: none; }
+  .err-fume__specks circle, .err-fume__orb { animation: none; }
 }
 
 /* ---------- payment success page ---------- */

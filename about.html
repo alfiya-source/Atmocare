@@ -38,6 +38,7 @@
   <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3.5 12h17M12 3.5c2.3 2.3 3.5 5.1 3.5 8.5s-1.2 6.2-3.5 8.5c-2.3-2.3-3.5-5.1-3.5-8.5S9.7 5.8 12 3.5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
   <symbol id="i-parcel" viewBox="0 0 24 24"><path d="M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5v-9Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M3.5 7.5 12 12l8.5-4.5M12 12v9M7.75 5.25l8.5 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
   <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.6v12.8a1 1 0 0 0 1.5.86l10.4-6.4a1 1 0 0 0 0-1.72L9.5 4.74A1 1 0 0 0 8 5.6Z" fill="currentColor"/></symbol>
+  <symbol id="i-cert" viewBox="0 0 24 24"><path d="M12 3.5 19 6v5.5c0 4.2-2.9 7.6-7 9-4.1-1.4-7-4.8-7-9V6l7-2.5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m9 12.25 2.1 2.1L15.25 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </svg>
 
 <a class="skip-link" href="#main">Skip to content</a>
@@ -49,7 +50,7 @@
       <a href="about.html" aria-current="page">About Us</a>
       <a href="clients.html">Clients</a>
       <a href="blog.html">Blog</a>
-      <a href="https://atmocare.com/contact">Contact</a>
+      <a href="contact.html">Contact</a>
     </nav>
 
     <button class="icon-btn site-header__menu-btn" type="button" aria-label="Open menu" aria-controls="mobile-nav" aria-expanded="false" data-menu-open>
@@ -78,12 +79,11 @@
   <nav class="category-nav" aria-label="Product categories">
     <ul class="container category-nav__list">
       <li><a href="index.html">Home</a></li>
-      <li><a href="https://atmocare.com/products/scent-solutions">Scent Solutions</a></li>
-      <li><a href="https://atmocare.com/products/aromatic-oils">Aromatic Oils</a></li>
+      <li><a href="shop.html?category=diffusers">Scent Solutions</a></li>
+      <li><a href="shop.html?category=oils">Aromatic Oils</a></li>
       <li><a href="scent-contracting.html">Scent Contracting</a></li>
-      <li><a href="index.html#best-sellers">Bestseller</a></li>
-      <!-- MISSING: no Sale page or sale products exist on atmocare.com. Placeholder link. -->
-      <li><a href="#" data-placeholder="sale-page">Sale</a></li>
+      <li><a href="shop.html?show=best">Bestseller</a></li>
+      <li><a href="shop.html?show=sale">Sale</a></li>
       <li><a href="shop.html">Shop All</a></li>
     </ul>
   </nav>
@@ -101,18 +101,18 @@
     </div>
     <ul class="mobile-nav__list">
       <li><a href="index.html">Home</a></li>
-      <li><a href="https://atmocare.com/products/scent-solutions">Scent Solutions</a></li>
-      <li><a href="https://atmocare.com/products/aromatic-oils">Aromatic Oils</a></li>
+      <li><a href="shop.html?category=diffusers">Scent Solutions</a></li>
+      <li><a href="shop.html?category=oils">Aromatic Oils</a></li>
       <li><a href="scent-contracting.html">Scent Contracting</a></li>
-      <li><a href="index.html#best-sellers">Bestseller</a></li>
-      <li><a href="#" data-placeholder="sale-page">Sale</a></li>
+      <li><a href="shop.html?show=best">Bestseller</a></li>
+      <li><a href="shop.html?show=sale">Sale</a></li>
       <li><a href="shop.html">Shop All</a></li>
     </ul>
     <ul class="mobile-nav__list mobile-nav__list--small">
       <li><a href="about.html" aria-current="page">About Us</a></li>
       <li><a href="clients.html">Clients</a></li>
       <li><a href="blog.html">Blog</a></li>
-      <li><a href="https://atmocare.com/contact">Contact</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
     <div class="mobile-nav__contact">
       <a href="tel:+97142565244">+971 4 256 52 44</a>
@@ -192,6 +192,13 @@
             <p>Our specialization lies in sourcing products and meeting specific and customized requirements, ensuring that our customers receive solutions that align with their operational needs, quality expectations, and business objectives.</p>
             <p>With a strong understanding of the regional market and an extensive network of trusted manufacturers and suppliers, ATMOCARE continues to deliver products and solutions that combine quality, reliability, and value.</p>
           </div>
+
+          <!-- ISO 9001:2015 certificate (Globus Certifications, Reg. No. AB2602VII10-0423): a button-style link that opens the PDF -->
+          <a class="cert-link" href="assets/docs/atmocare-iso-9001-2015-certificate.pdf" target="_blank" rel="noopener">
+            <span class="cert-link__icon" aria-hidden="true"><svg class="icon"><use href="#i-cert"/></svg></span>
+            <span class="cert-link__text"><span class="cert-link__title">ISO 9001:2015 Certified</span><span class="cert-link__sub">Quality Management System · View certificate (PDF)</span></span>
+            <svg class="icon icon--sm cert-link__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a>
 
           <ul class="profile__usps">
             <li class="profile__usp">
@@ -331,8 +338,8 @@
         <p class="section-heading__text">Explore our collection of diffusers, fragrances and scenting solutions for homes, businesses and commercial spaces.</p>
       </div>
       <div class="btn-group">
-        <a class="btn btn--brand" href="https://atmocare.com/contact">Contact Us <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        <a class="btn btn--ghost-light" href="https://atmocare.com/products/scent-solutions">Shop Now <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--brand" href="contact.html">Contact Us <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--ghost-light" href="shop.html?category=diffusers">Shop Now <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
     </div>
   </section>
@@ -364,17 +371,17 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html" aria-current="page">About Us</a></li>
           <li><a href="clients.html">Clients</a></li>
-          <li><a href="index.html#products">Shop</a></li>
+          <li><a href="shop.html">Shop</a></li>
           <li><a href="blog.html">Blog</a></li>
-          <li><a href="https://atmocare.com/contact">Contact</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
 
       <nav class="footer-col" aria-labelledby="f-products">
         <h2 class="footer-col__title" id="f-products">Products</h2>
         <ul>
-          <li><a href="https://atmocare.com/products/scent-solutions">Scent Solutions</a></li>
-          <li><a href="https://atmocare.com/products/aromatic-oils">Aromatic Oils</a></li>
+          <li><a href="shop.html?category=diffusers">Scent Solutions</a></li>
+          <li><a href="shop.html?category=oils">Aromatic Oils</a></li>
           <li><a href="scent-contracting.html">Scent Contracting</a></li>
         </ul>
       </nav>

@@ -1,12 +1,30 @@
-/* Contact page: validates the enquiry form and posts every field (requirement type included) to the form's data-endpoint.
-   No endpoint configured = the form says so after validating; it never shows a fake success.
-   CAPTCHA: no provider is configured. Mount the provider widget in [data-captcha-slot] and append its token below. */
+/* Contact page: validates the enquiry form (including the "Enter the Code" check) and posts every field to the form's
+   data-endpoint. No endpoint configured = the form says so after validating; it never shows a fake success.
+   CAPTCHA: the code below is drawn on the page so the field works now. It keeps casual spam out but is not bot
+   protection; for that, swap [data-captcha] for a provider widget (reCAPTCHA / Turnstile) and verify its token server-side. */
 (() => {
   const form = document.querySelector('[data-contact-form]');
   if (!form) return;
   const status = form.querySelector('[data-form-status]');
   const submit = form.querySelector('[type="submit"]');
   const fields = [...form.querySelectorAll('.field__input[required]')];
+  const codeEl = form.querySelector('[data-captcha-code]');
+  const codeInput = form.querySelector('#cf-code');
+
+  // captcha: five characters without look-alikes (no 0/O, 1/I/L)
+  const CHARS = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+  let code = '';
+  const newCode = () => {
+    code = Array.from({ length: 5 }, () => CHARS[Math.floor(Math.random() * CHARS.length)]).join('');
+    codeEl.textContent = code;
+    codeEl.setAttribute('aria-label', 'Security code: ' + code.split('').join(' '));
+  };
+  newCode();
+  form.querySelector('[data-captcha-refresh]').addEventListener('click', () => {
+    newCode();
+    codeInput.value = '';
+    codeInput.focus();
+  });
 
   const say = (msg, tone) => {
     status.textContent = msg;
@@ -15,7 +33,8 @@
   };
 
   const check = input => {
-    const ok = input.checkValidity() && input.value.trim() !== '';
+    let ok = input.checkValidity() && input.value.trim() !== '';
+    if (input === codeInput) ok = input.value.trim().toUpperCase() === code;
     const err = document.getElementById(input.id + '-err');
     input.setAttribute('aria-invalid', String(!ok));
     if (err) {
@@ -45,11 +64,11 @@
     }
     const endpoint = form.dataset.endpoint;
     if (!endpoint) {
-      say('This form isn’t connected yet. Please email info@atmocare.com or call +971 4 256 52 44.', 'error');
+      say('This form isn’t connected yet. Please email info@atmocare.com or call +971 4 591 7113.', 'error');
       return;
     }
     const data = new FormData(form);
-    // CAPTCHA: data.append('captcha_token', <provider token>) once a provider is set up
+    data.delete('captcha');
     submit.disabled = true;
     say('Sending…', 'info');
     try {
@@ -57,6 +76,7 @@
       if (!res.ok) throw new Error(res.status);
       form.reset();
       fields.forEach(input => input.removeAttribute('aria-invalid'));
+      newCode();
       say('Thank you. Your enquiry has been sent and our team will be in touch shortly.', 'success');
     } catch {
       say('Sorry, your enquiry couldn’t be sent. Please try again, or email info@atmocare.com.', 'error');

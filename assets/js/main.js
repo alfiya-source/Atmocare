@@ -54,22 +54,56 @@
   $$('a', nav).forEach(a => a.addEventListener('click', () => menu.close()));
   window.addEventListener('resize', () => { if (window.innerWidth > 1024 && menu.isOpen()) menu.close(); });
 
-  /* ---------- search (real atmocare.com products) ---------- */
-  const P = 'https://atmocare.com/product-details/';
+  /* ---------- search: every shop product, opening its own product page ---------- */
   const products = [
-    ['DEW - Medium Area Scent Diffuser', 'Scent Solutions', 'dew-medium-area-scent-diffuser'],
-    ['MISTRAL - Lobby Scent Diffuser', 'Scent Solutions', 'mistral-lobby-scent-diffuser'],
-    ['REGAL - Luxury Home and Office Scent Diffuser', 'Scent Solutions', 'regal-luxury-home-and-office-scent-diffuser'],
-    ['GRACE - Small Area Scent Diffuser', 'Scent Solutions', 'grace-small-area-scent-diffuser'],
-    ['AROMA PRO - Large Area Commercial Scent Diffuser', 'Scent Solutions', 'aroma-pro-large-area-commercial-scent-diffuser'],
-    ['AROMATIC CANDLES', 'Scent Solutions', 'aromatic-candles'],
-    ['REED DIFFUSER', 'Scent Solutions', 'reed-diffuser'],
-    ['CORPORATE or WHITE LABEL GIFTS', 'Scent Solutions', 'corporate-or-white-label-gifts'],
-    ['EXOTICA - Luxurious', 'Aromatic Oils', 'exotica-luxurious'],
-    ['HARMONY - Signature Collection', 'Aromatic Oils', 'harmony-signature-collection'],
-    ['STORMY DESERT - Arabic', 'Aromatic Oils', 'stormy-desert-arabic'],
-    ['TOUCH ME - Fresh and Sweet', 'Aromatic Oils', 'touch-me-fresh-and-sweet'],
-    ['CORPORATE SCENT CONTRACTING', 'Scent Contracting', 'corporate-scent-contracting']
+    ['Dew – Medium Area', 'Scent Solutions', 'product-dew.html'],
+    ['Mellow – Medium Area', 'Scent Solutions', 'product-mellow.html'],
+    ['Aromax – Medium Area', 'Scent Solutions', 'product-aromax.html'],
+    ['Mistral – Lobby', 'Scent Solutions', 'product-mistral.html'],
+    ['Regal – Home & Office', 'Scent Solutions', 'product-regal.html'],
+    ['Breeze – Small Area', 'Scent Solutions', 'product-breeze.html'],
+    ['Glimmer – Small Area', 'Scent Solutions', 'product-glimmer.html'],
+    ['Grace – Small Area', 'Scent Solutions', 'product-grace.html'],
+    ['Aroma Pro – Large Area', 'Scent Solutions', 'product-aroma-pro.html'],
+    ['Aura – Car & Table Top', 'Scent Solutions', 'product-aura.html'],
+    ['Aromatic Candles – Eco Friendly', 'Scent Solutions', 'product-aromatic-candles.html'],
+    ['Reed Diffuser – Eco Friendly', 'Scent Solutions', 'product-reed-diffuser.html'],
+    ['Corporate or White Label Gifts – White Label', 'Scent Solutions', 'product-corporate-or-white-label-gifts.html'],
+    ['Mist – Small to Medium Area', 'Scent Solutions', 'product-mist.html'],
+    ['Armani Opulenza – Luxurious', 'Aromatic Oils', 'product-armani-opulenza.html'],
+    ['Exotica – Luxurious', 'Aromatic Oils', 'product-exotica.html'],
+    ['Luxury Air – Luxurious', 'Aromatic Oils', 'product-luxury-air.html'],
+    ['Sensense – Luxurious', 'Aromatic Oils', 'product-sensense.html'],
+    ['Toxic Killi – Luxurious', 'Aromatic Oils', 'product-toxic-killi.html'],
+    ['Diamond – Signature Collection', 'Aromatic Oils', 'product-diamond.html'],
+    ['Fresh Leaf – Signature Collection', 'Aromatic Oils', 'product-fresh-leaf.html'],
+    ['Harmony – Signature Collection', 'Aromatic Oils', 'product-harmony.html'],
+    ['Leather Touch – Signature Collection', 'Aromatic Oils', 'product-leather-touch.html'],
+    ['Taj Sunset – Signature Collection', 'Aromatic Oils', 'product-taj-sunset.html'],
+    ['Blue Host – Aquatic', 'Aromatic Oils', 'product-blue-host.html'],
+    ['Crystal – Aquatic', 'Aromatic Oils', 'product-crystal.html'],
+    ['Trendy Breeze – Aquatic', 'Aromatic Oils', 'product-trendy-breeze.html'],
+    ['Ambri Fierce – Arabic', 'Aromatic Oils', 'product-ambri-fierce.html'],
+    ['Kalemat Oudh – Arabic', 'Aromatic Oils', 'product-kalemat-oudh.html'],
+    ['Musk – Arabic', 'Aromatic Oils', 'product-musk.html'],
+    ['Stormy Desert – Arabic', 'Aromatic Oils', 'product-stormy-desert.html'],
+    ['Isseymiyake – Fresh and Sweet', 'Aromatic Oils', 'product-isseymiyake.html'],
+    ['Paradise – Fresh and Sweet', 'Aromatic Oils', 'product-paradise.html'],
+    ['Passion – Fresh and Sweet', 'Aromatic Oils', 'product-passion.html'],
+    ['Touch Me – Fresh and Sweet', 'Aromatic Oils', 'product-touch-me.html'],
+    ['Eucalyptus – Citrus', 'Aromatic Oils', 'product-eucalyptus.html'],
+    ['Green Tea – Citrus', 'Aromatic Oils', 'product-green-tea.html'],
+    ['Lemon Grass – Citrus', 'Aromatic Oils', 'product-lemon-grass.html'],
+    ['Jasmine – Floral', 'Aromatic Oils', 'product-jasmine.html'],
+    ['Lavender – Floral', 'Aromatic Oils', 'product-lavender.html'],
+    ['Mandarin – Fruity', 'Aromatic Oils', 'product-mandarin.html'],
+    ['East Wood – Woody', 'Aromatic Oils', 'product-east-wood.html'],
+    ['Sandal – Woody', 'Aromatic Oils', 'product-sandal.html'],
+    ['Coffee Bean – Foody', 'Aromatic Oils', 'product-coffee-bean.html'],
+    ['Coco Lush – Foody', 'Aromatic Oils', 'product-coco-lush.html'],
+    ['Vanilla – Foody', 'Aromatic Oils', 'product-vanilla.html'],
+    ['Fragrance Mist – Commercial', 'Aromatic Oils', 'product-fragrance-mist.html'],
+    ['Corporate Scent Contracting', 'Scent Contracting', 'project-detail.html']
   ];
   const results = $('[data-search-results]');
   const label = $('[data-search-label]');
@@ -78,7 +112,7 @@
     const term = q.trim().toLowerCase();
     const list = term ? products.filter(p => (p[0] + ' ' + p[1]).toLowerCase().includes(term)) : products.slice(0, 6);
     label.textContent = term ? `${list.length} result${list.length === 1 ? '' : 's'}` : 'Popular on Atmocare';
-    results.innerHTML = list.map(p => `<li><a href="${P + p[2]}"><span>${p[0]}</span><small>${p[1]}</small></a></li>`).join('')
+    results.innerHTML = list.map(p => `<li><a href="${p[2]}"><span>${p[0]}</span><small>${p[1]}</small></a></li>`).join('')
       || '<li class="search-panel__empty">No products found. Try “diffuser” or “oil”.</li>';
   };
   overlay($('[data-search-panel]'), $$('[data-search-open]'), '[data-search-close]', () => { render(input.value); input.focus(); });
