@@ -956,7 +956,7 @@ details[open] > summary > .filter-acc__chev { rotate: -90deg; }
 .story::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgb(22 20 26 / 0) 30%, rgb(22 20 26 / .78)); }
 .story:hover img { transform: scale(1.05); }
 .story__body { display: grid; justify-items: start; gap: .85rem; padding: clamp(1.25rem, 1rem + 1vw, 1.75rem); }
-.story__title { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; font-size: clamp(1.4375rem, 1.325rem + .4vw, 1.6875rem); /* +6px */ font-weight: 400; letter-spacing: -.01em; line-height: 1.3; text-wrap: pretty; }
+.story__title { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; font-size: clamp(1.1875rem, 1.075rem + .4vw, 1.4375rem); font-weight: 400; letter-spacing: -.01em; line-height: 1.3; text-wrap: pretty; }
 /* the title link stretches over the whole card */
 .story__title a::after { content: ""; position: absolute; inset: 0; }
 .story__title a:focus-visible { outline: none; }
