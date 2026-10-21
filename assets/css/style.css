@@ -277,6 +277,9 @@ address { font-style: normal; }
 }
 @media (max-width: 48rem) {
   .hero__banner { object-position: 72% center; }
+  /* phones: copy and buttons sit in the lower part of the banner, with breathing room above the pager */
+  .hero__inner { justify-content: flex-end; }
+  .hero.is-carousel .hero__inner { padding-bottom: calc(3.5rem + clamp(2.5rem, 13svh, 7rem)); }
   .hero__media::after { background: linear-gradient(180deg, rgb(22 20 26 / .3), rgb(22 20 26 / .75) 75%); }
 }
 
