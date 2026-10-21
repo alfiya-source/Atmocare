@@ -90,3 +90,133 @@
     }
   });
 })();
+
+/* Product reviews: Specifications | Reviews tabs (products with specifications), the review slider with its progress bars,
+   the star rating, photo slots and the Write a Review form (MOCK: no backend yet, so Submit only checks and thanks). */
+(() => {
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- tabs: click, or arrow keys / Home / End between them ---------- */
+  $$('[data-tabs]').forEach(list => {
+    const tabs = $$('[role="tab"]', list);
+    const select = tab => tabs.forEach(t => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      const panel = document.getElementById(t.getAttribute('aria-controls'));
+      panel.hidden = !on;
+      // the panel may still be waiting for its scroll reveal
+      if (on) panel.querySelectorAll('.reveal').forEach(r => r.classList.add('is-visible'));
+    });
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => select(tab));
+      tab.addEventListener('keydown', e => {
+        const to = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[e.key];
+        if (to === undefined) return;
+        e.preventDefault();
+        const next = tabs[(to + tabs.length) % tabs.length];
+        select(next);
+        next.focus();
+      });
+    });
+  });
+
+  /* ---------- review slider: arrow steps forward (back to the first after the last); bars show and pick the review ---------- */
+  $$('[data-review-slider]').forEach(slider => {
+    const track = $('[data-review-track]', slider);
+    const cards = $$('[data-review]', track);
+    const next = $('[data-review-next]', slider);
+    const dots = $('[data-review-dots]', slider.parentElement);
+    let cur = 0;
+    const bars = cards.map((card, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'pd-reviews__dot';
+      b.setAttribute('aria-label', `Show review ${i + 1} of ${cards.length}`);
+      b.addEventListener('click', () => go(i));
+      dots.appendChild(b);
+      return b;
+    });
+    const mark = i => {
+      cur = i;
+      bars.forEach((b, j) => b.setAttribute('aria-current', String(j === i)));
+      const last = i === cards.length - 1;
+      next.classList.toggle('is-last', last);
+      next.setAttribute('aria-label', last ? 'Back to the first review' : 'Next review');
+    };
+    function go(i) {
+      track.scrollTo({ left: cards[i].offsetLeft - track.offsetLeft, behavior: reduceMotion ? 'auto' : 'smooth' });
+      mark(i);
+    }
+    next.addEventListener('click', () => go((cur + 1) % cards.length));
+    // swiping or scrolling the track moves the bars too
+    let t;
+    track.addEventListener('scroll', () => {
+      clearTimeout(t);
+      t = setTimeout(() => mark(Math.min(cards.length - 1, Math.round(track.scrollLeft / ((cards[1] ? cards[1].offsetLeft - cards[0].offsetLeft : 0) || 1)))), 80);
+    }, { passive: true });
+    if (cards.length < 2) { next.hidden = true; dots.hidden = true; }
+    mark(0);
+  });
+
+  /* ---------- Write a Review ---------- */
+  $$('[data-review-form]').forEach(form => {
+    const status = $('[data-review-status]', form);
+    const errors = { rating: $('[data-review-error="rating"]', form), feedback: $('[data-review-error="feedback"]', form) };
+    const feedback = form.elements.feedback;
+
+    // photo slots: a chosen picture previews in its slot, × empties it again
+    const slots = $$('[data-upload-slot]', form);
+    const clear = slot => {
+      const input = $('[data-upload-input]', slot), img = $('[data-upload-preview]', slot);
+      input.value = '';
+      if (img.src) URL.revokeObjectURL(img.src);
+      img.removeAttribute('src');
+      img.hidden = true;
+      $('[data-upload-remove]', slot).hidden = true;
+      slot.classList.add('is-empty');
+    };
+    slots.forEach(slot => {
+      const input = $('[data-upload-input]', slot), img = $('[data-upload-preview]', slot), remove = $('[data-upload-remove]', slot);
+      input.addEventListener('change', () => {
+        const file = input.files[0];
+        if (!file || !file.type.startsWith('image/')) { clear(slot); return; }
+        if (img.src) URL.revokeObjectURL(img.src);
+        img.src = URL.createObjectURL(file);
+        img.hidden = false;
+        remove.hidden = false;
+        slot.classList.remove('is-empty');
+      });
+      // a filled slot doesn't reopen the picker; only × clears it
+      slot.addEventListener('click', e => {
+        if (e.target.closest('[data-upload-remove]')) { e.preventDefault(); clear(slot); input.focus(); return; }
+        if (!slot.classList.contains('is-empty')) e.preventDefault();
+      });
+    });
+
+    const check = () => {
+      const rated = !!form.querySelector('input[name="rating"]:checked');
+      const written = feedback.value.trim().length > 0;
+      errors.rating.hidden = rated;
+      errors.feedback.hidden = written;
+      feedback.setAttribute('aria-invalid', String(!written));
+      return { rated, written };
+    };
+    form.addEventListener('change', e => { if (e.target.name === 'rating' && !errors.rating.hidden) check(); });
+    feedback.addEventListener('input', () => { if (!errors.feedback.hidden) check(); });
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      status.textContent = '';
+      const { rated, written } = check();
+      if (!rated) { form.querySelector('input[name="rating"]').focus(); return; }
+      if (!written) { feedback.focus(); return; }
+      form.reset();
+      slots.forEach(clear);
+      feedback.removeAttribute('aria-invalid');
+      status.textContent = 'Thank you! Your review has been received and will appear once approved.';
+    });
+  });
+})();

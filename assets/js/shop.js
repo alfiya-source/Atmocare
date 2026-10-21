@@ -34,6 +34,22 @@
   const heading = $('[data-shop-heading]');
   const CATEGORY_TITLES = { diffusers: 'Scent Solutions', oils: 'Aromatic Oils' };
   const SHOW_TITLES = { best: 'Best Sellers', sale: 'Sale', new: 'New Arrivals' };
+  // client copy: each category's introduction below its products (one string a paragraph), and the one-line banner subline on its tab
+  const CATEGORY_INTROS = {
+    oils: ['“Aromatic Oils” also known as Essential oils or Fragrance oils can be obtained from a wide range of botanicals, including flowers, fruits, leaves, bark and more. Each oil carries its unique fragrance profile. Whether enjoyed for their fragrance, therapeutic effects, or both, aromatic oils have become integral to various aspects of daily life, offering a natural and versatile way to enhance well-being and surroundings.'],
+    diffusers: [
+      'As a reputable scent marketing company based in Dubai, UAE, “Atmocare” is dedicated to crafting olfactory miracles. Recognizing the profound connection between fragrance and emotions, our journey began with the creation of Remarkable Scents, Innovative Scent Diffusers, Aromatic Candles and Reed Diffusers. Our Scent Solutions offer a unique opportunity for you to curate the ideal experience for your clients and colleagues—a moment in which they remain fully engaged and connected.',
+      'Scientifically proven to enhance productivity and energize employees, our Scent Solutions redefine office spaces. Beyond productivity, our scents play a pivotal role in establishing a distinctive brand identity that ensures lasting recognition and recall. With the unique power of our scent diffuser machines, we create an inviting atmosphere, making your customers feel comfortable and right at home.',
+      'Crafting an enduring and captivating ambiance is no small feat. At Atmocare, we boast an extensive array of invigorating aroma equipment, offering a diverse range of Fragrances and Diffusers tailored to your specific sector, design preferences, and ambiance requirements. Our Scent Solutions in the UAE are a trusted choice to elevate the allure and atmosphere of your space. Count on us for consistently meeting your expectations in product quality and timely delivery. Let us join forces to create a beautiful and enchanting atmosphere for you!',
+    ],
+  };
+  const CATEGORY_SUBLINES = {
+    oils: 'Pure fragrance drawn from flowers, fruits, leaves and bark.',
+    diffusers: 'Signature scents and diffusers that shape how every space feels.',
+  };
+  const intro = $('[data-shop-intro]');
+  const introText = $('[data-shop-intro-text]');
+  const introMore = $('[data-shop-intro-more]');
 
   const branches = {
     diffusers: ['coverage', 'usage'],
@@ -57,6 +73,30 @@
     maxIn.setAttribute('aria-valuetext', aed(hi));
   }
 
+  /* ---------- category introduction: folded to three lines, View More only when it runs longer ---------- */
+  function fitIntro() {
+    if (intro.hidden || intro.classList.contains('is-open')) return;
+    introMore.hidden = introText.scrollHeight <= introText.clientHeight + 1;
+  }
+  function setIntro(cat) {
+    const copy = CATEGORY_INTROS[cat] || [];
+    intro.hidden = !copy.length;
+    if (introText.dataset.cat === cat) return;
+    introText.dataset.cat = cat;
+    introText.replaceChildren(...copy.map(text => Object.assign(document.createElement('p'), { textContent: text })));
+    intro.classList.remove('is-open');
+    introMore.textContent = 'View More';
+    introMore.setAttribute('aria-expanded', 'false');
+    fitIntro();
+  }
+  introMore.addEventListener('click', () => {
+    const open = intro.classList.toggle('is-open');
+    introMore.textContent = open ? 'View Less' : 'View More';
+    introMore.setAttribute('aria-expanded', String(open));
+  });
+  // re-check on any width change (window resize, or Hide Filters widening the column)
+  new ResizeObserver(fitIntro).observe(intro);
+
   /* ---------- filtering ---------- */
   function filter() {
     const cats = ticked('category');
@@ -72,6 +112,7 @@
     const shown = matched.length;
     // what is being browsed, above the cards: one category (header tab or its filters), else one Sort By tab, else Shop All
     heading.textContent = on.length === 1 ? CATEGORY_TITLES[on[0]] : show.length === 1 ? SHOW_TITLES[show[0]] : 'Shop All';
+    setIntro(on.length === 1 ? on[0] : null);
     page = 1;
     paginate();
 
@@ -219,6 +260,8 @@
       if (img) img.src = src;
       const crumb = document.querySelector('.page-hero .breadcrumb [aria-current]');
       if (crumb) crumb.textContent = title;
+      const sub = document.querySelector('[data-shop-sub]');
+      if (sub) { sub.textContent = CATEGORY_SUBLINES[cat]; sub.hidden = false; }
       document.title = `${title} | Atmocare`;
     }
     // arriving from a category tab: only that category's filters show (Shop All shows both)

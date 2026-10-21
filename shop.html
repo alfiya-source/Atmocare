@@ -167,6 +167,8 @@
             </ol>
           </nav>
           <h1 class="page-hero__title" id="page-title">Explore Our Products</h1>
+          <!-- one-line subline on the Scent Solutions / Aromatic Oils tabs (set by shop.js) -->
+          <p class="page-hero__sub" data-shop-sub hidden></p>
         </div>
       </div>
     </div>
@@ -1013,6 +1015,11 @@
           <div class="shop-empty" data-shop-empty hidden>
             <p class="shop-empty__title">No products match these filters.</p>
             <button class="btn btn--ghost" type="button" data-filter-clear>Clear All Filters</button>
+          </div>
+          <!-- category introduction below the products and pagination while one category is browsed; past three lines it folds behind View More (set by shop.js) -->
+          <div class="shop-intro" data-shop-intro hidden>
+            <div class="shop-intro__text" id="shop-intro-text" data-shop-intro-text></div>
+            <button class="shop-intro__more" type="button" aria-controls="shop-intro-text" aria-expanded="false" data-shop-intro-more hidden>View More</button>
           </div>
         </div>
       </div>

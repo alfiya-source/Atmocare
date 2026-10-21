@@ -225,26 +225,140 @@
     </div>
   </section>
 
-  <!-- ============ 2. SPECIFICATIONS ============ -->
-  <!-- Warm band (#F7F5F1). Heading left; the specifications from atmocare.com as two columns of hairline rows. -->
-  <section class="section pd-specs" aria-labelledby="specs-title">
+  <!-- ============ 2. SPECIFICATIONS / REVIEWS ============ -->
+  <!-- Warm band (#F7F5F1). Specifications | Reviews tabs: the specifications from atmocare.com as two columns of hairline rows;
+       the reviews (MOCK: three placeholder reviews, replace with real ones) beside the Write a Review form. -->
+  <section class="section pd-specs" aria-label="Product details">
     <div class="container pd-specs__inner">
       <div class="section-heading reveal">
-        <span class="section-heading__eyebrow">Technical Details</span>
-        <h2 class="section-heading__title" id="specs-title">Specifications</h2>
+        <div class="pd-tabs" role="tablist" aria-label="Product details" data-tabs>
+          <button class="pd-tabs__tab" type="button" role="tab" id="specs-tab" aria-controls="specs-panel" aria-selected="true">Specifications</button>
+          <button class="pd-tabs__tab" type="button" role="tab" id="reviews-tab" aria-controls="reviews-panel" aria-selected="false" tabindex="-1">Reviews<span class="pd-tabs__count">3</span></button>
+        </div>
       </div>
-      <dl class="pd-specs__list reveal">
-          <div class="pd-specs__row"><dt>Color</dt><dd>Black, White</dd></div>
-          <div class="pd-specs__row"><dt>Product Size</dt><dd>160 × 60 × 148mm</dd></div>
-          <div class="pd-specs__row"><dt>Net Weight</dt><dd>0.543 kg</dd></div>
-          <div class="pd-specs__row"><dt>Suitable Coverage</dt><dd>30m² / 90m³ / 320 sqft</dd></div>
-          <div class="pd-specs__row"><dt>Consumption</dt><dd>0.04-0.35ml/hr</dd></div>
-          <div class="pd-specs__row"><dt>Power</dt><dd>1.5W</dd></div>
-          <div class="pd-specs__row"><dt>Input Voltage</dt><dd>DC5V</dd></div>
-          <div class="pd-specs__row"><dt>Installation</dt><dd>Wall mounted/Table top</dd></div>
-          <div class="pd-specs__row"><dt>Bottle Capacity</dt><dd>100ml</dd></div>
-          <div class="pd-specs__row"><dt>Material Design</dt><dd>Plastic</dd></div>
+      <div class="pd-tabs__panel reveal" role="tabpanel" id="specs-panel" aria-labelledby="specs-tab" tabindex="0">
+        <dl class="pd-specs__list">
+            <div class="pd-specs__row"><dt>Color</dt><dd>Black, White</dd></div>
+            <div class="pd-specs__row"><dt>Product Size</dt><dd>160 × 60 × 148mm</dd></div>
+            <div class="pd-specs__row"><dt>Net Weight</dt><dd>0.543 kg</dd></div>
+            <div class="pd-specs__row"><dt>Suitable Coverage</dt><dd>30m² / 90m³ / 320 sqft</dd></div>
+            <div class="pd-specs__row"><dt>Consumption</dt><dd>0.04-0.35ml/hr</dd></div>
+            <div class="pd-specs__row"><dt>Power</dt><dd>1.5W</dd></div>
+            <div class="pd-specs__row"><dt>Input Voltage</dt><dd>DC5V</dd></div>
+            <div class="pd-specs__row"><dt>Installation</dt><dd>Wall mounted/Table top</dd></div>
+            <div class="pd-specs__row"><dt>Bottle Capacity</dt><dd>100ml</dd></div>
+            <div class="pd-specs__row"><dt>Material Design</dt><dd>Plastic</dd></div>
       </dl>
+      </div>
+      <div class="pd-tabs__panel" role="tabpanel" id="reviews-panel" aria-labelledby="reviews-tab" tabindex="0" hidden>
+        <div class="pd-reviews">
+          <div class="pd-reviews__read">
+            <div class="pd-reviews__summary">
+              <p class="pd-reviews__score">4.7</p>
+              <div>
+                <p class="rating pd-reviews__stars" data-rating="4.7"><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
+                <p class="pd-reviews__count">Based on 3 reviews</p>
+              </div>
+            </div>
+            <div class="pd-reviews__slider" data-review-slider>
+              <div class="pd-reviews__track" tabindex="0" aria-label="Customer reviews, scroll horizontally" data-review-track>
+            <article class="review-card" aria-label="Review 1 of 3" data-review>
+              <header class="review-card__head">
+                <span class="review-card__avatar" aria-hidden="true">MA</span>
+                <div class="review-card__by">
+                  <h3 class="review-card__name">Mariam Al Suwaidi</h3>
+                  <p class="review-card__date"><time datetime="2026-10-17">4 days ago</time></p>
+                </div>
+                <p class="rating review-card__rating" data-rating="5"><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
+              </header>
+              <p class="review-card__text">We placed Glimmer in our reception and the difference was immediate. It runs almost silently, the fragrance spreads evenly across the space and the intensity settings make it easy to keep it subtle through the day.</p>
+              <ul class="review-card__photos" aria-label="Photos from Mariam Al Suwaidi">
+                <li><img src="assets/img/products/pd/glimmer-small-area-scent-diffuser-1.webp" alt="Mariam Al Suwaidi’s photo of Glimmer" width="1000" height="1000" loading="lazy"></li>
+                <li><img src="assets/img/products/pd/glimmer-small-area-scent-diffuser-2.webp" alt="Mariam Al Suwaidi’s photo of Glimmer" width="1000" height="1000" loading="lazy"></li>
+              </ul>
+            </article>
+            <article class="review-card" aria-label="Review 2 of 3" data-review>
+              <header class="review-card__head">
+                <span class="review-card__avatar" aria-hidden="true">RM</span>
+                <div class="review-card__by">
+                  <h3 class="review-card__name">Rahul Menon</h3>
+                  <p class="review-card__date"><time datetime="2026-10-07">2 weeks ago</time></p>
+                </div>
+                <p class="rating review-card__rating" data-rating="4"><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
+              </header>
+              <p class="review-card__text">Sleek design that sits beautifully in our interiors, and setup took only a few minutes. Refilling is simple. My only wish is that the bottle lasted a little longer on the highest setting.</p>
+              <ul class="review-card__photos" aria-label="Photos from Mariam Al Suwaidi">
+                <li><img src="assets/img/products/pd/glimmer-small-area-scent-diffuser-3.webp" alt="Mariam Al Suwaidi’s photo of Glimmer" width="1000" height="1000" loading="lazy"></li>
+              </ul>
+            </article>
+            <article class="review-card" aria-label="Review 3 of 3" data-review>
+              <header class="review-card__head">
+                <span class="review-card__avatar" aria-hidden="true">ST</span>
+                <div class="review-card__by">
+                  <h3 class="review-card__name">Sarah Thompson</h3>
+                  <p class="review-card__date"><time datetime="2026-09-21">1 month ago</time></p>
+                </div>
+                <p class="rating review-card__rating" data-rating="5"><span class="rating__stars" aria-hidden="true"><span class="rating__fill"></span></span><span class="rating__label"></span></p>
+              </header>
+              <p class="review-card__text">Our guests keep asking about the scent. Glimmer keeps the whole floor smelling fresh without ever feeling overpowering, and the Atmocare team was helpful from start to finish.</p>
+              <ul class="review-card__photos" aria-label="Photos from Sarah Thompson">
+                <li><img src="assets/img/products/pd/glimmer-small-area-scent-diffuser-1.webp" alt="Sarah Thompson’s photo of Glimmer" width="1000" height="1000" loading="lazy"></li>
+              </ul>
+            </article>
+              </div>
+              <button class="round-btn pd-reviews__next" type="button" aria-label="Next review" data-review-next><svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            </div>
+            <div class="pd-reviews__dots" data-review-dots></div>
+          </div>
+
+          <!-- MOCK: no review backend yet. Submit checks the rating and feedback, then thanks the visitor; nothing is sent. -->
+          <form class="pd-review-form" novalidate data-review-form>
+            <h3 class="pd-review-form__title">Write a Review</h3>
+            <p class="pd-review-form__text">Tried Glimmer? Share how it suits your space; your feedback helps others find their perfect scent.</p>
+            <fieldset class="pd-review-form__group">
+              <legend class="contact-form__label">Your Rating</legend>
+              <div class="pd-rate">
+                <input class="visually-hidden" type="radio" name="rating" id="rate-5" value="5" required><label class="pd-rate__star" for="rate-5"><span class="visually-hidden">5 stars</span></label>
+                <input class="visually-hidden" type="radio" name="rating" id="rate-4" value="4" required><label class="pd-rate__star" for="rate-4"><span class="visually-hidden">4 stars</span></label>
+                <input class="visually-hidden" type="radio" name="rating" id="rate-3" value="3" required><label class="pd-rate__star" for="rate-3"><span class="visually-hidden">3 stars</span></label>
+                <input class="visually-hidden" type="radio" name="rating" id="rate-2" value="2" required><label class="pd-rate__star" for="rate-2"><span class="visually-hidden">2 stars</span></label>
+                <input class="visually-hidden" type="radio" name="rating" id="rate-1" value="1" required><label class="pd-rate__star" for="rate-1"><span class="visually-hidden">1 star</span></label>
+              </div>
+              <p class="field__error" hidden data-review-error="rating">Please choose a rating.</p>
+            </fieldset>
+            <div class="pd-review-form__row">
+              <div class="pd-review-form__group">
+                <label class="contact-form__label" for="review-feedback">Your Feedback</label>
+                <textarea class="field__input field__input--area" id="review-feedback" name="feedback" placeholder="Write here…" required></textarea>
+                <p class="field__error" hidden data-review-error="feedback">Please write a few words about the product.</p>
+              </div>
+              <fieldset class="pd-review-form__group">
+                <legend class="contact-form__label">Upload Picture (Optional)</legend>
+                <div class="pd-upload">
+                <label class="pd-upload__slot is-empty" data-upload-slot>
+                  <input class="visually-hidden" type="file" name="photo-1" accept="image/*" data-upload-input>
+                  <span class="pd-upload__plus" aria-hidden="true"><svg class="icon icon--sm"><use href="#i-plus"/></svg></span>
+                  <span class="visually-hidden">Add photo 1</span>
+                  <img class="pd-upload__preview" alt="" hidden data-upload-preview>
+                  <button class="pd-upload__remove" type="button" aria-label="Remove photo 1" hidden data-upload-remove><svg class="icon icon--sm" aria-hidden="true"><use href="#i-close"/></svg></button>
+                </label>
+                <label class="pd-upload__slot is-empty" data-upload-slot>
+                  <input class="visually-hidden" type="file" name="photo-2" accept="image/*" data-upload-input>
+                  <span class="pd-upload__plus" aria-hidden="true"><svg class="icon icon--sm"><use href="#i-plus"/></svg></span>
+                  <span class="visually-hidden">Add photo 2</span>
+                  <img class="pd-upload__preview" alt="" hidden data-upload-preview>
+                  <button class="pd-upload__remove" type="button" aria-label="Remove photo 2" hidden data-upload-remove><svg class="icon icon--sm" aria-hidden="true"><use href="#i-close"/></svg></button>
+                </label>
+                </div>
+              </fieldset>
+            </div>
+            <div class="pd-review-form__foot">
+              <button class="btn btn--primary" type="submit">Submit<svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+              <p class="pd-review-form__status" role="status" data-review-status></p>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </section>
 
