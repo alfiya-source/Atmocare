@@ -279,6 +279,9 @@ address { font-style: normal; }
   .hero__banner { object-position: 72% center; }
   /* phones: copy and buttons sit at the bottom of the banner, with breathing room above the pager */
   .hero__inner { justify-content: flex-end; }
+  /* both buttons on one row: a touch smaller so they fit side by side down to 320px screens */
+  .hero__content .btn-group { flex-wrap: nowrap; gap: .5rem; }
+  .hero__content .btn { min-height: 3rem; padding-inline: clamp(.8rem, 3.6vw, 1.25rem); font-size: clamp(.78rem, 3.4vw, .9375rem); gap: .45rem; }
   .hero.is-carousel .hero__inner { padding-bottom: calc(3.5rem + clamp(1.5rem, 5svh, 2.5rem)); }
   .hero__media::after { background: linear-gradient(180deg, rgb(22 20 26 / .3), rgb(22 20 26 / .75) 75%); }
 }
