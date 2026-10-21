@@ -784,8 +784,8 @@ html:has(.site-header.is-hidden:not(:focus-within)) .shop { --shop-top: 0px; }
 .shop-layout.is-filters-hidden .shop-filters { display: none; }
 /* category heading above the cards when one category is being browsed (header tab or its filters) */
 .shop-results__title { margin-bottom: clamp(1.25rem, 1rem + 1vw, 2rem); font-size: clamp(1.75rem, 1.3rem + 1.4vw, 2.5rem); font-weight: 400; line-height: 1.1; letter-spacing: -.025em; }
-/* category introduction below the products and pagination: folded to three lines, a small light View More opens the rest */
-.shop-intro { max-width: 52rem; margin-top: clamp(2.5rem, 2rem + 2vw, 4rem); }
+/* category introduction below the products and pagination, as wide as the grid above: folded to three lines, a small light View More opens the rest */
+.shop-intro { margin-top: clamp(2.5rem, 2rem + 2vw, 4rem); }
 .shop-intro[hidden] { display: none; }
 .shop-intro__text { --lh: 1.65; display: grid; gap: 1em; max-height: calc(3em * var(--lh)); overflow: hidden; color: var(--muted); font-size: var(--fs-lead); line-height: var(--lh); text-wrap: pretty; }
 .shop-intro.is-open .shop-intro__text { max-height: none; }
@@ -1100,7 +1100,9 @@ details[open] > summary > .filter-acc__chev { rotate: -90deg; }
 .footer-col__toggle { display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%; padding: 0; border: 0; background: none; color: inherit; font: inherit; text-align: left; cursor: default; pointer-events: none; }
 .footer-col__sign { display: none; }
 @media (max-width: 40rem) {
-  .site-footer__top { grid-template-columns: minmax(0, 1fr); row-gap: 2rem; }
+  /* two columns so Address and Contact sit side by side; the brand block and the accordions span both */
+  .site-footer__top { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem 1.25rem; padding-bottom: 2.5rem; }
+  .footer-brand, .footer-col--acc { grid-column: 1 / -1; }
   /* Quick Links / Products: hairline rows that open with a plus / minus */
   .footer-brand + .footer-col--acc { margin-top: .5rem; }
   .footer-col--acc { gap: 0; border-bottom: 1px solid rgb(255 255 255 / .12); }
@@ -1112,13 +1114,19 @@ details[open] > summary > .filter-acc__chev { rotate: -90deg; }
   .footer-col--acc.is-open .footer-col__sign::after { rotate: 0deg; }
   .footer-col--acc ul { display: none; padding-bottom: 1.25rem; }
   .footer-col--acc.is-open ul { display: grid; }
-  .footer-col--acc + .footer-col:not(.footer-col--acc) { margin-top: .5rem; }
-  /* Contact: Phone across the top, Landline and Email side by side under it */
-  .footer-col:has(.footer-col__group) { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem 1.5rem; }
-  .footer-col:has(.footer-col__group) > .footer-col__title, .footer-col:has(.footer-col__group) > .footer-col__group:first-of-type { grid-column: 1 / -1; }
-  /* bottom row: the policy links and the agency credit centred, one link per line */
-  .legal-links { flex-direction: column; align-items: center; gap: .6rem; }
+  .footer-col--acc ~ .footer-col:not(.footer-col--acc) { margin-top: .5rem; }
+  /* Address | Contact: tighter title gap, Contact's groups stacked in its half */
+  .footer-col:not(.footer-col--acc) { gap: 1rem; }
+  .footer-col:has(.footer-col__group) { gap: .9rem; }
+  .footer-col address { overflow-wrap: anywhere; }
+  /* bottom row: policy links two to a line with a thin rule between (Privacy | Terms, then Shipping | Refund) */
+  .site-footer__bottom { gap: 1rem; padding-top: 1.5rem; }
+  .legal-links { display: grid; grid-template-columns: repeat(2, auto); justify-content: center; gap: .6rem 0; }
   .legal-links li + li { margin-left: 0; padding-left: 0; border-left: 0; }
+  .legal-links li:nth-child(1) { order: 1; } .legal-links li:nth-child(4) { order: 2; }
+  .legal-links li:nth-child(2) { order: 3; } .legal-links li:nth-child(3) { order: 4; }
+  .legal-links li:nth-child(1), .legal-links li:nth-child(2) { justify-self: end; padding-right: .75rem; }
+  .legal-links li:nth-child(3), .legal-links li:nth-child(4) { justify-self: start; padding-left: .75rem; border-left: 1px solid rgb(255 255 255 / .25); }
   .site-footer__credit { display: flex; justify-content: center; width: 100%; }
 }
 /* ==========================================================
@@ -1682,7 +1690,6 @@ fieldset.pd-option > legend { margin-bottom: 1rem; }
 .pd-tabs__tab:hover, .pd-tabs__tab[aria-selected="true"] { color: var(--ink); }
 .pd-tabs__tab[aria-selected="true"]::after { scale: 1 1; }
 .pd-tabs__tab:focus-visible { outline: 2px solid var(--brand-purple); outline-offset: 4px; border-radius: 2px; }
-.pd-tabs__count { font-size: var(--fs-sm); letter-spacing: 0; color: var(--muted); }
 .pd-tabs__panel:focus-visible { outline: 2px solid var(--brand-purple); outline-offset: 6px; }
 
 /* reviews: score + slider of review cards on the left, the Write a Review form beside it; white cards on the warm band, no shadows */
