@@ -87,9 +87,9 @@ address { font-style: normal; }
 .section--flush-top { padding-top: 0; }
 .promo-wrap { padding-bottom: calc(var(--section-pad) * .7); } /* gap before the highlighted Featured band */
 /* homepage: a tighter rhythm between sections (still a clear pause between them) */
-.home { --section-pad: clamp(3rem, 1.5rem + 5svh, 6rem); --section-gap: clamp(1.5rem, .75rem + 2.5svh, 3rem); }
+.home { --section-pad: clamp(2.5rem, 1rem + 4.25svh, 4.75rem); --section-gap: clamp(1rem, .5rem + 1.75svh, 2rem); }
 /* Featured band: taller light background (more padding inside) and a clear pause before and after it */
-.home .section--featured { min-height: 0; --fpad: clamp(3.5rem, 1.75rem + 7svh, 7.5rem); margin-block: clamp(1rem, .25rem + 2.5svh, 2.5rem); }
+.home .section--featured { min-height: 0; --fpad: clamp(2.75rem, 1.25rem + 6svh, 6rem); margin-block: clamp(.5rem, .25rem + 1.5svh, 1.5rem); }
 .home .promo-wrap { padding-bottom: var(--section-pad); }
 /* sections that drop their top padding (they share the page background with the one above) still get a breathing gap */
 .home #best-sellers, .home .promo-wrap, .home #why, .home .recipients, .home #testimonials { padding-top: var(--section-gap); }
