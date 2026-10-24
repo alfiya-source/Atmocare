@@ -522,6 +522,19 @@
     }
   }
 
+  /* ---------- clip expand (about page): the muted preview opens large in a dialog with sound and controls ---------- */
+  const clipPlayer = $('[data-clip-player]');
+  if (clipPlayer && clipPlayer.showModal) {
+    const cv = $('video', clipPlayer);
+    $$('[data-clip-video]').forEach(b => b.addEventListener('click', () => {
+      cv.src = b.dataset.clipVideo; cv.muted = false;
+      clipPlayer.showModal(); cv.play().catch(() => {});
+    }));
+    $('[data-clip-close]', clipPlayer).addEventListener('click', () => clipPlayer.close());
+    clipPlayer.addEventListener('click', e => { if (e.target === clipPlayer) clipPlayer.close(); });
+    clipPlayer.addEventListener('close', () => { cv.pause(); cv.removeAttribute('src'); cv.load(); });
+  }
+
   /* ---------- clients coverflow ---------- */
   const cf = $('[data-coverflow]');
   if (cf) {

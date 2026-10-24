@@ -1187,9 +1187,21 @@ details[open] > summary > .filter-acc__chev { rotate: -90deg; }
 .cert-link:hover .cert-link__sub { color: rgb(255 255 255 / .75); }
 .cert-link:hover .cert-link__icon { background: #fff; color: var(--brand-purple); }
 .cert-link:hover .cert-link__arrow { transform: translateX(3px); }
-.profile__usps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.profile__usp { display: flex; flex-direction: column; align-items: flex-start; gap: .35rem; padding-inline: clamp(.5rem, .25rem + 1vw, 1.5rem); border-left: 1px solid var(--line); }
+/* one row: two side-aligned figures, then a short clip as tall as the figures; the same gap sits on both sides of the divider and before the clip */
+.profile__stats { --gap: clamp(1rem, .5rem + 2vw, 2.5rem); display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); align-items: stretch; }
+.profile__usps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.profile__usp { display: flex; flex-direction: column; align-items: flex-start; gap: .35rem; padding-inline: var(--gap); border-left: 1px solid var(--line); }
 .profile__usp:first-child { padding-left: 0; border-left: 0; }
+.profile__clip { position: relative; min-height: 8rem; overflow: hidden; border-radius: var(--radius); background: var(--line); }
+.profile__clip video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+/* the whole box is the button; a glass play circle sits in the middle (same look as the testimonial tiles) */
+.profile__clip-btn { position: absolute; inset: 0; display: grid; place-items: center; padding: 0; border: 0; background: rgb(22 20 26 / .12); cursor: pointer; transition: background-color .3s; }
+.profile__clip-play { display: grid; place-items: center; width: 3.25rem; height: 3.25rem; border-radius: 50%; background: rgb(255 255 255 / .18); border: 1px solid rgb(255 255 255 / .4); color: #fff; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); transition: background-color .3s, border-color .3s, transform .4s var(--ease); }
+.profile__clip-play svg { width: 1.125rem; height: 1.125rem; margin-left: .12rem; }
+.profile__clip:hover video { transform: scale(1.05); }
+.profile__clip-btn:hover { background-color: rgb(22 20 26 / .22); }
+.profile__clip-btn:hover .profile__clip-play { background: #5E2187; border-color: #5E2187; transform: scale(1.06); }
+.profile__clip-btn:focus-visible { outline: 2px solid var(--brand-purple); outline-offset: 3px; border-radius: var(--radius); }
 .profile__usp-num { display: flex; align-items: flex-start; font-size: clamp(2.75rem, 1.9rem + 2.4vw, 4.25rem); font-weight: 400; line-height: 1; letter-spacing: -.045em; font-variant-numeric: tabular-nums; }
 .profile__usp-num [data-countup] { display: inline-block; padding-right: .04em; background: linear-gradient(120deg, var(--ink) 20%, var(--brand-purple) 95%); -webkit-background-clip: text; background-clip: text; color: transparent; transform-origin: 0 85%; }
 .profile__usp-num [data-countup].is-counted { animation: count-pop .6s cubic-bezier(.34, 1.56, .64, 1); }
@@ -1208,7 +1220,9 @@ details[open] > summary > .filter-acc__chev { rotate: -90deg; }
 }
 @media (max-width: 36rem) {
   .profile__usps { grid-template-columns: minmax(0, 1fr); gap: 1.75rem; }
+  .profile__stats { grid-template-columns: minmax(0, 1fr); gap: 1.75rem; }
   .profile__usp { padding: 1.75rem 0 0; border-left: 0; border-top: 1px solid var(--line); }
+  .profile__clip { aspect-ratio: 16 / 9; min-height: 0; }
   .profile__usp:first-child { padding-top: 0; border-top: 0; }
 }
 @media (prefers-reduced-motion: reduce) { .profile__shot img { transition: none; } .profile__shot:hover img { transform: none; } .profile__usp-num [data-countup].is-counted { animation: none; } }

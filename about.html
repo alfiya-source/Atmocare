@@ -8,7 +8,7 @@
   <link rel="icon" href="assets/img/brand/favicon.png" type="image/png">
   <link rel="preload" href="assets/fonts/NeueMontreal-Regular.otf" as="font" type="font/otf" crossorigin>
   <link rel="preload" href="assets/fonts/NeueMontreal-Light.otf" as="font" type="font/otf" crossorigin>
-  <link rel="stylesheet" href="assets/css/style.css?v=20261024h">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261024l">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body id="top">
@@ -162,7 +162,7 @@
 
   <!-- ============ 2. COMPANY PROFILE ============ -->
   <!-- Two-by-two editorial grid. Top: heading + first three paragraphs left, a wide photo right. Bottom: two portrait photos left, the
-       last two paragraphs and three counting figures right. Paragraphs are the client's copy, unedited; the figures restate this page's copy. -->
+       last two paragraphs and two counting figures right. Paragraphs are the client's copy, unedited; the figures restate this page's copy. -->
   <section class="section" id="profile" aria-labelledby="profile-title">
     <div class="container">
       <div class="profile">
@@ -200,26 +200,34 @@
             <svg class="icon icon--sm cert-link__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
           </a>
 
-          <ul class="profile__usps">
-            <li class="profile__usp">
-              <span class="profile__usp-num"><span data-countup="10">10</span><span class="profile__plus" aria-hidden="true">+</span></span>
-              <span class="profile__usp-label">Years of Industry Expertise</span>
-              <span class="profile__usp-note">Across diverse industries</span>
-            </li>
-            <li class="profile__usp">
-              <span class="profile__usp-num"><span data-countup="3" data-pad="2">03</span></span>
-              <span class="profile__usp-label">Specialist Divisions</span>
-              <span class="profile__usp-note">Aroma, Hygiene &amp; Industrial</span>
-            </li>
-            <li class="profile__usp">
-              <span class="profile__usp-num"><span data-countup="3" data-pad="2">03</span></span>
-              <span class="profile__usp-label">Regions Served</span>
-              <span class="profile__usp-note">Middle East, India &amp; UK</span>
-            </li>
-          </ul>
+          <!-- figures and a short clip in one row: the two figures side-aligned with an equal gap, then the homepage diffuser video at the same height -->
+          <div class="profile__stats">
+            <ul class="profile__usps">
+              <li class="profile__usp">
+                <span class="profile__usp-num"><span data-countup="10">10</span><span class="profile__plus" aria-hidden="true">+</span></span>
+                <span class="profile__usp-label">Years of Industry Expertise</span>
+                <span class="profile__usp-note">Across diverse industries</span>
+              </li>
+              <li class="profile__usp">
+                <span class="profile__usp-num"><span data-countup="3" data-pad="2">03</span></span>
+                <span class="profile__usp-label">Regions Served</span>
+                <span class="profile__usp-note">Middle East, India &amp; UK</span>
+              </li>
+            </ul>
+            <!-- muted preview loops in the box; clicking it opens the same clip large, with sound and controls -->
+            <div class="profile__clip">
+              <video src="assets/video/about-diffuser-ad.mp4" poster="assets/img/stock/about-diffuser-ad.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+              <button class="profile__clip-btn" type="button" aria-label="Play video: close-up shots of a white Atmocare tower scent diffuser" data-clip-video="assets/video/about-diffuser-ad.mp4"><span class="profile__clip-play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
+    <dialog class="testi-player" data-clip-player aria-label="Video">
+      <video controls playsinline></video>
+      <button class="round-btn testi-player__close" type="button" aria-label="Close video" data-clip-close><svg class="icon icon--sm" aria-hidden="true"><use href="#i-close"/></svg></button>
+    </dialog>
   </section>
 
   <!-- ============ 3. AROMA SOLUTIONS ============ -->
@@ -419,6 +427,6 @@
 
 <div class="toast" role="status" aria-live="polite" data-toast></div>
 
-<script src="assets/js/main.js?v=20261021h" defer></script>
+<script src="assets/js/main.js?v=20261024a" defer></script>
 </body>
 </html>
